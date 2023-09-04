@@ -1,0 +1,51 @@
+
+subprojects {
+    group 'vip.sujianfeng.library'
+
+    apply plugin: 'java'
+    apply plugin: 'maven-publish'
+
+    //避免编译出的jar存在中文乱码问题
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+    }
+
+    tasks.withType(Jar) {
+        //$rootDir 取项目的顶级目录
+        destinationDir = file("$rootDir/jars/newest")
+    }
+
+    configurations.all {
+        resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+    }
+
+    repositories {
+        //千逢阿里云-私服
+        maven {
+            credentials {
+                username System.getenv("MAVEN_QIANFENG_USER")
+                password System.getenv("MAVEN_QIANFENG_PASSWORD")
+            }
+            url 'https://packages.aliyun.com/maven/repository/2231939-snapshot-dnIZ66/'
+        }
+        maven {
+            url 'https://maven.aliyun.com/repository/public'
+        }
+        mavenCentral()
+    }
+
+    publishing {
+        repositories {
+            //千逢阿里云-私服
+            maven {
+                credentials {
+                    username System.getenv("MAVEN_QIANFENG_USER")
+                    password System.getenv("MAVEN_QIANFENG_PASSWORD")
+                }
+                url 'https://packages.aliyun.com/maven/repository/2231939-snapshot-dnIZ66/'
+            }
+        }
+    }
+
+
+}

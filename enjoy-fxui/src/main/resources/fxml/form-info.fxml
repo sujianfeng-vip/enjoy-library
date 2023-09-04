@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="133.0" prefWidth="425.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vip.sujianfeng.fxui.comm.formDialog.FormInfoController">
+   <children>
+      <Label fx:id="lblMsg" alignment="TOP_LEFT" layoutX="21.0" layoutY="27.0" prefHeight="56.0" prefWidth="393.0" text="提示信息..." wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Button layoutX="173.0" layoutY="92.0" mnemonicParsing="false" onMouseClicked="#onOk" prefHeight="31.0" prefWidth="91.0" text="确认">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+   </children>
+</AnchorPane>

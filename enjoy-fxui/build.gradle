@@ -1,0 +1,39 @@
+group 'vip.sujianfeng'
+version '1.0.1-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'maven-publish'
+
+sourceCompatibility = 1.8
+
+dependencies {
+    implementation 'dom4j:dom4j:1.6.1'
+    implementation 'com.alibaba:fastjson:2.0.17'
+    implementation 'vip.sujianfeng:enjoy-utils:1.0.0-SNAPSHOT'
+    implementation 'org.slf4j:slf4j-api:1.7.36'
+    implementation('vip.sujianfeng:enjoy-http-client:1.0.0-SNAPSHOT')
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allJava
+    classifier "sources"
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId project.group
+            artifactId 'enjoy-fxui'
+            version project.version
+            from components.java
+            //配置上传源码
+            artifact sourceJar {
+                classifier "sources"
+            }
+        }
+    }
+}

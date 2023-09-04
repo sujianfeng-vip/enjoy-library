@@ -1,0 +1,46 @@
+group 'vip.sujianfeng'
+version '1.0.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'maven-publish'
+
+sourceCompatibility = '1.8'
+
+dependencies {
+    implementation 'vip.sujianfeng:enjoy-utils:1.0.0-SNAPSHOT'
+    implementation 'vip.sujianfeng:enjoy-data-source:1.0.0-SNAPSHOT'
+    implementation 'vip.sujianfeng:enjoy-dao:1.0.12-SNAPSHOT'
+
+    implementation 'com.alibaba:fastjson:2.0.17'
+    implementation 'redis.clients:jedis:4.3.1'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.13.4'
+    implementation 'com.alibaba:druid:1.2.14'
+    implementation 'org.slf4j:slf4j-api:1.7.36'
+}
+
+test {
+    useJUnitPlatform()
+}
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allJava
+    classifier "sources"
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId project.group
+            artifactId 'enjoy-script-engine'
+            version project.version
+            from components.java
+            //配置上传源码
+            artifact sourceJar {
+                classifier "sources"
+            }
+        }
+    }
+}

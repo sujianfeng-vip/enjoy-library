@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="66.0" prefWidth="288.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vip.sujianfeng.fxui.comm.formLoading.FormLoadingController">
+   <children>
+      <Pane prefHeight="66.0" prefWidth="288.0">
+         <children>
+            <Label fx:id="lblLoadingMsg" layoutX="40.0" layoutY="23.0" prefHeight="20.0" prefWidth="228.0" text="数据加载中...">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

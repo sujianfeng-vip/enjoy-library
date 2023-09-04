@@ -1,0 +1,44 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.5.30'
+    id 'java'
+}
+
+group 'vip.sujianfeng'
+version '1.0.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+dependencies {
+    implementation('vip.sujianfeng:enjoy-utils:1.0.0-SNAPSHOT')
+    implementation('org.apache.poi:poi:4.0.0')
+    implementation('org.apache.poi:poi-ooxml:4.0.0')
+    implementation('com.alibaba:fastjson:2.0.7')
+
+    testImplementation('org.junit.jupiter:junit-jupiter-api:5.9.0')
+    testRuntimeOnly('org.junit.jupiter:junit-jupiter-engine:5.9.0')
+}
+
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allJava
+    classifier "sources"
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId project.group
+            artifactId 'enjoy-excel'
+            version project.version
+            from components.java
+            //配置上传源码
+            artifact sourceJar {
+                classifier "sources"
+            }
+        }
+    }
+}

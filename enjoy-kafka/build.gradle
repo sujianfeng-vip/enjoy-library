@@ -1,0 +1,44 @@
+group 'vip.sujianfeng'
+version '1.0.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'maven-publish'
+
+sourceCompatibility = 1.8
+
+dependencies {
+
+    implementation 'vip.sujianfeng:enjoy-utils:1.0.0-SNAPSHOT'
+    implementation 'org.apache.kafka:kafka-clients:0.10.2.2'
+    implementation 'org.apache.kafka:kafka_2.10:0.10.2.1'
+
+    implementation 'com.alibaba:fastjson:1.2.70'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.9.5'
+    implementation 'commons-lang:commons-lang:2.2'
+    testImplementation('org.testng:testng:6.14.3')
+    testImplementation('org.hamcrest:hamcrest-library:2.1')
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allJava
+    classifier "sources"
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId project.group
+            artifactId 'enjoy-kafka'
+            version project.version
+            from components.java
+            //配置上传源码
+            artifact sourceJar {
+                classifier "sources"
+            }
+        }
+    }
+}

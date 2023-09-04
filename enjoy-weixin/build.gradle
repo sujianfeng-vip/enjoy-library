@@ -1,0 +1,46 @@
+group 'vip.sujianfeng'
+version '1.0.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'maven-publish'
+
+sourceCompatibility = 1.8
+
+dependencies {
+    implementation 'vip.sujianfeng:enjoy-utils:1.0.0-SNAPSHOT'
+
+    implementation 'org.apache.poi:poi:5.2.2'
+    implementation 'org.apache.poi:poi-ooxml:5.2.2'
+    implementation 'org.beanshell:bsh:2.0b4'
+    implementation 'org.slf4j:slf4j-api:1.7.36'
+    implementation 'org.yaml:snakeyaml:1.30'
+    implementation 'com.alibaba:fastjson:2.0.7'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.13.3'
+    implementation 'org.apache.httpcomponents:httpclient:4.5.13'
+    implementation 'commons-lang:commons-lang:2.6'
+    implementation 'jdom:jdom:1.1'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allJava
+    classifier "sources"
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId project.group
+            artifactId 'enjoy-weixin'
+            version project.version
+            from components.java
+            //配置上传源码
+            artifact sourceJar {
+                classifier "sources"
+            }
+        }
+    }
+}
