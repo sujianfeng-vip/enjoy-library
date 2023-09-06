@@ -1,8 +1,9 @@
-group 'vip.sujianfeng'
-version '1.0.0-SNAPSHOT'
-
+def groupName = 'vip.sujianfeng'
+def artifactName = "enjoy-utils"
+def versionName = '1.0.0-SNAPSHOT'
 apply plugin: 'java'
 apply plugin: 'maven-publish'
+apply plugin: 'signing'
 
 sourceCompatibility = 1.8
 
@@ -30,14 +31,32 @@ task sourceJar(type: Jar) {
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            groupId project.group
-            artifactId 'enjoy-utils'
-            version project.version
+            groupId groupName
+            artifactId artifactName
+            version versionName
             from components.java
             //配置上传源码
             artifact sourceJar {
                 classifier "sources"
             }
+        }
+    }
+    def publishUrl= ""
+    if (versionName.endsWith("SNAPSHOT")){
+        publishUrl = project.ext.get("publishUrl_snapshots")
+    }else {
+        publishUrl= project.ext.get("publishUrl_release")
+    }
+    System.out.println("发布地址 => " + publishUrl)
+    System.out.println("发布制品 => " + groupName + ":" + artifactName + ":" + versionName)
+    repositories {
+        mavenLocal()
+        maven {
+            credentials {
+                username System.getenv("sonatypeUsername")
+                password System.getenv("sonatypePassword")
+            }
+            url publishUrl
         }
     }
 }
