@@ -23,6 +23,12 @@ subprojects {
 
     repositories {
         maven {
+            url project.ext.get("publishUrl_release")
+        }
+        maven {
+            url project.ext.get("publishUrl_snapshots")
+        }
+        maven {
             url 'https://maven.aliyun.com/repository/public'
         }
         mavenCentral()

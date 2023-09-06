@@ -1,10 +1,13 @@
 plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.5.30'
     id 'java'
+    id 'maven-publish'
+    id 'signing'
 }
+def groupName = 'vip.sujianfeng'
+def artifactName = "enjoy-excel"
+def versionName = '1.0.0-SNAPSHOT'
 
-group 'vip.sujianfeng'
-version '1.0.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
 
@@ -31,14 +34,32 @@ task sourceJar(type: Jar) {
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            groupId project.group
-            artifactId 'enjoy-excel'
-            version project.version
+            groupId groupName
+            artifactId artifactName
+            version versionName
             from components.java
             //配置上传源码
             artifact sourceJar {
                 classifier "sources"
             }
+        }
+    }
+    def publishUrl= ""
+    if (versionName.endsWith("SNAPSHOT")){
+        publishUrl = project.ext.get("publishUrl_snapshots")
+    }else {
+        publishUrl= project.ext.get("publishUrl_release")
+    }
+    System.out.println("发布地址 => " + publishUrl)
+    System.out.println("发布制品 => " + groupName + ":" + artifactName + ":" + versionName)
+    repositories {
+        mavenLocal()
+        maven {
+            credentials {
+                username System.getenv("sonatypeUsername")
+                password System.getenv("sonatypePassword")
+            }
+            url publishUrl
         }
     }
 }
