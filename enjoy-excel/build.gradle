@@ -6,13 +6,13 @@ plugins {
 }
 def groupName = 'vip.sujianfeng'
 def artifactName = "enjoy-excel"
-def versionName = '1.0.0-SNAPSHOT'
+def versionName = '1.0.1'
 
 
 sourceCompatibility = 1.8
 
 dependencies {
-    implementation('vip.sujianfeng:enjoy-utils:1.0.0-SNAPSHOT')
+    implementation('vip.sujianfeng:enjoy-utils:1.0.1')
     implementation('org.apache.poi:poi:4.0.0')
     implementation('org.apache.poi:poi-ooxml:4.0.0')
     implementation('com.alibaba:fastjson:2.0.7')

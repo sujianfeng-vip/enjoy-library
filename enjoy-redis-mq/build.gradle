@@ -1,6 +1,6 @@
 def groupName = 'vip.sujianfeng'
 def artifactName = "enjoy-redis-mq"
-def versionName = '1.0.0-SNAPSHOT'
+def versionName = '1.0.1'
 apply plugin: 'java'
 apply plugin: 'maven-publish'
 apply plugin: 'signing'
@@ -8,8 +8,8 @@ apply plugin: 'signing'
 sourceCompatibility = 1.8
 
 dependencies {
-    implementation 'vip.sujianfeng:enjoy-utils:1.0.0-SNAPSHOT'
-    implementation 'vip.sujianfeng:enjoy-redis:1.0.0-SNAPSHOT'
+    implementation 'vip.sujianfeng:enjoy-utils:1.0.1'
+    implementation 'vip.sujianfeng:enjoy-redis:1.0.1'
     implementation 'redis.clients:jedis:2.9.0'
     implementation 'com.alibaba:fastjson:1.2.70'
     implementation 'org.slf4j:slf4j-api:1.7.25'

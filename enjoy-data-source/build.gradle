@@ -1,6 +1,6 @@
 def groupName = 'vip.sujianfeng'
 def artifactName = "enjoy-data-source"
-def versionName = '1.0.0-SNAPSHOT'
+def versionName = '1.0.1'
 apply plugin: 'java'
 apply plugin: 'maven-publish'
 apply plugin: 'signing'

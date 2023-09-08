@@ -1,6 +1,6 @@
 def groupName = 'vip.sujianfeng'
 def artifactName = "enjoy-kafka"
-def versionName = '1.0.0-SNAPSHOT'
+def versionName = '1.0.1'
 apply plugin: 'java'
 apply plugin: 'maven-publish'
 apply plugin: 'signing'
@@ -9,7 +9,7 @@ sourceCompatibility = 1.8
 
 dependencies {
 
-    implementation 'vip.sujianfeng:enjoy-utils:1.0.0-SNAPSHOT'
+    implementation 'vip.sujianfeng:enjoy-utils:1.0.1'
     implementation 'org.apache.kafka:kafka-clients:0.10.2.2'
     implementation 'org.apache.kafka:kafka_2.10:0.10.2.1'
 
