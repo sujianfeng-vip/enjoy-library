@@ -32,10 +32,8 @@ public class JscriptRunner {
         JscriptRunner runner = RUNNER.get(key);
         if (runner == null){
             runner = new JscriptRunner();
-            // logger.info("\n=======\n创建新的脚本运行器->\nscriptJS -> {}\n=======\n", scriptJS);
             runner.currScriptJs = scriptJS;
             runner.nashornRunner = new NashornRunner(scriptJS);
-            //注册Java对象 -> 用于在js中调用
             runner.bindings.put("LOG", logger);
             runner.nashornRunner.getEngine().setBindings(runner.bindings, ScriptContext.GLOBAL_SCOPE);
             runner.nashornRunner.eval(callResult);
@@ -44,7 +42,7 @@ public class JscriptRunner {
                 runner.bindings.put("callResult", callResult);
                 RUNNER.put(key, runner);
             }
-            //静态方法调用方式：
+            //Static method invocation method:
             // var DateUtils = Java.type('cc.twobears.tbcore.utils.DateTimeUtils');
             // DateUtils.int2show(20201212);
         }
@@ -53,23 +51,15 @@ public class JscriptRunner {
 
     private SimpleBindings bindings = new SimpleBindings();
 
-    /**
-     * 禁止构造
-     */
+
     private JscriptRunner(){
         this.timeoutSeconds = 8;
     }
 
-    /**
-     * 超时时间（单位秒）
-     */
+
     private int timeoutSeconds;
 
 
-    /**
-     * java对象转换为js声明，用于monaco的js语法提示
-     * @return
-     */
     public String extraLanguage(){
         StringBuilderEx sb = new StringBuilderEx();
         for (Map.Entry<String, Object> entry : this.bindings.entrySet()) {
@@ -85,13 +75,12 @@ public class JscriptRunner {
             return result;
         };
         FutureTask<Object> task = new FutureTask<>(callableThread);
-        // 开启线程
+
         new Thread(task).start();
         try {
-            // 如果8秒没有返回值就抛出异常
             return task.get(this.timeoutSeconds, TimeUnit.SECONDS);
         } catch (Exception e) {
-            String errMsg = String.format("执行脚本异常:%s", e.toString());
+            String errMsg = String.format("Script execution exception:%s", e.toString());
             logger.error(errMsg, e);
             callResult.error(errMsg);
             return null;

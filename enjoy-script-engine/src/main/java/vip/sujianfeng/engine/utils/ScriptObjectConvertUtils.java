@@ -14,12 +14,7 @@ import java.util.stream.Collectors;
 
 public class ScriptObjectConvertUtils {
 
-    /**
-     * 将ScriptObjectMirror对象转化为JSON对象
-     * 主要是对数组进行特殊处理
-     * @param object
-     * @return
-     */
+
     public static Object convert2json(Object object){
         Object o = object;
         if (object instanceof ScriptObjectMirror){
@@ -37,12 +32,7 @@ public class ScriptObjectConvertUtils {
         }
         return o;
     }
-
-    /**
-     * 尝试看能否转化为数组
-     * @param object
-     * @return
-     */
+ 
     private static JSONArray tryConvertArray(JSONObject object){
         if (object == null){
             return null;

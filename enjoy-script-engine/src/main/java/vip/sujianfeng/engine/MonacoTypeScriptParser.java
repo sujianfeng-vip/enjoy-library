@@ -14,9 +14,7 @@ import java.util.Map;
  **/
 public class MonacoTypeScriptParser {
 
-    /**
-     * 解析monaco编辑器需要用到的语法提示
-     */
+
     public void parseClass(Class<?> classz, StringBuilderEx sb, String className) {
         if (StringUtilsEx.isEmpty(className)){
             className = classz.getSimpleName();
@@ -26,10 +24,6 @@ public class MonacoTypeScriptParser {
         sb.appendRow("}");
     }
 
-
-    /**
-     * 解析monaco编辑器需要用到的语法提示
-     */
     public void parseInstance(Class<?> classz, StringBuilderEx sb, String className) {
         sb.append("declare class ").append(className).appendRow(" { ");
         while (classz != null){
@@ -39,9 +33,6 @@ public class MonacoTypeScriptParser {
         sb.appendRow("}");
     }
 
-    /**
-     * 解析monaco编辑器需要用到的语法提示
-     */
     public void parseMap(Map<String, String> map , StringBuilderEx sb, String className) {
         sb.append("declare enum ").append(className).appendRow(" { ");
 
