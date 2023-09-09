@@ -12,10 +12,10 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * 工作时间计算器
- * 作者时间：sujianfeng / 2021-12-31
- * 功能简述：用于计算两个时间的间隔（只包含工作时间，不包含休假时间）
- * 处理逻辑：将所有工作日的开始工作和结束工作时间点全部纳入列表中，然后遍历该列表进行计算
+ *Working time calculator
+ *Author's Date: Sujianfeng/December 31, 2021
+ *Function description: used to calculate the interval between two times (only including working hours, not vacation time)
+ *Processing logic: Include all start and end work time points of all working days in the list, and then traverse the list for calculation
  *
  */
 public class WorkTimeCalc {
@@ -44,7 +44,7 @@ public class WorkTimeCalc {
     }
 
     /**
-     * 时间区间测试
+     * Time interval testing
      * @param workTimeCalc
      * @param begin
      * @param end
@@ -52,45 +52,44 @@ public class WorkTimeCalc {
      */
     private static void testDiff(WorkTimeCalc workTimeCalc, String begin, String end, long expectation){
         long tmp = workTimeCalc.calcDiff(begin, end);
-        //Asserts.check(expectation == tmp, String.format("%s ~ %s -> 正确应该为%s秒，实际测试为%s秒", begin, end, expectation, tmp));
         long d = tmp / (24 * 3600);
         long h = tmp % (24 * 3600) / 3600;
         long m = tmp % 3600 / 60;
         long s = tmp % 60;
-        logger.info("[{}] {} ~ {} -> {}天{}时{}分{}秒", DateTimeUtils.getDateTimeShow(), begin, end, d, h, m, s);
+        logger.info("[{}] {} ~ {} -> {}days {}hour{}minutes {}seconds", DateTimeUtils.getDateTimeShow(), begin, end, d, h, m, s);
     }
     private static void testIsWorkTime(WorkTimeCalc workTimeCalc, String dateTime){
-        logger.info("{} 为 {} \n ", dateTime, workTimeCalc.isWorkTime(DateTimeUtils.show2dateTime(dateTime).getTime() / 1000) ? "工作时间" : "休息时间");
+        logger.info("{} is {} \n ", dateTime, workTimeCalc.isWorkTime(DateTimeUtils.show2dateTime(dateTime).getTime() / 1000) ? "working hours" : "break");
     }
 
     /**
-     * 时间偏移测试
+     * Time offset test
      */
     private static void testShiftingBlock(WorkTimeCalc workTimeCalc, String time, long shifting, String expectation) {
         long tmp = workTimeCalc.shiftingBlock(time, shifting);
         String tmpTime = DateTimeUtils.timestamp2String(tmp * 1000);
         //Asserts.check(expectation.equals(tmpTime), String.format("%s偏移%s秒后，结果应该为%s，实际测试为%s", time, shifting, expectation, tmpTime));
-        logger.info("[{}] {} 偏移{}秒后，结果为{} \n", DateTimeUtils.getDateTimeShow(), time, shifting, tmpTime);
+        logger.info("[{}] {} After offsetting {} seconds, the result is {} \n", DateTimeUtils.getDateTimeShow(), time, shifting, tmpTime);
     }
 
     /**
-     * 工作日定义数据
+     * Weekday Definition Data
      */
     private WorkDayHandle workDayDefine;
     /**
-     * 时间点列表
+     * Time point list
      */
     private List<WorkTimePoint> list;
     /**
-     * 工作时间类型：0-工作日，1-每天
+     * Working time type: 0-working days, 1-daily
      */
     private int workTimeType;
     /**
-     * 工作日开始时间（例如：830）
+     * Starting time of working day (e.g. 830)
      */
     private int workDayBegin;
     /**
-     * 工作日结束时间（例如：1800）
+     * End of workday (e.g. 1800)
      */
     private int workDayEnd;
 
@@ -108,7 +107,7 @@ public class WorkTimeCalc {
     }
 
     /**
-     * 初始化所有工作时间点列表（上班、下班时间）
+     * Initialize a list of all work time points (start and end times)
      */
     private void initWorkTimePointList(){
         this.list = new ArrayList<>();
@@ -135,13 +134,6 @@ public class WorkTimeCalc {
         return calcDiff(beginTime.getTime() / 1000, endTime.getTime() / 1000);
     }
 
-    /**
-     * 计算两个时间间隔（只包含工作时间）
-     * 原理是，将合理区间内地所有工作区间和计算区间进行交集计算即可
-     * @param beginTime
-     * @param endTime
-     * @return
-     */
     public long calcDiff(long beginTime, long endTime){
         if (beginTime > endTime){
             long tmp = beginTime;
@@ -162,20 +154,15 @@ public class WorkTimeCalc {
         return result;
     }
 
-    /**
-     * 判断是否为工作时间
-     * @param time
-     * @return
-     */
     public boolean isWorkTime(long time){
         WorkTimePoint lastPoint = null;
         for (WorkTimePoint point : this.list) {
             if (lastPoint != null) {
-                //刚好处于上下班时间点，那么判断为上班
+                //If it happens to be at the time of commuting, then it is judged as working
                 if (lastPoint.getTime() == time || point.getTime() == time){
                     return true;
                 }
-                //在上班和下班区间范围内
+                //Within the range of work and off duty intervals
                 if (lastPoint.getWorkTimePointType() == WorkTimePointType.OnWork && time > lastPoint.getTime() && time < point.getTime()){
                     return true;
                 }
@@ -186,27 +173,27 @@ public class WorkTimeCalc {
     }
 
     /**
-     * 计算两组区间之间的交集长度
-     * 注意提前条件: b1 < e1， b2 < e2
+     * Calculate the intersection length between two sets of intervals, paying attention to the advance conditions:
+     * b1 < e1 b2 < e2
      * @return
      */
     private long calcIntersect(long b1, long e1, long b2, long e2) {
         if (b1 > e2 || b2 > e1){
             return 0;
         }
-        //交集1
+        //Intersection 1
         if (b2 < b1 && e2 < e1){
             return e2 - b1;
         }
-        //交集2
+        //Intersection 2
         if (b1 < b2 && e1 < e2){
             return e1 - b2;
         }
-        //1包含2
+        //1 includes 2
         if (b1 < b2 && e2 < e1){
             return e2 - b2;
         }
-        //2包含1
+        //2 includes 1
         if (b2 < b1 && e1 < e2){
             return e1 - b1;
         }
@@ -228,10 +215,6 @@ public class WorkTimeCalc {
         this.list.add(new WorkTimePoint(timePoint, workTimePointType));
     }
 
-    /**
-     * 返回指定时间点的偏移几秒
-     * @param time
-     */
     public long shiftingBlock(long time, long diff){
         WorkTimePoint begin = null;
         WorkTimePoint end = null;
@@ -249,7 +232,7 @@ public class WorkTimeCalc {
         if (begin == null || end == null){
             return time + diff;
         }
-        //在工作区间，要判断剩余工作时间是否足够偏移，不够的部分还需要继续偏移
+        //In the work interval, it is necessary to determine whether the remaining working time is sufficiently offset, and the insufficient part needs to be further offset
         if (diff > 0 && time + diff > end.getTime()){
             return shiftingBlock(end.getTime() + 60, time + diff - end.getTime());
         }

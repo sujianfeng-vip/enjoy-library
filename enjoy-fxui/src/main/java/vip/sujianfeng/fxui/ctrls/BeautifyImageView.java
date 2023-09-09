@@ -12,8 +12,8 @@ import javafx.scene.shape.Rectangle;
 import java.util.Objects;
 
 /**
- * @author SuJianFeng
- * @date 2019/9/6 20:58
+ * author SuJianFeng
+ * createTime  2019/9/6 20:58
  **/
 public class BeautifyImageView extends ImageView {
 

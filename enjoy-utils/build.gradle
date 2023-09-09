@@ -24,9 +24,15 @@ tasks.withType(JavaCompile) {
 }
 
 task sourceJar(type: Jar) {
-    from sourceSets.main.allJava
+    from sourceSets.main.allSource
     classifier "sources"
 }
+
+task javaDocJar(type: Jar) {
+    classifier "javadoc"
+    from javadoc
+}
+
 
 publishing {
     publications {
@@ -38,6 +44,9 @@ publishing {
             //配置上传源码
             artifact sourceJar {
                 classifier "sources"
+            }
+            artifact javaDocJar {
+                classifier "javadoc"
             }
             // https://docs.gradle.org/current/dsl/org.gradle.api.publish.maven.MavenPublication.html
             pom {

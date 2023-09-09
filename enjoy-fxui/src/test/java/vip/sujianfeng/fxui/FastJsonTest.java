@@ -9,8 +9,8 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 /**
- * @Author SuJianFeng
- * @Date 2022/11/7
+ * author SuJianFeng
+ * createTime  2022/11/7
  * @Description
  **/
 public class FastJsonTest {

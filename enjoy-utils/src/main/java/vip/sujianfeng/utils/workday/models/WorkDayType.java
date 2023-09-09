@@ -2,22 +2,22 @@ package vip.sujianfeng.utils.workday.models;
 
 public enum WorkDayType {
     /**
-     * 工作日（通常为周一到周五，注意补班的时候非周一到周五）
+     * Working days (usually from Monday to Friday, please note that the make-up shift is not from Monday to Friday)
      */
     WorkDay,
 
     /**
-     * 节假日
+     * festival and holiday
      */
     Holiday,
 
     /**
-     * 周六
+     * Saturday
      */
     Saturday,
 
     /**
-     * 周日
+     * Sunday
      */
     Sunday
 }

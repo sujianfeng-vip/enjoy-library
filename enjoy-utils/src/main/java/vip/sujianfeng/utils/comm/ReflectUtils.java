@@ -6,16 +6,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
- * @author sujianfeng
- * 类反射工具
+ * author sujianfeng
+ * Class Reflection Tool
  */
 public class ReflectUtils {
-	
-	/**
-	 * @param c
-	 * @param method
-	 * @return 判断类中是否存在方法
-	 */
+
 	public static boolean isContainMethod(Class<?> c, String method){
 		boolean result = false;		
 		for (int i = 0; i < c.getMethods().length; i++) {
@@ -26,54 +21,26 @@ public class ReflectUtils {
 		}
 		return result;
 	}	
-	
-	/**
-	 * 根据类名创建对应类的实例
-	 * @param className 完整路径的类名
-	 * @return 类实例
-	 * @throws Exception 
-	 */
+
 	public static Object getObject(String className) throws Exception{
 		return Class.forName(className).newInstance();
 	}
-	
-	/**
-	 * 带参数的构造函数
-	 * @param className
-	 * @param params
-	 * @return 类实例
-	 * @throws Exception
-	 */
+
 	public static Object getObject(String className, Class<?>[] parameterTypes, Object[] params) throws Exception{
-		//根据类名获取Class对象
+		//Obtain a Class object based on the class name
 		Class<?> c = Class.forName(className); 
-		//参数类型数组
+		//Parameter type array
 		//Class<?>[] parameterTypes = {Object.class};
-		//根据参数类型获取相应的构造函数
+		//Obtain the corresponding constructor based on the parameter type
 		Constructor<?> constructor = c.getConstructor(parameterTypes);		
 		return constructor.newInstance(params);
 	}
-	
-	
-	/**
-	 * @param className
-	 * @param methodName
-	 * @return 取得类的方法
-	 * @throws Exception
-	 */
+
 	public static Method getMethod(String className, String methodName) throws Exception{
 		Object obj = getObject(className);
 		return getMethod(obj, methodName);
 	}
 
-    /**
-     * 取得实例的方法
-     * @param obj
-     * @param method
-     * @param args
-     * @return
-     * @throws Exception
-     */
 	public static Method getMethod(Object obj, String method, Object... args) throws Exception{		
 		Method result = null;		
 		for (int i = 0; i < obj.getClass().getMethods().length; i++) {
@@ -116,26 +83,14 @@ public class ReflectUtils {
 		}
 	}
 	
-	/** 
-	 * 呼叫类的方法
-	 * @param className
-	 * @param methodName
-	 * @param args
-	 * @throws Exception
-	 */
+
 	public static Object callMethod(String className, String methodName, Object... args) throws Exception{	
 			Object obj = getObject(className);
 			Method method = getMethod(obj, methodName, args);
 			return invoke(method, obj, args);
 	}	
 	
-	/**
-	 * 呼叫对象的方法
-	 * @param obj
-	 * @param methodName
-	 * @param args
-	 * @throws Exception
-	 */
+
 	public static Object callMethod(Object obj, String methodName, Object... args) throws Exception{
 		Method method = getMethod(obj, methodName, args);
 		if (method == null){ 
@@ -146,7 +101,7 @@ public class ReflectUtils {
 				}
 				msg.append(args[i].getClass().toString());
 			}  
-			String err = String.format("类[%s]找不到指定方法[%s（参数为：%s）]!", obj.getClass().toString(), methodName, msg.toString());
+			String err = String.format("Class [%s] cannot find the specified method [%s (parameter:%s)]!", obj.getClass().toString(), methodName, msg.toString());
 			throw new Exception(err);
 		}
 		return invoke(method, obj, args);		

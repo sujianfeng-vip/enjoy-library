@@ -7,8 +7,8 @@ import java.lang.annotation.Target;
 
 /**
  * 脚本机器人
- * @Author SuJianFeng
- * @Date 2022/12/20
+ * author SuJianFeng
+ * createTime  2022/12/20
  * @Description
  **/
 @Target(ElementType.TYPE)

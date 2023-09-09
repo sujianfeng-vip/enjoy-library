@@ -5,8 +5,8 @@ import vip.sujianfeng.redis.TbRedisCache;
 
 /**
  * 生产者
- * @author SuJianFeng
- * @date 2020/9/27 15:49
+ * author SuJianFeng
+ * createTime  2020/9/27 15:49
  **/
 public class TbRedisMqProducer {
 

@@ -32,36 +32,32 @@ public class ImageUtils {
             if (oriImg == null || oriImg.getWidth(null) <= width){
                 return false;
             }
-            int height = oriImg.getHeight(null) * width / oriImg.getWidth(null);//按比例，将高度缩减
+            int height = oriImg.getHeight(null) * width / oriImg.getWidth(null);// Reduce the height proportionally
             Image scaledImage = oriImg.getScaledInstance(width, height,Image.SCALE_DEFAULT);
             BufferedImage output = new BufferedImage(width, height, BufferedImage.TYPE_INT_BGR);
-            output.createGraphics().drawImage(scaledImage, 0, 0, null); //画图
+            output.createGraphics().drawImage(scaledImage, 0, 0, null); // draw designs
             File targetFile = new File(destFileName);
             if(!targetFile.exists()){
                 targetFile.mkdirs();
             }
-            ImageIO.write(output, "jpg", targetFile);   //将其保存目标文件
+            ImageIO.write(output, "jpg", targetFile);   // Save it to the target file
             return true;
         } catch (IOException e) {
             logger.error(e.toString(), e);
             return false;
         }
     }
-    /**
-     * 生成图片base64编码
-     * @param imgFilePath
-     * @return
-     */
+
     public static String GetImageStr(String imgFilePath){
         InputStream in = null;
         byte[] data = null;
-        //读取图片字节数组
+        //Read image byte array
         try{
             in = new FileInputStream(imgFilePath);
             data = new byte[in.available()];
             in.read(data);
-            //对字节数组Base64编码
-            return Base64.getEncoder().encodeToString(data);//返回Base64编码过的字节数组字符串
+            //Encoding Byte Array Base64
+            return Base64.getEncoder().encodeToString(data);//Returns a Base64 encoded byte array string
         }catch (IOException e){
             logger.error(e.toString(), e);
         }finally {
@@ -74,13 +70,8 @@ public class ImageUtils {
         return "";
     }
 
-    /**
-     *Base64解码并生成图片
-     * @param imgStr
-     * @return
-     */
     public static boolean GenerateImage(String imgFilePath,String fileName,String imgStr){
-        if (imgStr == null) //图像数据为空
+        if (imgStr == null) // Image data is empty
             return false;
         OutputStream out = null;
         try{
@@ -88,14 +79,14 @@ public class ImageUtils {
                 int l = imgStr.indexOf("base64,");
                 imgStr = imgStr.substring(l+"base64,".length());
             }
-            //Base64解码
+            //Base64 decoding
             byte[] b =  Base64.getDecoder().decode(imgStr);
             for(int i=0;i<b.length;++i){
-                if(b[i]<0){//调整异常数据
+                if(b[i]<0){//Adjusting abnormal data
                     b[i]+=256;
                 }
             }
-            //生成jpeg图片
+            //Generate jpeg images
             File filePath = new File(imgFilePath);
             if(!filePath.exists()){
                 filePath.mkdirs();
@@ -117,13 +108,6 @@ public class ImageUtils {
         }
     }
 
-    /**
-     * 切割图片
-     * @param image
-     * @param rect
-     * @param fileName
-     * @param fileType jpg / png / bmp etc ...
-     */
     public static void subImage2file(BufferedImage image, Rectangle rect, String fileName, String fileType) throws IOException {
         BufferedImage subimage = image.getSubimage(rect.x, rect.y, rect.width, rect.height);
         File rectangleFile = new File(fileName + "." + fileType);
@@ -146,7 +130,7 @@ public class ImageUtils {
                 int h = heightdist;
                 int w1 = bi.getHeight(null);
                 int h1 = bi.getWidth(null);
-                //等比例缩放
+                //Proportional scaling
                 if (w1 / w > h1 / h) {
                     heightdist = h1 * w / w1;
                 } else {

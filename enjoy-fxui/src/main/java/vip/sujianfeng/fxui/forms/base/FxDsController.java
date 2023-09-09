@@ -9,8 +9,8 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
 /**
- * @author SuJianFeng
- * @date 2019/9/17 17:32
+ * author SuJianFeng
+ * createTime  2019/9/17 17:32
  * 配置资源模型注解的解析基类
  **/
 public abstract class FxDsController<T extends FxBaseModel, P extends FxPageParam, D extends FxDiskDataHandler<T>> extends FxBaseController {

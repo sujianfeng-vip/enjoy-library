@@ -11,8 +11,8 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * @Author SuJianFeng
- * @Date 2022/11/4
+ * author SuJianFeng
+ * createTime  2022/11/4
  * @Description
  **/
 public class FxBaseModel {

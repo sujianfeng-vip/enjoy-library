@@ -7,23 +7,23 @@ import java.util.List;
 
 public class MergeFieldDefine {
     /**
-     * 来源数据集主键列表
+     * Source Dataset Primary Key List
      */
     private List<String> srcKeys;
     /**
-     * 取值来源字段
+     * Value Source Field
      */
     private String srcField;
     /**
-     * 目标数据集主键列表
+     * Target Dataset Primary Key List
      */
     private List<String> destKeys;
     /**
-     * 赋值目标字段
+     * Assign Target Fields
      */
     private String destField;
     /**
-     * 数据合并方式
+     * Data Merge Method
      */
     private DatasetFieldMergeType mergeType;
 

@@ -9,16 +9,13 @@ import java.lang.reflect.Field;
 import java.util.*;
 
 /**
- * @Author SuJianFeng
- * @Date 2019/2/5 19:25
- * 系统环境变量相关
+ * author SuJianFeng
+ * createTime  2019/2/5 19:25
+ * System environment variables related
  **/
 public class SystemEnvUtils {
     private static Logger logger = LoggerFactory.getLogger(SystemEnvUtils.class);
-    /**
-     * 环境变量
-     * @return
-     */
+
     public static Map<String, String> getSystemEnv(){
         return System.getenv();
     }
@@ -26,10 +23,7 @@ public class SystemEnvUtils {
         return System.getenv().get(param);
     }
 
-    /**
-     * 系统属性
-     * @return
-     */
+
     public static Properties getSystemProperties(){
         return System.getProperties();
     }
@@ -38,21 +32,13 @@ public class SystemEnvUtils {
         return System.getProperty(key);
     }
 
-    /**
-     * 堆内存信息
-     * @return
-     */
     public static MemoryMXBean getMemoryMXBean(){
         MemoryMXBean memorymbean = ManagementFactory.getMemoryMXBean();
-        /*System.out.println("堆内存信息: " + memorymbean.getHeapMemoryUsage());
-        System.out.println("方法区内存信息: " + memorymbean.getNonHeapMemoryUsage());*/
+        /*System.out.println("Heap Memory Information:" + memorymbean.getHeapMemoryUsage());
+        System.out.println("Method area memory information:" + memorymbean.getNonHeapMemoryUsage());*/
         return memorymbean;
     }
 
-    /**
-     * jvm运行参数
-     * @return
-     */
     public static List<String> getJvmParamList(){
         List<String> inputArgs = ManagementFactory.getRuntimeMXBean().getInputArguments();
         /*System.out.println("\n#####################运行时设置的JVM参数#######################");
@@ -60,11 +46,7 @@ public class SystemEnvUtils {
         return inputArgs;
     }
 
-    /**
-     * 取得jar包运行参数值
-     * @param paramName
-     * @return
-     */
+
     public static String getCommandParam(String paramName){
         String cmd = getSystemProperty("sun.java.command");
         //System.out.println("====>sun.java.command: " + cmd);
@@ -80,29 +62,20 @@ public class SystemEnvUtils {
         return "";
     }
 
-    /**
-     * 运行是状态信息，如：内存使用情况
-     * @return
-     */
     public static Runtime getSystemRuntime(){
         Runtime runtime = Runtime.getRuntime();
         /*
-        System.out.println("\n#####################运行时内存情况#######################");
+        System.out.println("\n#####################Runtime Memory Status#######################");
         long totle = runtime.totalMemory();
-        System.out.println("总的内存量 [" + totle + "]");
+        System.out.println("Total amount of memory [" + totle + "]");
         long free = runtime.freeMemory();
-        System.out.println("空闲的内存量 [" + free + "]");
+        System.out.println("Amount of idle memory [" + free + "]");
         long max = runtime.maxMemory();
-        System.out.println("最大的内存量 [" + max + "]");
+        System.out.println("Maximum amount of memory [" + max + "]");
         */
         return runtime;
     }
 
-    /**
-     * 设置环境变量
-     * @param name
-     * @param value
-     */
     public static void setEnv(String name, String value) {
         try {
             Class<?> processEnvironmentClass = Class.forName("java.lang.ProcessEnvironment");
@@ -139,10 +112,6 @@ public class SystemEnvUtils {
 
     private static Map<String, String> CURR_ENV_MAP = new HashMap<>();
 
-    /**
-     * 判断环境变量是否发生变化
-     * @return
-     */
     public static boolean systemEnvIsModified(){
         boolean modified = false;
         boolean isInit = CURR_ENV_MAP.size() == 0;

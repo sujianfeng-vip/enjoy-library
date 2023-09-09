@@ -7,9 +7,9 @@ import org.slf4j.LoggerFactory;
 import java.lang.reflect.Array;
 
 /**
- * @Author SuJianFeng
- * @Date 2019/3/18 15:45
- * 二维数组工具类
+ * author SuJianFeng
+ * createTime  2019/3/18 15:45
+ * 2D Array Tool Class
  **/
 public class ArrayUtilsEx {
     private static Logger logger = LoggerFactory.getLogger(ArrayUtilsEx.class);

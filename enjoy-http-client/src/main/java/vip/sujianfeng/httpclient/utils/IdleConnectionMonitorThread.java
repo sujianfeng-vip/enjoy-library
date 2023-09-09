@@ -6,8 +6,8 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 定时关闭过期连接
- * @author SuJianFeng
- * @date 2020/8/28 9:57
+ * author SuJianFeng
+ * createTime  2020/8/28 9:57
  **/
 public class IdleConnectionMonitorThread extends Thread {
 

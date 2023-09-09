@@ -12,14 +12,14 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**
- * 日期时间处理工具类
- * @author sujianfeng
+ * Date Time Processing Tool Class
+ * author sujianfeng
  *
  */
 public class DateTimeUtils {
 	private static Logger logger = LoggerFactory.getLogger(DateTimeUtils.class);
     /**
-     * 格式化2位整数： 1 -> 01,  11 - > 11
+     * Format 2-bit integer: 1 -> 01,  11 - > 11
      * @param i
      * @return
      */
@@ -415,10 +415,6 @@ public class DateTimeUtils {
 		return ConvertUtils.cLong(temp);
 	}
 
-	/**
-	 * 取得当前的日期所在周的第一天
-	 * @return
-	 */
 	public static Date getThisMonday() {
 		return getThisMonday(null);
 	}
@@ -428,8 +424,8 @@ public class DateTimeUtils {
 		if (date != null){
 			cd.setTime(date);
 		}
-		// 获得今天是一周的第几天，星期日是第一天,星期一是第二天,星期三是第二天......
-		int dayOfWeek = cd.get(Calendar.DAY_OF_WEEK) - 1; // 因为按中国礼拜一作为第一天所以这里减1
+		// Today is the day of the week, Sunday is the first day, Monday is the second day, and Wednesday is the second day
+		int dayOfWeek = cd.get(Calendar.DAY_OF_WEEK) - 1; //Because Monday is the first day in China, it is reduced by 1 here
 		if (dayOfWeek == 0){
 			dayOfWeek = 7;
 		}
@@ -444,12 +440,6 @@ public class DateTimeUtils {
 
 	}
 
-
-	/**
-	 * 取得指定日期的所在月份的第一天
-	 * @param date
-	 * @return
-	 */
 	public static int getMonthFirstIntDate(int date){
 		int y = date / 10000;
 		int m = date / 100 % 100;
@@ -562,32 +552,21 @@ public class DateTimeUtils {
 	}
 
 	public static boolean isRunNian(int year){
-		boolean runnian; //是否闰年
+		boolean runnian;
 		if (year % 100 == 0){
-			//世纪年，要能被400整除
 			runnian = year%400 == 0;
 		}else{
-			//非世纪年，要能被4整除
 			runnian = year%4 == 0;
 		}
 
 		return runnian;
 	}
 
-	/**
-	 * 取得一年的总天数
-	 * @param year
-	 */
 	public static int dayCountOfYear(int year){
 		return isRunNian(year)?366:365;
 	}
 
-	/**
-	 * 取得指定年月的月份总天数
-	 * @param year
-	 * @param month
-	 * @return
-	 */
+
 	public static int dayCountOfMonth(int year, int month){
 		if (ConvertUtils.oneOfInt(month, new int[]{1,3,5,7,8,10,12}))
 			return 31;
@@ -599,7 +578,7 @@ public class DateTimeUtils {
 
 	public static int getYearWeek(Date date){
 		Calendar cal = Calendar.getInstance();
-		cal.setFirstDayOfWeek(Calendar.MONDAY); //设置星期一为一周的第一天
+		cal.setFirstDayOfWeek(Calendar.MONDAY); // Set Monday as the first day of the week
 		cal.setTime(date);
 		return cal.getWeekYear() * 100 + cal.get(Calendar.WEEK_OF_YEAR);
 	}
@@ -608,11 +587,7 @@ public class DateTimeUtils {
 		return getYearWeek(int2date(date));
 	}
 
-	/**
-	 * 调用此方法输入所要转换的时间戳输入例如（1402733340）输出（"2014-06-14  16:09:00"）
-	 * @param time
-	 * @return
-	 */
+
 	public static String timestamp2String(int time) {
 		SimpleDateFormat sdr = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		@SuppressWarnings("unused")
@@ -631,9 +606,6 @@ public class DateTimeUtils {
 		return sdr.format(new Date(time));
 	}
 
-	/**
-	 * 单元测试
-	 */
 	public static void main(String[] args){
 		/*System.out.println(String.format("%s: %s", 20151231, getYearWeek(20151231)));
 		System.out.println(String.format("%s: %s", 20160101, getYearWeek(20160101)));
@@ -656,7 +628,7 @@ public class DateTimeUtils {
 		*/
 	}
 
-	public final static  String[] WEEK_CN_ARRAY = {"星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"};
+	public final static  String[] WEEK_CN_ARRAY = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 
 	public static int getWeekOfDate(Date date) {
 		Calendar cal = Calendar.getInstance();

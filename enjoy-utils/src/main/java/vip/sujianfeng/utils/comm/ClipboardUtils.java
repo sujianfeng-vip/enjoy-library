@@ -5,25 +5,17 @@ import java.awt.datatransfer.*;
 import java.io.IOException;
 
 /**
- * @Author SuJianFeng
- * @Date 2023/1/29
- * @Description
+ * author SuJianFeng
+ * createTime  2023/1/29
  **/
 public class ClipboardUtils {
 
-    /**
-     * 将文本放入粘贴板
-     */
     public static void copyText(String text) {
-        Clipboard clip = Toolkit.getDefaultToolkit().getSystemClipboard();//获取剪切板
+        Clipboard clip = Toolkit.getDefaultToolkit().getSystemClipboard();//Get Clipboard
         Transferable tText = new StringSelection(text);
-        clip.setContents(tText, null); //设置剪切板内容
+        clip.setContents(tText, null); //Set clipboard content
     }
 
-
-    /**
-     * 将图片放入粘贴版
-     */
     public static void copyImage(Image image) {
         Transferable trans = new Transferable() {
 
@@ -46,16 +38,13 @@ public class ClipboardUtils {
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(trans, null);
     }
 
-    /**
-     * 获得粘贴板文本
-     */
     public static String getClipboardText() throws IOException, UnsupportedFlavorException {
         String ret = "";
         Clipboard sysClip = Toolkit.getDefaultToolkit().getSystemClipboard();
-        // 获取剪切板中的内容
+        // Get content from the clipboard
         Transferable clipTf = sysClip.getContents(null);
         if (clipTf != null) {
-            // 检查内容是否是文本类型
+            // Check if the content is of text type
             if (clipTf.isDataFlavorSupported(DataFlavor.stringFlavor)) {
                 ret = ConvertUtils.cStr(clipTf.getTransferData(DataFlavor.stringFlavor));
             }
@@ -63,9 +52,6 @@ public class ClipboardUtils {
         return ret;
     }
 
-    /**
-     * 获得粘贴板图片
-     */
     public static Image getImageFromClipboard() throws IOException, UnsupportedFlavorException {
         Clipboard sysc = Toolkit.getDefaultToolkit().getSystemClipboard();
         Transferable cc = sysc.getContents(null);
@@ -77,12 +63,9 @@ public class ClipboardUtils {
         return null;
     }
 
-    /**
-     * 清除粘贴版内容
-     */
     public static void clipClear() {
-        Clipboard clip = Toolkit.getDefaultToolkit().getSystemClipboard(); //获取剪切板
+        Clipboard clip = Toolkit.getDefaultToolkit().getSystemClipboard();
         Transferable tText = new StringSelection("");
-        clip.setContents(tText, null); //设置剪切板内容
+        clip.setContents(tText, null);
     }
 }

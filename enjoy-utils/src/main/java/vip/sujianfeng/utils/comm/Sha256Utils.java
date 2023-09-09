@@ -8,16 +8,12 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * @Author SuJianFeng
- * @Date 2019/7/6 21:15
+ * author SuJianFeng
+ * createTime  2019/7/6 21:15
  **/
 public class Sha256Utils {
     private static Logger logger = LoggerFactory.getLogger(Sha256Utils.class);
-    /**
-     * 利用java原生的类实现SHA256加密
-     * @param str 加密后的报文
-     * @return
-     */
+
     public static String getSHA256(String str){
         MessageDigest messageDigest;
         String encodestr = "";
@@ -30,18 +26,14 @@ public class Sha256Utils {
         }
         return encodestr;
     }
-    /**
-     * 将byte转为16进制
-     * @param bytes
-     * @return
-     */
+
     private static String byte2Hex(byte[] bytes){
         StringBuffer stringBuffer = new StringBuffer();
         String temp = null;
         for (int i=0;i<bytes.length;i++){
             temp = Integer.toHexString(bytes[i] & 0xFF);
             if (temp.length()==1){
-                //1得到一位的进行补0操作
+                //Obtain one digit and perform the fill 0 operation
                 stringBuffer.append("0");
             }
             stringBuffer.append(temp);

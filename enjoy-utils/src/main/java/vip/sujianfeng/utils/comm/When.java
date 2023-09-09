@@ -1,8 +1,8 @@
 package vip.sujianfeng.utils.comm;
 
 /**
- * @author SuJianFeng
- * @date 2019/9/10 13:36
+ * author SuJianFeng
+ * createTime  2019/9/10 13:36
  * 模仿kotlin的when语法
  **/
 public class When {

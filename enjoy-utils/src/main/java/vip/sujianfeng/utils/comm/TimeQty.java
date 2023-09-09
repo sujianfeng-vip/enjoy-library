@@ -25,9 +25,9 @@ public class TimeQty {
 
     public String cnShow(){
         if (days == 0){
-            return String.format("%s时%s分%s秒", hours, minus, seconds);
+            return String.format("%s:%s:%s", hours, minus, seconds);
         }
-        return String.format("%s天%s时%s分%s秒", days, hours, minus, seconds);
+        return String.format("%s days %s:%s:%s", days, hours, minus, seconds);
     }
 
     public static TimeQty second2timeQty(long totalTime) {

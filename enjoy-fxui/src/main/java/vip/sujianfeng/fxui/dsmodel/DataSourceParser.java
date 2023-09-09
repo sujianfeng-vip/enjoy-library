@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * @Author 苏建锋
+ * author sujianfeng
  * @create 2019-09-17 19:43
  */
 public class DataSourceParser {

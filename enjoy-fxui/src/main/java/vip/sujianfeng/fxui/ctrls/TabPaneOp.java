@@ -11,8 +11,8 @@ import javafx.scene.control.TabPane;
 import vip.sujianfeng.utils.comm.StringUtilsEx;
 
 /**
- * @author SuJianFeng
- * @date 2019/9/14 21:46
+ * author SuJianFeng
+ * createTime  2019/9/14 21:46
  * Tab页签操作类
  **/
 public class TabPaneOp {

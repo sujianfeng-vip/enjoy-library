@@ -1,9 +1,8 @@
 package vip.sujianfeng.utils.threadpool;
 
 /**
- * @author SuJianFeng
- * @date 2022/9/4
- * @Description
+ * author SuJianFeng
+ * createTime  2022/9/4
  */
 public class ThreadPoolData {
 
@@ -18,27 +17,27 @@ public class ThreadPoolData {
     }
 
     /**
-     * 正在工作的线程数
+     * Number of working threads
      */
     private long activeCount;
     /**
-     * 当前存在的线程数
+     * Current number of threads present
      */
     private long poolSize;
     /**
-     * 历史最大的线程数
+     * The maximum number of threads in history
      */
     private long largestPoolSize;
     /**
-     * 已提交的任务数
+     * Number of tasks submitted
      */
     private long taskCount;
     /**
-     * 已完成的任务数
+     * Number of completed tasks
      */
     private long completedTaskCount;
     /**
-     * 队列中的任务数
+     * Number of tasks in the queue
      */
     private long queueSize;
 

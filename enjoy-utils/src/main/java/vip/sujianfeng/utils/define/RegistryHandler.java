@@ -2,13 +2,6 @@ package vip.sujianfeng.utils.define;
 
 import java.util.prefs.Preferences;
 
-/**
- * @Author SuJianFeng
- * @Date 2023/1/29
- * @Description
- * Preferences.userRoot()
- * 操作的固定位置：\HKEY_CURRENT_USER\Software\JavaSoft\Prefs\
- **/
 public class RegistryHandler {
 
     private String root;

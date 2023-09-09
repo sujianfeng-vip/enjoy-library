@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @Author SuJianFeng
- * @Date 2019/1/31 9:08
+ * author SuJianFeng
+ * createTime  2019/1/31 9:08
  * 分页数据
  **/
 public class FxPageRows<T> {

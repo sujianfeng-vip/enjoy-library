@@ -7,8 +7,8 @@ import vip.sujianfeng.utils.comm.StringUtilsEx;
 import java.util.List;
 
 /**
- * @Author SuJianFeng
- * @Date 2022/6/28
+ * author SuJianFeng
+ * createTime  2022/6/28
  * @Description
  **/
 public class JwtTokenData {

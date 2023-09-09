@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author SuJianFeng
- * @date 2019/9/14 11:15
+ * author SuJianFeng
+ * createTime  2019/9/14 11:15
  **/
 public class TableRowsSelector {
 

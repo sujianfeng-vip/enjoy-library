@@ -10,8 +10,8 @@ import java.io.File;
 import java.net.URL;
 
 /**
- * @author SuJianFeng
- * @date 2020/4/10 13:52
+ * author SuJianFeng
+ * createTime  2020/4/10 13:52
  **/
 public class AliyunOssClient {
 

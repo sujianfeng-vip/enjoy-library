@@ -9,8 +9,8 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * @Author SuJianFeng
- * @Date 2023/4/21
+ * author SuJianFeng
+ * createTime  2023/4/21
  * @Description
  **/
 public class ImageUtilsTest {

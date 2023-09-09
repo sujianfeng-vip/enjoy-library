@@ -12,8 +12,8 @@ import java.io.FileNotFoundException;
 import java.util.Map;
 
 /**
- * @author SuJianFeng
- * @date 2020/1/6 14:28
+ * author SuJianFeng
+ * createTime  2020/1/6 14:28
  **/
 public class TbHttpPostFiles {
 

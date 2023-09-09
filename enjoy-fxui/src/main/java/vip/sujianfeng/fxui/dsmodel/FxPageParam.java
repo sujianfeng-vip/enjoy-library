@@ -1,8 +1,8 @@
 package vip.sujianfeng.fxui.dsmodel;
 
 /**
- * @Author SuJianFeng
- * @Date 2022/11/7
+ * author SuJianFeng
+ * createTime  2022/11/7
  * @Description
  **/
 public class FxPageParam {

@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
- * @Author SuJianFeng
- * @Date 2019/2/15 9:36
+ * author SuJianFeng
+ * createTime  2019/2/15 9:36
  * 用于处理Runtime.getRuntime().exec产生的错误流及输出流
  **/
 public class StreamGobbler extends Thread {
@@ -27,10 +27,6 @@ public class StreamGobbler extends Thread {
         return logList;
     }
 
-    /**
-     * 取出信息并清空
-     * @return
-     */
     public List<String> pickLog() {
         List<String> list = new ArrayList<>();
         CopyOnWriteArrayList<String> logList = this.logList;

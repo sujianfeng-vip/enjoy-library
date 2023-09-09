@@ -21,7 +21,7 @@ public class SerializeUtil {
         ObjectOutputStream oos = null;
         ByteArrayOutputStream baos = null;
         try {
-            // 序列化
+            // serialize
             baos = new ByteArrayOutputStream();
             oos = new ObjectOutputStream(baos);
             oos.writeObject(object);

@@ -1,8 +1,8 @@
 package vip.sujianfeng.excel
 
 /**
- * @Author SuJianFeng
- * @Date 2023/8/7
+ * author SuJianFeng
+ * createTime  2023/8/7
  * @Description
  **/
 class ExcelColumn {

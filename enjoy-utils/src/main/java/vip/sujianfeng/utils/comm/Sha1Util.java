@@ -5,9 +5,9 @@ import java.util.*;
 
 /*
 '============================================================================
-'api说明：
-'createSHA1Sign创建签名SHA1
-'getSha1()Sha1签名
+API Description:
+'createSHA1Sign' Create signature SHA1
+'getSha1() Sha1 signature
 '============================================================================
 '*/
 public class Sha1Util {
@@ -18,7 +18,7 @@ public class Sha1Util {
     public static String getTimeStamp() {
         return String.valueOf(System.currentTimeMillis() / 1000);
     }
-    //创建签名SHA1
+    //Create Signature SHA1
     public static String createSHA1Sign(SortedMap<String, String> signParams) throws Exception {
         StringBuffer sb = new StringBuffer();
         Set es = signParams.entrySet();
@@ -28,13 +28,13 @@ public class Sha1Util {
             String k = (String) entry.getKey();
             String v = (String) entry.getValue();
             sb.append(k + "=" + v + "&");
-        //要采用URLENCODER的原始值！
+        //Use the original value of URLENCODER!
         }
         String params = sb.substring(0, sb.lastIndexOf("&"));
         System.out.println("sha1 sb:" + params);
         return getSha1(params);
     }
-    //Sha1签名
+    //Sha1 Signature
     public static String getSha1(String str) {
         if (str == null || str.length() == 0) {
             return null;

@@ -10,8 +10,8 @@ import org.junit.Test;
 import java.util.List;
 
 /**
- * @author SuJianFeng
- * @date 2019/12/18 15:06
+ * author SuJianFeng
+ * createTime  2019/12/18 15:06
  **/
 public class TbHttpResponseTest {
 

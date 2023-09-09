@@ -1,7 +1,7 @@
 package vip.sujianfeng.redis.ranking;
 
 /**
- * @Author SuJianFeng
+ * author SuJianFeng
  * @create 2020-08-29 7:02
  */
 public interface RankingMember {

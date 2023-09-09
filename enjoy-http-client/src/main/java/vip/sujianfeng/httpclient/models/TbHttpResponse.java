@@ -6,8 +6,8 @@ import com.alibaba.fastjson.TypeReference;
 import org.apache.http.client.methods.CloseableHttpResponse;
 
 /**
- * @author SuJianFeng
- * @date 2019/11/28 13:45
+ * author SuJianFeng
+ * createTime  2019/11/28 13:45
  **/
 public class TbHttpResponse<T> {
 

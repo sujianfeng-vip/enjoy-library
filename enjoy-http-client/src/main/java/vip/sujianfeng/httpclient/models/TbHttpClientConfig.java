@@ -1,8 +1,8 @@
 package vip.sujianfeng.httpclient.models;
 
 /**
- * @author SuJianFeng
- * @date 2019/11/29 7:31
+ * author SuJianFeng
+ * createTime  2019/11/29 7:31
  * httpClient连接配置
  **/
 public class TbHttpClientConfig {

@@ -7,7 +7,7 @@ import java.util.Set;
 
 /**
  * 通过redis处理实时排行榜
- * @Author SuJianFeng
+ * author SuJianFeng
  * @create 2020-08-29 6:58
  */
 public class TbRedisRanking {

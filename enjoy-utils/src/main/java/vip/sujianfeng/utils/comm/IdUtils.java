@@ -1,17 +1,12 @@
 package vip.sujianfeng.utils.comm;
 
 /**
- * @Author SuJianFeng
- * @Date 2023/2/15
- * @Description
+ * author SuJianFeng
+ * createTime  2023/2/15
+ * Description
  **/
 public class IdUtils {
 
-    /**
-     * 将多个id合并成一个id，并且不超过50个字节
-     * @param ids
-     * @return
-     */
     public static String merge(String... ids) {
         if (ids.length == 0) {
             return "";

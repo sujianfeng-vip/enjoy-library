@@ -1,8 +1,8 @@
 package vip.sujianfeng.utils.comm;
 
 /**
- * @Author SuJianFeng
- * @Date 2019/3/18 15:45
+ * author SuJianFeng
+ * createTime  2019/3/18 15:45
  * 数组克隆
  **/
 public class ArrayClone<T> {

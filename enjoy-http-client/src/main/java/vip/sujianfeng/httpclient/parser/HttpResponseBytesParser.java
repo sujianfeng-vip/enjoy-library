@@ -8,8 +8,8 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * @author SuJianFeng
- * @date 2022/5/11
+ * author SuJianFeng
+ * createTime  2022/5/11
  * @Description
  */
 public class HttpResponseBytesParser implements IHttpResponseParser<byte[]> {

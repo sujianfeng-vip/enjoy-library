@@ -15,17 +15,17 @@ public class TimeShowUtils {
             long diff = endDate.getTime() - beginDate.getTime();
             if (diff > 1000 * 3600 * 24) {
                 long day = diff / (1000 * 3600 * 24);
-                pastTime = day + "天前";
+                pastTime = day + "days before";
             } else {
                 if (diff > 1000 * 3600) {
                     long hours = diff / (1000 * 3600);
-                    pastTime = hours + "小时前";
+                    pastTime = hours + "hours before";
                 } else {
                     if (diff > 1000 * 60) {
                         long m = diff / (1000 * 60);
-                        pastTime = m + "分钟前";
+                        pastTime = m + "mins before";
                     } else {
-                        pastTime = "刚刚";
+                        pastTime = "just";
                     }
                 }
 
@@ -39,23 +39,23 @@ public class TimeShowUtils {
         if (StringUtilsEx.isNotEmpty(date)) {
             Date now_date = new Date();
             Date date_after = DateTimeUtils.str2DateTime(date);
-            long diff = (date_after.getTime() - now_date.getTime()) / 1000; // 大于当前时间
-            System.out.println("直播预告时间：" + date_after.getTime());
-            System.out.println("当前时间：" + now_date.getTime());
+            long diff = (date_after.getTime() - now_date.getTime()) / 1000; // Greater than current time
+            System.out.println("Live broadcast preview time:" + date_after.getTime());
+            System.out.println("Current time:" + now_date.getTime());
             if (diff > 0) {
                 if (diff > 3600 * 24) {
                     long day = diff / (3600 * 24);
-                    timeLeft = day + "天";
+                    timeLeft = day + "days";
                 } else {
                     if (diff > 3600) {
                         long hours = diff / 3600;
-                        timeLeft = hours + "小时";
+                        timeLeft = hours + "hours";
                     } else {
                         if (diff > 60) {
                             long m = diff / 60;
-                            timeLeft = m + "分钟";
+                            timeLeft = m + "minutes";
                         } else {
-                            timeLeft = diff + "秒";
+                            timeLeft = diff + "seconds";
                         }
                     }
 
@@ -70,7 +70,7 @@ public class TimeShowUtils {
         if (duration_int > 0) {
 //            if (duration_int > 3600 * 24) {
 //                int day = duration_int / 3600 * 24;
-//                duration = day + "天";
+//                duration = day + "days";
 //
 //                duration_int = duration_int - day * 3600 * 24;
 //            }

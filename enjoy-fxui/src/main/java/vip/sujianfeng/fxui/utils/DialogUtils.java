@@ -9,8 +9,8 @@ import java.io.File;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
- * @author SuJianFeng
- * @date 2019/9/6 21:33
+ * author SuJianFeng
+ * createTime  2019/9/6 21:33
  **/
 public class DialogUtils {
 

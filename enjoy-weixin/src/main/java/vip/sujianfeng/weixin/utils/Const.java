@@ -1,8 +1,8 @@
 package vip.sujianfeng.weixin.utils;
 
 /**
- * @Author SuJianFeng
- * @Date 2022/6/24
+ * author SuJianFeng
+ * createTime  2022/6/24
  * @Description
  **/
 public class Const {

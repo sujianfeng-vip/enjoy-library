@@ -40,16 +40,10 @@ public class DataCacheHandler {
         return dataCache.removeCache(key);
     }
 
-    /**
-     * 清除所有库缓存
-     */
     public void flushAll(){
         dataCache.flushAll();
     }
 
-    /**
-     * 清除当前库缓存
-     */
     public void flushDb(){
         dataCache.flushDb();
     }
@@ -70,13 +64,6 @@ public class DataCacheHandler {
         return count;
     }
 
-    /**
-     * 暂存数据，用于提供执行效率
-     * 注意点：当数据变化时，要清除或更新暂存数据
-     * @param key
-     * @param callBack
-     * @return
-     */
     public <T> T getOrBuildCacheObj(String key, Class<T> t, DataObjBack<T> callBack, int timeout_minutes) throws Exception {
         if(key == null){
             return null;

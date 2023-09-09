@@ -1,8 +1,8 @@
 package vip.sujianfeng.fxui.menus;
 
 /**
- * @author SuJianFeng
- * @date 2019/9/6 16:21
+ * author SuJianFeng
+ * createTime  2019/9/6 16:21
  * 菜单树节点
  **/
 public class MenuTreeNode {

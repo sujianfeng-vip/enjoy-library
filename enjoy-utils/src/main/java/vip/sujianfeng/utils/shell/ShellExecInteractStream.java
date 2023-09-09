@@ -6,8 +6,8 @@ import org.slf4j.LoggerFactory;
 import java.io.*;
 
 /**
- * @Author SuJianFeng
- * @Date 2019/2/15 9:36
+ * author SuJianFeng
+ * createTime  2019/2/15 9:36
  * 用于处理Runtime.getRuntime().exec产生的错误流及输出流
  **/
 public class ShellExecInteractStream extends Thread {

@@ -10,8 +10,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author SuJianFeng
- * @date 2019/11/29 7:39
+ * author SuJianFeng
+ * createTime  2019/11/29 7:39
  **/
 public class TbHttpDelete {
 

@@ -8,29 +8,26 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 单线程定时任务
- * @Author SuJianFeng
- * @Date 2022/9/23
- * @Description 用于单线程周期执行指定任务
+ * Single threaded timed task
+ * author SuJianFeng
+ * createTime  2022/9/23
+ * Description Used for single threaded cycle execution of specified tasks
  **/
 public abstract class ThreadCycleTask {
     private String name;
     /**
-     * 是否输出日志
+     * Whether to output logs
      */
     private boolean showLog = true;
     /**
-     * 间隔时间
+     * Interval time
      */
     private long intervalSeconds = 60;
     /**
-     * 延迟初始化时间
+     * Delay initialization time
      */
     private long delayInitSeconds = 10;
 
-    /**
-     * 周期执行任务
-     */
     public abstract void cycleExecute() throws Exception;
 
     protected void init() {
@@ -46,14 +43,13 @@ public abstract class ThreadCycleTask {
                 logger.error(e.toString(), e);
             }
             this.init();
-            if (showLog) logger.info("线程定时任务[{}]已初始化!", this.name);
+            if (showLog) logger.info("The thread timing task [{}] has been initialized!", this.name);
             while (true) {
                 try {
-                    if (showLog) logger.info("线程定时任务[{}]，开始执行....", this.name);
+                    if (showLog) logger.info("Thread timed task [{}], starting execution", this.name);
                     this.cycleExecute();
-                    if (showLog) logger.info("线程定时任务[{}]，执行完成!", this.name);
+                    if (showLog) logger.info("Thread timed task [{}], execution completed!", this.name);
                     if (intervalSeconds < 1) {
-                        //间隔时间控制不能低于1秒
                         intervalSeconds = 1;
                     }
                 } catch (Exception e) {

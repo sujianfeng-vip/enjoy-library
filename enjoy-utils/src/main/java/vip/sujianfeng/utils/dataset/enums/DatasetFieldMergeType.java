@@ -1,27 +1,27 @@
 package vip.sujianfeng.utils.dataset.enums;
 
 /**
- * 数据集字段合并方式
+ * Dataset Field Merge Method
  */
 public enum DatasetFieldMergeType {
     /**
-     * 同步
+     * synchronous
      */
     Sync,
     /**
-     * 合计
+     * amount to
      */
     Sum,
     /**
-     * 平均
+     * average
      */
     Avg,
     /**
-     * 最大值
+     * Maximum value
      */
     Max,
     /**
-     * 最小值
+     * minimum value
      */
     Min
 }

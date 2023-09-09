@@ -2,8 +2,8 @@ package vip.sujianfeng.enums;
 
 /**
  * 数据状态
- * @Author SuJianFeng
- * @Date 2022/10/12
+ * author SuJianFeng
+ * createTime  2022/10/12
  * @Description
  **/
 public enum DataStatus {

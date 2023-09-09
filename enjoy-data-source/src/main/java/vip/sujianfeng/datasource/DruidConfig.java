@@ -1,8 +1,8 @@
 package vip.sujianfeng.datasource;
 
 /**
- * @author SuJianFeng
- * @date 2019/12/24 10:29
+ * author SuJianFeng
+ * createTime  2019/12/24 10:29
  **/
 public class DruidConfig {
 

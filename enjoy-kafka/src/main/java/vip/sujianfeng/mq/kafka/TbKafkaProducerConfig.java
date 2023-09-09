@@ -1,8 +1,8 @@
 package vip.sujianfeng.mq.kafka;
 
 /**
- * @author SuJianFeng
- * @date 2019/11/15 10:47
+ * author SuJianFeng
+ * createTime  2019/11/15 10:47
  * kafka生产者配置
  **/
 public class TbKafkaProducerConfig {

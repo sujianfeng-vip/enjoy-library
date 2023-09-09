@@ -8,8 +8,8 @@ import javafx.scene.control.TableRow;
 import java.util.List;
 
 /**
- * @author SuJianFeng
- * @date 2019/9/14 10:46
+ * author SuJianFeng
+ * createTime  2019/9/14 10:46
  **/
 public class TableCellOp<S, T> extends TableCell<S, T> {
 

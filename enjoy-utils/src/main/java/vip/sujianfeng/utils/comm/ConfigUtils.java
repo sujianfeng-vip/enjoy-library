@@ -15,8 +15,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 /**
- * @Author 苏建锋
- * @create 2019-01-13 15:07
+ * author sujianfeng
+ * createTime 2019-01-13 15:07
  */
 public class ConfigUtils {
 
@@ -165,11 +165,6 @@ public class ConfigUtils {
         return properties.getProperty(key);
     }
 
-    /**
-     * 获取配置文件值，包含properties和yml资源文件
-     * @param key
-     * @return
-     */
     public static String getProperty(String key) {
         initConfigs();
         String result = "";
@@ -239,11 +234,6 @@ public class ConfigUtils {
         return result;
     }
 
-    /**
-     * 加载jar包或class目录下资源文件，并转换为字符串
-     * @param fileName
-     * @return
-     */
     public static String loadResFile(String fileName){
         InputStream inputStream = ConfigUtils.class.getResourceAsStream(fileName);
         return inputStream != null ? new BufferedReader(new InputStreamReader(inputStream)).lines().collect(Collectors.joining(System.lineSeparator())): "";
@@ -254,10 +244,6 @@ public class ConfigUtils {
         return getYmlKey(ymlMap, key);
     }
 
-    /**
-     * 将多级树形结构的map压扁为一级
-     * @return
-     */
     public static void flatten(String parentKey, Object src, Map desc){
         if (src instanceof Map){
             Map map = (Map) src;
@@ -278,11 +264,6 @@ public class ConfigUtils {
         return map.get(key);
     }
 
-    /**
-     * 设置环境变量
-     * @param name
-     * @param value
-     */
     public static void setEnv(String name, String value){
         SystemEnvUtils.setEnv(name, value);
     }

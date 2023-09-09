@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.Properties;
 
 /**
- * @Author SuJianFeng
- * @Date 2019/5/7 17:43
+ * author SuJianFeng
+ * createTime  2019/5/7 17:43
  **/
 public class TbKafkaConsumer {
 

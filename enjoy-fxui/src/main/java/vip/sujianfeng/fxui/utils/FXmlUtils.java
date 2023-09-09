@@ -8,8 +8,8 @@ import java.io.IOException;
 import java.net.URL;
 
 /**
- * @Author SuJianFeng
- * @Date 2022/12/16
+ * author SuJianFeng
+ * createTime  2022/12/16
  * @Description
  **/
 public class FXmlUtils {

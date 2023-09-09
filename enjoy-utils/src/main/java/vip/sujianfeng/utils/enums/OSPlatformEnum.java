@@ -3,8 +3,8 @@ package vip.sujianfeng.utils.enums;
 import vip.sujianfeng.utils.system.SystemEnvUtils;
 
 /**
- * @Author SuJianFeng
- * @Date 2019/2/15 10:29
+ * author SuJianFeng
+ * createTime  2019/2/15 10:29
  **/
 public enum OSPlatformEnum {
     Any("any"),

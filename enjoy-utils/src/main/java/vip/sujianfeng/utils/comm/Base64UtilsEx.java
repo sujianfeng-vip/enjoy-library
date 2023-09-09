@@ -11,8 +11,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
 /**
- * @author SuJianFeng
- * @date 2019/10/29 9:57
+ * author SuJianFeng
+ * createTime  2019/10/29 9:57
  **/
 public class Base64UtilsEx {
 
@@ -37,13 +37,6 @@ public class Base64UtilsEx {
         return Base64.getDecoder().decode(bytesStr);
     }
 
-    /**
-     * 图片转base64文本
-     * @param bufferedImage
-     * @param formatName  png,jpg,bmp 等
-     * @return
-     * @throws IOException
-     */
     public static String bufferedImageToBase64(BufferedImage bufferedImage, String formatName) throws IOException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         ImageIO.write(bufferedImage, formatName, baos);
@@ -108,7 +101,7 @@ public class Base64UtilsEx {
     }
 
     public static void main(String[] args) {
-        String test = "abc,张三,aaa";
+        String test = "abc,zhangsan,aaa";
         String encode = encodeStr(test);
         String decode = decodeStr(encode);
         System.out.println("encode -> " + encode);

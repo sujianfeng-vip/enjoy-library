@@ -7,8 +7,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 /**
- * @author SuJianFeng
- * @date 2019/9/6 21:09
+ * author SuJianFeng
+ * createTime  2019/9/6 21:09
  **/
 public class ImageButton extends Button {
 

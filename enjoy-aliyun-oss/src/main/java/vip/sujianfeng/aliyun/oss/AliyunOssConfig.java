@@ -1,8 +1,8 @@
 package vip.sujianfeng.aliyun.oss;
 
 /**
- * @Author SuJianFeng
- * @Date 2019/1/22 17:47
+ * author SuJianFeng
+ * createTime  2019/1/22 17:47
  **/
 public class AliyunOssConfig {
     private String endpoint;

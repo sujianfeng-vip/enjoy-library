@@ -14,7 +14,7 @@ import static vip.sujianfeng.weixin.utils.Const.WEIXIN_AUTH_STATE_BASE;
 import static vip.sujianfeng.weixin.utils.Const.WEIXIN_AUTH_STATE_USER_INFO;
 
 /**
- * @Author 苏建锋
+ * author sujianfeng
  * @create 2019-01-19 12:04
  */
 public class WeixinRestUrls {

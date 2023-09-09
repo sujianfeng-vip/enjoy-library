@@ -33,8 +33,8 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * @author SuJianFeng
- * @date 2019/11/28 13:26
+ * author SuJianFeng
+ * createTime  2019/11/28 13:26
  **/
 public class TbHttpClientUtils {
 
@@ -240,7 +240,7 @@ public class TbHttpClientUtils {
     /**
      * 使用httpclint 发送文件
      * @author: SuJianFeng
-     * @date: 2019-05-27
+     * createTime : 2019-05-27
      * @param request
      *            上传的文件
      * @return 响应结果

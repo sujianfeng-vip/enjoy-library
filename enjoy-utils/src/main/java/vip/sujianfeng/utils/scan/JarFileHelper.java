@@ -30,12 +30,7 @@ public class JarFileHelper {
 		return sb.toString();
 	}
 
-    /**
-     * 取得指定jar包内部所有文件
-     * @param jarFile
-     * @return
-     * @throws IOException
-     */
+    //Obtain all files inside the specified jar package
 	public static List<String> getJarFileList(String jarFile, ScanFilter filter) {
         List<String> result = new ArrayList<>();
         if (StringUtilsEx.isEmpty(jarFile)){
@@ -68,12 +63,7 @@ public class JarFileHelper {
         return result;
     }
 
-    /**
-     * 取得jar包内的jar包文件列表
-     * @param jarFile
-     * @param insideJarFile
-     * @return
-     */
+
     public static List<String> getJarInJarFileList(String jarFile, String insideJarFile, ScanFilter filter) {
         List<String> result = new ArrayList<>();
         URL url = null;
@@ -101,13 +91,6 @@ public class JarFileHelper {
         return result;
     }
 
-
-	/**
-	 * 加载类路径下的文件
-	 *
-	 * @param filePath E.g. "com/qfmis/model/config/datasource/com/ds-com-person.xml"
-	 * @return
-	 */
 	public static InputStream getResoutce(String filePath) {
 		return JarFileHelper.class.getClassLoader().getResourceAsStream(filePath);
 	}

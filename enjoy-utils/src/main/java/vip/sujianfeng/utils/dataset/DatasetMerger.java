@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 数据集合并工具
+ * Dataset Merge Tool
  */
 public class DatasetMerger<A, B> {
     private static Logger logger = LoggerFactory.getLogger(DatasetMerger.class);
@@ -41,10 +41,6 @@ public class DatasetMerger<A, B> {
         return this.mainDataset.getData();
     }
 
-    /**
-     * 准备好主关键字段对应的子数据集合
-     * @return
-     */
     public void buildMap(List<String> mainKeys, List<String> subKeys) {
         if (mainKeys.size() == 0 || subKeys.size() == 0) {
             return;
@@ -68,7 +64,7 @@ public class DatasetMerger<A, B> {
             return v1.compareTo(v2);
         });
         int subIndex = 0;
-        //主数据集和子数集都排好序，然后只要循环一次即可，这样效率才是最高的
+        //Both the main dataset and the subset are sorted and then iterated once, which is the highest efficiency
         for (A mainRow : this.mainDataset.getData()) {
             String mainKeyValues = this.mainDataset.getKeyValues(mainRow, mainKeys);
             if (subMap.containsKey(mainKeyValues)) {
@@ -82,11 +78,11 @@ public class DatasetMerger<A, B> {
                     String subKeyValues = this.subDataset.getKeyValues(subRow, subKeys);
                     int compareValue = mainKeyValues.compareTo(subKeyValues);
                     if (compareValue < 0) {
-                        //如果主数据行 < 子数据行，那么退出子数据集循环
+                        //If the main data row is less than the sub data row, exit the sub dataset loop
                         break;
                     }
                     if (compareValue > 0) {
-                        //如果主数据行 > 子数据行，那么子数据行下移
+                        //If the main data row>sub data row, then the sub data row is moved down
                         subIndex ++;
                         continue;
                     }
@@ -105,7 +101,7 @@ public class DatasetMerger<A, B> {
             String mainKeyValues = this.mainDataset.getKeyValues(mainRow, mainKeys);
             Map<String, List<B>> subMap = this.map.get(mapKey.toString());
             if (subMap == null) {
-                //不存在匹配的子数据集
+                //No matching sub dataset exists
                 continue;
             }
             List<B> subRows = subMap.get(mainKeyValues);
@@ -130,7 +126,7 @@ public class DatasetMerger<A, B> {
                 });
                 if (subRows.size() > 0) {
                     if (mergeDefine.getMergeType() == DatasetFieldMergeType.Avg) {
-                        //计算平均值
+                        //Calculate Average
                         this.mainDataset.avgFieldValue(mainRow, mergeDefine.getDestField(), subRows.size());
                     }
                 }
@@ -154,7 +150,7 @@ public class DatasetMerger<A, B> {
                     continue;
                 }
             }
-            //没有子数据集，也要触发拦截事件
+            //Trigger interception event even if there is no sub dataset
             mergerIntercept.rowMerge(mainRow, null);
         }
     }

@@ -1,7 +1,7 @@
 package vip.sujianfeng.redis;
 
 /**
- * @Author 苏建锋
+ * author sujianfeng
  * @create 2019-10-17 6:18
  */
 public class TbRedisConfig {

@@ -16,8 +16,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author SuJianFeng
- * @date 2019/9/24 8:11
+ * author SuJianFeng
+ * createTime  2019/9/24 8:11
  * 控件绑定数据操作
  **/
 public class FxCtrlDataBindHandler<T extends FxBaseModel> {

@@ -8,8 +8,8 @@ import vip.sujianfeng.fxui.forms.base.FxBaseController;
 import vip.sujianfeng.utils.comm.StringUtilsEx;
 
 /**
- * @Author SuJianFeng
- * @Date 2022/12/14
+ * author SuJianFeng
+ * createTime  2022/12/14
  * @Description
  **/
 @FxForm(value = "/fxml/form-confirm.fxml", title = "提示")

@@ -11,10 +11,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * 数据集
- * @param <T>
- */
 public class DatasetRows<T> {
 
     private static Logger logger = LoggerFactory.getLogger(DatasetRows.class);
@@ -90,12 +86,6 @@ public class DatasetRows<T> {
         }
     }
 
-    /**
-     * 覆盖
-     * @param obj
-     * @param field
-     * @param value
-     */
     protected void setFieldValue(Object obj, String field, Object value) {
         if (obj instanceof Map) {
             ((Map)obj).put(field, value);
@@ -113,12 +103,6 @@ public class DatasetRows<T> {
         }
     }
 
-    /**
-     * 累加
-     * @param obj
-     * @param field
-     * @param addValue
-     */
     protected void addFieldValue(Object obj, String field, Object addValue) {
         try {
             Class<?> cls;
@@ -142,12 +126,6 @@ public class DatasetRows<T> {
         }
     }
 
-    /**
-     * 最大值
-     * @param obj
-     * @param field
-     * @param value
-     */
     protected void maxFieldValue(Object obj, String field, Object value) {
         try {
             Class<?> cls;
@@ -171,12 +149,6 @@ public class DatasetRows<T> {
         }
     }
 
-    /**
-     * 平均值
-     * @param obj
-     * @param field
-     * @param count
-     */
     protected void avgFieldValue(Object obj, String field, int count) {
         try {
             Class<?> cls;
@@ -200,13 +172,6 @@ public class DatasetRows<T> {
         }
     }
 
-
-    /**
-     * 最小值
-     * @param obj
-     * @param field
-     * @param value
-     */
     protected void minFieldValue(Object obj, String field, Object value) {
         try {
             Class<?> cls;

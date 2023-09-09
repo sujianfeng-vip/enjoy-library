@@ -107,20 +107,11 @@ public class FileHelper {
 		return file.exists() && file.isFile();
 	}
 
-
-	/**
-	 * @param dir
-	 * @return 判断目录是否存在
-	 */
 	public static boolean isExistDir(String dir){
 		File file = new File(dir);
 		return file.exists() && file.isDirectory();
 	}
 
-	/**
-	 * 如果目录不存在则创建
-	 * @param dir
-	 */
 	public static void makeDirs(String dir){
 		File file = new File(dir);
 		if (!file.exists()){
@@ -133,25 +124,25 @@ public class FileHelper {
 		InputStream is = null;
 		OutputStream os = null;
 		try {
-			// 基于myFile创建一个文件输入流
+			// Create a file input stream based on myFile
 			is = new FileInputStream(file);
-			// 设置目标文件
+			// Set Target File
 			toFile = new File(fileName);
-			// 创建一个输出流
+			// Create an output stream
 			os = new FileOutputStream(toFile);
-			// 设置缓存
+			// Set cache
 			byte[] buffer = new byte[1024];
 			int length = 0;
-			// 读取myFile文件输出到toFile文件中
+			// Read myFile file and output to toFile file
 			while ((length = is.read(buffer)) > 0) {
 				os.write(buffer, 0, length);
 			}
 		} catch (Exception e) {
 			throw e;
 		} finally {
-			// 关闭输入流
+			// Close input stream
 			is.close();
-			// 关闭输出流
+			// Close output stream
 			os.close();
 		}
 		return toFile;
@@ -227,12 +218,6 @@ public class FileHelper {
 		return num;
 	}
 
-	/**
-	 * 获取文件版本信息
-	 *
-	 * @param filePath
-	 * @return
-	 */
 	public static String getVersion(String filePath) {
 		String result = "";
 		File file = new File(filePath);
@@ -352,10 +337,6 @@ public class FileHelper {
 		}
 	}
 
-	/**
-	 * @param file
-	 * @return 取得文件的最后修改时间
-	 */
 	public static long getFileLastModifiedTime(String file) {
 		File f = new File(file);
 		long modifiedTime = f.lastModified();

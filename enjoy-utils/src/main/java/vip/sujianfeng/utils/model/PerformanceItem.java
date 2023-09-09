@@ -1,8 +1,8 @@
 package vip.sujianfeng.utils.model;
 
 /**
- * @Author SuJianFeng
- * @Date 2019/6/28 9:42
+ * author SuJianFeng
+ * createTime  2019/6/28 9:42
  * 性能计算项目
  **/
 public class PerformanceItem {
@@ -17,15 +17,15 @@ public class PerformanceItem {
     private long beginTime;
 
     /**
-     * 计时开始
+     * Timing begins
      */
     public void begin(){
         beginTime = System.nanoTime();
     }
 
     /**
-     * 计时结束
-     * @param addProductQty 产量
+     * Timing ended
+     * @param addProductQty production
      */
     public void end(long addProductQty){
         if (addProductQty > 0){
@@ -34,7 +34,7 @@ public class PerformanceItem {
     }
 
     /**
-     * 重置清零
+     * Reset to Zero
      */
     public void reset(){
         this.consumeTimes = 0;
@@ -49,24 +49,21 @@ public class PerformanceItem {
     }
 
     /**
-     * 标题
+     * title
      */
     private String itemName;
 
     /**
-     * 耗费时间（纳秒）
+     * Elapsed time (nanoseconds)
      */
     private long consumeTimes;
 
     /**
-     * 产出数量
+     * Output quantity
      */
     private long productQty;
     private long printProductQty;
 
-    /**
-     * 平均每秒产出量
-     */
     public long getProductQtyBySecond(){
         return productQty * 1000 * 1000 * 1000 / consumeTimes;
     }

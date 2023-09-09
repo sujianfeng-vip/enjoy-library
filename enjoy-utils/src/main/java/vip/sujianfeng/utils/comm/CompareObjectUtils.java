@@ -7,7 +7,7 @@ import com.alibaba.fastjson.JSONObject;
 import java.util.List;
 
 /**
- * 比较工具类
+ * Comparison tool class
  */
 public class CompareObjectUtils {
 

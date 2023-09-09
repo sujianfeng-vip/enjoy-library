@@ -3,8 +3,8 @@ package vip.sujianfeng.utils.scan;
 import java.util.List;
 
 /**
- * @author SuJianFeng
- * @date 2019/8/26 17:25
+ * author SuJianFeng
+ * createTime  2019/8/26 17:25
  **/
 public class ScanExecutor implements Scan {
 

@@ -9,8 +9,8 @@ import java.util.Properties;
 import java.util.concurrent.Future;
 
 /**
- * @Author SuJianFeng
- * @Date 2019/5/7 17:37
+ * author SuJianFeng
+ * createTime  2019/5/7 17:37
  **/
 public class TbKafkaProducer {
 

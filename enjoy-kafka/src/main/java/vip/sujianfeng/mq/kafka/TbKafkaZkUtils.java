@@ -8,8 +8,8 @@ import org.apache.kafka.common.security.JaasUtils;
 import java.util.Properties;
 
 /**
- * @Author SuJianFeng
- * @Date 2019/5/7 17:05
+ * author SuJianFeng
+ * createTime  2019/5/7 17:05
  **/
 public class TbKafkaZkUtils {
     private static ZkUtils getZkUtils(String servers){

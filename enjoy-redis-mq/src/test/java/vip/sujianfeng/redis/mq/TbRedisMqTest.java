@@ -9,8 +9,8 @@ import vip.sujianfeng.redis.TbRedisCache;
 import vip.sujianfeng.redis.TbRedisConfig;
 
 /**
- * @author SuJianFeng
- * @date 2020/9/27 16:09
+ * author SuJianFeng
+ * createTime  2020/9/27 16:09
  **/
 public class TbRedisMqTest {
 

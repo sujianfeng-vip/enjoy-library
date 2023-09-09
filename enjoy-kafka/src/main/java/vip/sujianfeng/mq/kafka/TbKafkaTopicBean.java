@@ -1,8 +1,8 @@
 package vip.sujianfeng.mq.kafka;
 
 /**
- * @Author SuJianFeng
- * @Date 2019/5/7 17:04
+ * author SuJianFeng
+ * createTime  2019/5/7 17:04
  **/
 public class TbKafkaTopicBean {
 

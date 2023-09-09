@@ -7,8 +7,8 @@ import vip.sujianfeng.utils.define.CallResult;
 import javax.script.*;
 
 /**
- * @Author SuJianFeng
- * @Date 2019/5/22 10:19
+ * author SuJianFeng
+ * createTime  2019/5/22 10:19
  * js解析引擎
  **/
 public class NashornRunner {

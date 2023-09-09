@@ -6,8 +6,8 @@ import vip.sujianfeng.fxui.annotations.FxForm;
 import vip.sujianfeng.fxui.forms.base.FxBaseController;
 
 /**
- * @Author SuJianFeng
- * @Date 2022/12/14
+ * author SuJianFeng
+ * createTime  2022/12/14
  * @Description
  **/
 @FxForm(value = "/fxml/form-info.fxml", title = "提示")

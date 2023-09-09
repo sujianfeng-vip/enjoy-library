@@ -13,8 +13,8 @@ import vip.sujianfeng.utils.comm.ConvertUtils;
 import vip.sujianfeng.utils.define.CallResult;
 
 /**
- * @author SuJianFeng
- * @date 2019/9/15 16:50
+ * author SuJianFeng
+ * createTime  2019/9/15 16:50
  **/
 public abstract class FxListDataController<T extends FxBaseModel, P extends FxPageParam, D extends FxDiskDataHandler<T>> extends FxDsController<T, P, D> {
     /**

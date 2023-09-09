@@ -33,44 +33,16 @@ public class DESUtil {
 
 	private final static String DES = "DES";
 
-	/**
-	 * Description 根据键值进行加密
-	 * 
-	 * @param data
-	 * @param key
-	 *            加密键byte数组
-	 * @return
-	 * @throws Exception
-	 */
 	public static String appEncrypt(String data) throws Exception {
 		String key = "abcdefgh";
 		return encrypt(data, key);
 	}
 
-	/**
-	 * Description 根据键值进行解密
-	 * 
-	 * @param data
-	 * @param key
-	 *            加密键byte数组
-	 * @return
-	 * @throws IOException
-	 * @throws Exception
-	 */
 	public static String appDecrypt(String data) throws IOException, Exception {
 		String key = "abcdefgh";
 		return decrypt(data, key);
 	}
-	
-	/**
-	 * Description 根据键值进行加密
-	 * 
-	 * @param data
-	 * @param key
-	 *            加密键byte数组
-	 * @return
-	 * @throws Exception
-	 */
+
 	public static String webEncrypt(String data) {
 		String key1 = "a1";
 		String key2 = "b2";
@@ -78,16 +50,6 @@ public class DESUtil {
 		return strEnc(data, key1, key2, key3);
 	}
 
-	/**
-	 * Description 根据键值进行解密
-	 * 
-	 * @param data
-	 * @param key
-	 *            加密键byte数组
-	 * @return
-	 * @throws IOException
-	 * @throws Exception
-	 */
 	public static String webDecrypt(String data) {
 		String key1 = "a1";
 		String key2 = "b2";
@@ -95,30 +57,11 @@ public class DESUtil {
 		return strDec(data, key1, key2, key3);
 	}
 
-	/**
-	 * Description 根据键值进行加密
-	 * 
-	 * @param data
-	 * @param key
-	 *            加密键byte数组
-	 * @return
-	 * @throws Exception
-	 */
 	public static String encrypt(String data, String key) throws Exception {
 		byte[] bt = encrypt(data.getBytes(), key.getBytes());
 		return Base64.getEncoder().encodeToString(bt);
 	}
 
-	/**
-	 * Description 根据键值进行解密
-	 * 
-	 * @param data
-	 * @param key
-	 *            加密键byte数组
-	 * @return
-	 * @throws IOException
-	 * @throws Exception
-	 */
 	public static String decrypt(String data, String key) throws IOException,
 			Exception {
 		if (data == null)
@@ -128,75 +71,46 @@ public class DESUtil {
 		return new String(bt);
 	}
 
-	/**
-	 * Description 根据键值进行加密
-	 * 
-	 * @param data
-	 * @param key
-	 *            加密键byte数组
-	 * @return
-	 * @throws Exception
-	 */
 	private static byte[] encrypt(byte[] data, byte[] key) throws Exception {
-		// 生成一个可信任的随机数源
+		// Generate a trusted random number source
 		SecureRandom sr = new SecureRandom();
 
-		// 从原始密钥数据创建DESKeySpec对象
+		// Create DESKeySpec object from raw key data
 		DESKeySpec dks = new DESKeySpec(key);
 
-		// 创建一个密钥工厂，然后用它把DESKeySpec转换成SecretKey对象
+		// Create a key factory and use it to convert DESKeySpec into a SecretKey object
 		SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(DES);
 		SecretKey securekey = keyFactory.generateSecret(dks);
 
-		// Cipher对象实际完成加密操作
+		// Cipher object actually completes encryption operation
 		Cipher cipher = Cipher.getInstance(DES);
 
-		// 用密钥初始化Cipher对象
+		// Initializing Cipher objects with keys
 		cipher.init(Cipher.ENCRYPT_MODE, securekey, sr);
 
 		return cipher.doFinal(data);
 	}
 
-	/**
-	 * Description 根据键值进行解密
-	 * 
-	 * @param data
-	 * @param key
-	 *            加密键byte数组
-	 * @return
-	 * @throws Exception
-	 */
 	private static byte[] decrypt(byte[] data, byte[] key) throws Exception {
-		// 生成一个可信任的随机数源
+		// Generate a trusted random number source
 		SecureRandom sr = new SecureRandom();
 
-		// 从原始密钥数据创建DESKeySpec对象
+		// Create DESKeySpec object from raw key data
 		DESKeySpec dks = new DESKeySpec(key);
 
-		// 创建一个密钥工厂，然后用它把DESKeySpec转换成SecretKey对象
+		// Create a key factory and use it to convert DESKeySpec into a SecretKey object
 		SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(DES);
 		SecretKey securekey = keyFactory.generateSecret(dks);
 
-		// Cipher对象实际完成解密操作
+		// Cipher object actually completes decryption operation
 		Cipher cipher = Cipher.getInstance(DES);
 
-		// 用密钥初始化Cipher对象
+		// Initializing Cipher objects with keys
 		cipher.init(Cipher.DECRYPT_MODE, securekey, sr);
 
 		return cipher.doFinal(data);
 	}
 
-	/**
-	 * DES加密/解密
-	 * 
-	 * @Copyright Copyright (c) 2006
-	 * @author Guapo
-	 * @see DESCore
-	 */
-
-	/*
-	 * encrypt the string to string made up of hex return the encrypted string
-	 */
 	public static String strEnc(String data, String firstKey, String secondKey,
 			String thirdKey) {
 

@@ -6,7 +6,7 @@ import vip.sujianfeng.fxui.utils.FxFormUtils;
 import vip.sujianfeng.utils.comm.StringUtilsEx;
 
 /**
- * @Author 苏建锋
+ * author sujianfeng
  * @create 2019-09-19 5:24
  */
 public class LoadingUtils {

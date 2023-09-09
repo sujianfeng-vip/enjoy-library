@@ -1,16 +1,16 @@
 package vip.sujianfeng.utils.workday.models;
 
 /**
- * 工作时间点类型
+ * Work time point type
  */
 public enum WorkTimePointType {
 
     /**
-     * 上班
+     * go to work
      */
     OnWork,
     /**
-     * 下班
+     * come or go off work
      */
     OffWork
 

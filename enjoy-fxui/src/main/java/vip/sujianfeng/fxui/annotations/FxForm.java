@@ -6,8 +6,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * @Author SuJianFeng
- * @Date 2022/12/16
+ * author SuJianFeng
+ * createTime  2022/12/16
  * @Description
  **/
 @Target(ElementType.TYPE)

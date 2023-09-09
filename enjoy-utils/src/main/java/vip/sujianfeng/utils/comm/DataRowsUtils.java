@@ -3,7 +3,7 @@ package vip.sujianfeng.utils.comm;
 import java.util.*;
 
 /**
- * 数据处理工具类
+ * Data processing tool class
  * Created by sujianfeng on 2014/10/12.
  */
 public class DataRowsUtils {
@@ -32,14 +32,6 @@ public class DataRowsUtils {
         return result;
     }
 
-    /**
-     * 根据比较字段，找出差异部分（新增、删除）
-     * @param oldRows   原数据
-     * @param currRows   处理后数据
-     * @param compareField 比较自动
-     * @param newRows 新增行
-     * @param deleteRows 被删除行
-     */
     public static void pickDiffRows(List<Map<String, Object>> oldRows,
                               List<Map<String, Object>> currRows,
                               String compareField,
@@ -47,14 +39,14 @@ public class DataRowsUtils {
                               List<Map<String, Object>> deleteRows) throws IllegalAccessException {
         Map<String, Map<String, Object>> oldMap = rows2map(oldRows, compareField);
         Map<String, Map<String, Object>> currMap = rows2map(currRows, compareField);
-        //旧数据存在新数据不存在的为删除
+        // Delete old data if new data does not exist
         for (Map<String, Object> row : oldRows){
             String keyValue = ConvertUtils.cStr(row.get(compareField));
             if (!currMap.containsKey(keyValue)){
                 deleteRows.add(row);
             }
         }
-        //新数据村旧数据部存在的为新增
+        // The old data department in the new data village is newly added
         for (Map<String, Object> row : currRows){
             String keyValue = ConvertUtils.cStr(row.get(compareField));
             if (!oldMap.containsKey(keyValue)){

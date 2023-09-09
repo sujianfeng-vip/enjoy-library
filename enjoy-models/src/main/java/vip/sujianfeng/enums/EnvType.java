@@ -1,8 +1,8 @@
 package vip.sujianfeng.enums;
 
 /**
- * @Author SuJianFeng
- * @Date 2022/10/8
+ * author SuJianFeng
+ * createTime  2022/10/8
  * @Description
  **/
 public enum EnvType {

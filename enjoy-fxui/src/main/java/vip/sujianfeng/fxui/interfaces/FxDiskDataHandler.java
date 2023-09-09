@@ -8,8 +8,8 @@ import vip.sujianfeng.utils.define.CallResult;
 
 /**
  * 数据处理接口
- * @Author SuJianFeng
- * @Date 2022/11/4
+ * author SuJianFeng
+ * createTime  2022/11/4
  * @Description
  **/
 public interface FxDiskDataHandler<T extends FxBaseModel> {

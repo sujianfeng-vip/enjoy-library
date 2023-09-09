@@ -6,8 +6,8 @@ import vip.sujianfeng.utils.define.CallResult;
 import java.io.File;
 
 /**
- * @author SuJianFeng
- * @date 2019/7/30 17:48
+ * author SuJianFeng
+ * createTime  2019/7/30 17:48
  * 链式执行shell脚本
  **/
 public class ShellExecLink {

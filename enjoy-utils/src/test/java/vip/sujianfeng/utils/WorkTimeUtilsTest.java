@@ -7,8 +7,8 @@ import vip.sujianfeng.utils.workday.utils.WorkTimeUtils;
 import vip.sujianfeng.utils.workday.worktime.WorkDayHandle;
 
 /**
- * @Author SuJianFeng
- * @Date 2023/1/17
+ * author SuJianFeng
+ * createTime  2023/1/17
  * @Description
  **/
 public class WorkTimeUtilsTest {

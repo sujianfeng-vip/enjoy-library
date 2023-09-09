@@ -1,8 +1,8 @@
 package vip.sujianfeng.fxui.enums;
 
 /**
- * @author SuJianFeng
- * @date 2019/9/15 17:51
+ * author SuJianFeng
+ * createTime  2019/9/15 17:51
  * 窗体状态
  **/
 public enum FxFormState {

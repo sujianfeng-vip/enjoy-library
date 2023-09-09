@@ -18,8 +18,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @Author SuJianFeng
- * @Date 2022/12/16
+ * author SuJianFeng
+ * createTime  2022/12/16
  * @Description
  **/
 public class FxFormUtils {

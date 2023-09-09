@@ -9,8 +9,8 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * @author SuJianFeng
- * @date 2019/12/6 14:36
+ * author SuJianFeng
+ * createTime  2019/12/6 14:36
  **/
 public class DruidUtils extends DruidDataSource {
 

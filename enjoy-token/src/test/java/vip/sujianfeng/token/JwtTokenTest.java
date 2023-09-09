@@ -3,8 +3,8 @@ package vip.sujianfeng.token;
 import com.alibaba.fastjson.JSON;
 
 /**
- * @Author SuJianFeng
- * @Date 2022/6/28
+ * author SuJianFeng
+ * createTime  2022/6/28
  * @Description
  **/
 public class JwtTokenTest {

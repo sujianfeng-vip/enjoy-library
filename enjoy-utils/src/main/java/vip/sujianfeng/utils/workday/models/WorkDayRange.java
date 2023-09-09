@@ -1,26 +1,26 @@
 package vip.sujianfeng.utils.workday.models;
 
 /**
- * 工作时间范围
- * @Author SuJianFeng
- * @Date 2023/3/30
- * @Description
+ * Working time range
+ * author SuJianFeng
+ * createTime  2023/3/30
+ * description
  **/
 public class WorkDayRange {
     /**
-     * 正常工作日（通常为周一到周五，注意补班的时候非周一到周五）
+     * Normal working days (usually from Monday to Friday, please note that the make-up shift is not from Monday to Friday)
      */
     private boolean containWeekDay = true;
     /**
-     * 周六
+     * Saturday
      */
     private boolean containSaturday = false;
     /**
-     * 周日
+     * Sunday
      */
     private boolean containSunday = false;
     /**
-     * 节假日
+     * festival and holiday
      */
     private boolean containHoliday = false;
 

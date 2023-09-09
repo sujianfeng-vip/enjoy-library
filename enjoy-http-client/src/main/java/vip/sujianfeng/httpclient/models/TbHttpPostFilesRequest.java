@@ -10,8 +10,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author SuJianFeng
- * @date 2020/1/6 13:22
+ * author SuJianFeng
+ * createTime  2020/1/6 13:22
  * http上传文件请求
  **/
 public class TbHttpPostFilesRequest extends TbHttpRequest {

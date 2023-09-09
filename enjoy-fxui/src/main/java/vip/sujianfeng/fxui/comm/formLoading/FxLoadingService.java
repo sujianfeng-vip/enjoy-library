@@ -4,7 +4,7 @@ import vip.sujianfeng.fxui.interfaces.LoadRun;
 import vip.sujianfeng.fxui.utils.FxFormUtils;
 
 /**
- * @Author 苏建锋
+ * author sujianfeng
  * @create 2019-09-19 5:21
  */
 public class FxLoadingService extends FxBaseService {

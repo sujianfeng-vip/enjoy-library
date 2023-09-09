@@ -9,8 +9,8 @@ import java.lang.reflect.Parameter;
 import java.util.Map;
 
 /**
- * @author SuJianFeng
- * @date 2019/12/5 14:48
+ * author SuJianFeng
+ * createTime  2019/12/5 14:48
  **/
 public class MonacoTypeScriptParser {
 

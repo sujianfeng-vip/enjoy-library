@@ -92,13 +92,6 @@ public class StringUtilsEx {
 
 	}
 
-	/**
-	 * 取分隔符靠左的文本
-	 * 分隔符在最右边
-	 * @param text
-	 * @param splitStr
-	 * @return
-	 */
 	public static String leftStrEx(String text, String splitStr) {
 		int iPos = text.lastIndexOf(splitStr);
 		if (iPos >= 0)
@@ -117,13 +110,6 @@ public class StringUtilsEx {
 		}
 	}
 
-	/**
-	 * 取分隔符靠右的文本
-	 * 分隔符在最左边
-	 * @param text
-	 * @param splitStr
-	 * @return
-	 */
 	public static String rightStrEx(String text, String splitStr) {
 		int iPos = text.indexOf(splitStr);
 		if (iPos >= 0) {
@@ -180,7 +166,6 @@ public class StringUtilsEx {
 		return sb.toString();
 	}
 
-	// 截取指定字段对包括内的字符串
 	public static String subStringByDiv(String text, String beginDiv,
 			String endDiv) {
 		int begin = text.indexOf(beginDiv) + beginDiv.length();
@@ -191,12 +176,6 @@ public class StringUtilsEx {
 		return result;
 	}
 
-	/**
-	 * 首字母大写
-	 * 
-	 * @param item
-	 * @return
-	 */
 	public static String firstWordUpCase(String item) {
 		if (isEmpty(item))
 			return "";
@@ -208,12 +187,6 @@ public class StringUtilsEx {
 		}
 	}
 
-	/**
-	 * 首字母小写
-	 * 
-	 * @param item
-	 * @return
-	 */
 	public static String firstWordLowerCase(String item) {
 		if (isEmpty(item))
 			return "";
@@ -236,32 +209,10 @@ public class StringUtilsEx {
 		return result;
 	}
 
-	/**
-	 * 次函数正确性未得到验证
-	 * 
-	 * @param origin
-	 *            原始字符串
-	 * @param start
-	 *            起始位置
-	 * @param len
-	 *            截取长度(一个汉字长度按2算的) ,长度超过取到原始字符串末
-	 * @return 返回的字符串
-	 */
+
 	public static String subCnString(String origin, int start, int len) {
 		class SubCnString {
 
-			/**
-			 * 截取一段字符的长度,不区分中英文,如果数字不正好，则少取一个字符位
-			 * 
-			 * 
-			 * @param origin
-			 *            原始字符串
-			 * @param start
-			 *            起始位置
-			 * @param len
-			 *            截取长度(一个汉字长度按2算的) ,长度超过取到原始字符串末
-			 * @return 返回的字符串
-			 */
 			public String substring(String origin, int start, int len) {
 				if (origin == null || origin.equals("") || len < 1)
 					return "";
@@ -291,27 +242,13 @@ public class StringUtilsEx {
 
 		return (new SubCnString()).substring(origin, start, len);
 	}
-	
-	/**
-	 * 判断一个字符是Ascill字符还是其它字符（如汉，日，韩文字符）
-	 * 
-	 * @param c
-	 *            需要判断的字符
-	 * @return 返回true,Ascill字符
-	 */
 
 	public static boolean isLetter(char c) {
 		int k = 0x80;
 		return c / k == 0 ? true : false;
 	}
 
-	/**
-	 * 得到一个字符串的长度,显示的长度,一个汉字或日韩文长度为2,英文字符长度为1
-	 * 
-	 * @param s
-	 *            需要得到长度的字符串
-	 * @return i得到的字符串长度
-	 */
+
 	public static int length(String s) {
 		if (s == null)
 			return 0;
@@ -410,7 +347,7 @@ public class StringUtilsEx {
 	}
 	
 	public static void main(String[] args) {
-		String aa = "我是字符串";
+		String aa = "I am a string";
 		System.out.println(subStr(aa, 0, 6));
 		String fileName ="abc.text";
 		System.out.println(getFileSuffix(fileName));
@@ -443,7 +380,7 @@ public class StringUtilsEx {
 	}
 
 	public static String genFileName(String suffix){
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMDDHHmmssS");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssS");
 		return sdf.format(new Date()) + suffix;
 	}
 
@@ -451,17 +388,12 @@ public class StringUtilsEx {
 		return fileName.substring(fileName.lastIndexOf("."));
 	}
 
-	private final static long minute = 60 * 1000;// 1分钟
-	private final static long hour = 60 * minute;// 1小时
-	private final static long day = 24 * hour;// 1天
-	private final static long month = 31 * day;// 月
-	private final static long year = 12 * month;// 年
-	/**
-	 * 返回文字描述的日期
-	 *
-	 * @param date
-	 * @return
-	 */
+	private final static long minute = 60 * 1000;
+	private final static long hour = 60 * minute;
+	private final static long day = 24 * hour;
+	private final static long month = 31 * day;
+	private final static long year = 12 * month;
+
 	public static String getTimeFormatText(Date date) {
 		if (date == null) {
 			return null;
@@ -470,43 +402,31 @@ public class StringUtilsEx {
 		long r = 0;
 		if (diff > year) {
 			r = (diff / year);
-			return r + "年前";
+			return r + "years before";
 		}
 		if (diff > month) {
 			r = (diff / month);
-			return r + "个月前";
+			return r + "months before";
 		}
 		if (diff > day) {
 			r = (diff / day);
-			return r + "天前";
+			return r + "days before";
 		}
 		if (diff > hour) {
 			r = (diff / hour);
-			return r + "小时前";
+			return r + "hours before";
 		}
 		if (diff > minute) {
 			r = (diff / minute);
-			return r + "分钟前";
+			return r + "minutes before";
 		}
-		return "刚刚";
+		return "just";
 	}
 
-	/**
-	 * 如果value不为空，返回notEmptyResult，反正返回emptyResult
-	 * @param value
-	 * @param notEmptyResult
-	 * @param emptyResult
-	 * @return
-	 */
 	public static String iifNotNull(String value, String notEmptyResult, String emptyResult) {
 		return StringUtilsEx.isNotEmpty(value) ? notEmptyResult : emptyResult;
 	}
 
-	/**
-	 * 取出空白字符（空格、制表符、换页符等空白字符）
-	 * @param text
-	 * @return
-	 */
 	public static String removeEmpty(String text) {
 		return ConvertUtils.cStr(text).replace(" ", "");
 	}

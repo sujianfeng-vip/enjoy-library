@@ -1,8 +1,8 @@
 package vip.sujianfeng.redis.mq;
 
 /**
- * @author SuJianFeng
- * @date 2020/9/27 16:13
+ * author SuJianFeng
+ * createTime  2020/9/27 16:13
  **/
 public class TempObj {
     private int id;

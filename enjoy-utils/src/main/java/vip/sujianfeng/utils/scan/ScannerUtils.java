@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author SuJianFeng
- * @date 2019/8/26 17:26
- * 类包扫描工具类
+ * author SuJianFeng
+ * createTime  2019/8/26 17:26
+ * Class Package Scanning Tool Class
  **/
 public class ScannerUtils {
 

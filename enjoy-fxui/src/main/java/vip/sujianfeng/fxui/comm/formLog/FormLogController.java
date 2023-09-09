@@ -10,8 +10,8 @@ import vip.sujianfeng.fxui.forms.base.FxBaseController;
 import vip.sujianfeng.utils.comm.StringUtilsEx;
 
 /**
- * @author SuJianFeng
- * @date 2019/9/7 22:37
+ * author SuJianFeng
+ * createTime  2019/9/7 22:37
  **/
 @FxForm(value = "/fxml/form-log.fxml", title = "错误日志")
 public class FormLogController extends FxBaseController {

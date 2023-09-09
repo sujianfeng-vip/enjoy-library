@@ -7,8 +7,8 @@ import java.lang.annotation.Target;
 
 /**
  * 资源模型注解
- * @Author SuJianFeng
- * @Date 2019/9/17
+ * author SuJianFeng
+ * createTime  2019/9/17
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)

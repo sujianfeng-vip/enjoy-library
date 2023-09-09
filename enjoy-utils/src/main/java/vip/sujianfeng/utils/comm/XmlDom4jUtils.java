@@ -16,41 +16,28 @@ public class XmlDom4jUtils {
 
 	private static SAXReader getNewSAXReader() throws SAXException {
 		SAXReader reader = new SAXReader();
-		// 不加载dtd，防止在断网时试图去网络找dtd而报错
+		// Do not load DTD to prevent errors from attempting to find DTD on the network during network outages
 		reader.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
 		return reader;
 	}
-	
-	/**
-	 * 读取xml文件
-	 * @param fileName
-	 * @return xml文档
-	 * @throws Exception
-	 */
+
 	public static Document read(String fileName) throws Exception {
 		SAXReader reader = getNewSAXReader();
 		Document document = reader.read(new File(fileName));
 		return document;
 	}
 
-
-	/**
-	 * 读取jar包内的xml资源文件
-	 * @param resFile
-	 * @return
-	 * @throws Exception
-	 */
 	public static Document parseResFile(String resFile) throws Exception {
 		return readFromJar(resFile);
 	}
 	public static Document readFromJar(String jarFileName) throws Exception {
 
-		//这句会有缓存
+		//This sentence will have a cache
 		//InputStream is = this.getClass().getResourceAsStream(jarFileName);
-		//下面这句没有缓存
+		//The following sentence does not have a cache
 		URL url = XmlDom4jUtils.class.getResource(jarFileName);
 		if (url == null){
-			throw new Exception("找不到文件：" + jarFileName);  
+			throw new Exception("File not found:" + jarFileName);
 		}
 		return parseURL(url);
 	}
@@ -78,13 +65,7 @@ public class XmlDom4jUtils {
 		}
 		return doc.selectNodes(xpathExp);
 	}
-	
-	/**
-	 * 保存xml文件
-	 * @param doc
-	 * @param fileName
-	 * @throws IOException
-	 */
+
 	public static void save(Document doc, String fileName) throws IOException{
 		FileWriter fileWriter = new FileWriter(fileName);
 		//document.write(fileWriter);	
@@ -111,13 +92,7 @@ public class XmlDom4jUtils {
 			return element.elementText(name);
 		return "";
 	}	
-	
-	/**
-	 * 美化xml文本
-	 * @param element
-	 * @return
-	 * @throws IOException
-	 */
+
 	public static String formatXML(Element element) throws IOException{
 		OutputFormat format = OutputFormat.createPrettyPrint();
 		StringWriter out = new StringWriter();

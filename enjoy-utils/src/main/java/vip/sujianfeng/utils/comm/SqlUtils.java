@@ -9,13 +9,6 @@ public class SqlUtils {
     public final static String DATE_FORMAT = "%Y-%m-%d";
     public final static String DATE_TIME_FORMAT = "%Y-%m-%d %T";
 
-    /**
-     * 适用于数据库字段为正常日期字段
-     * @param fieldName
-     * @param beginDate
-     * @param endDate
-     * @return
-     */
     public static String dateWhere(String fieldName, String beginDate, String endDate){
         if (StringUtilsEx.isNotEmpty(beginDate) && StringUtilsEx.isNotEmpty(endDate)){
             if (beginDate.compareTo(endDate) > 0){
@@ -42,13 +35,6 @@ public class SqlUtils {
         return "";
     }
 
-    /**
-     * 适用于用数据库是字符串字段存日期
-     * @param fieldName
-     * @param beginDate
-     * @param endDate
-     * @return
-     */
     public static String dateStrWhere(String fieldName, String beginDate, String endDate){
         if (StringUtilsEx.isNotEmpty(beginDate) && StringUtilsEx.isNotEmpty(endDate)){
             if (beginDate.compareTo(endDate) > 0){

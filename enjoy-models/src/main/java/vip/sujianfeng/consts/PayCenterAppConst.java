@@ -2,8 +2,8 @@ package vip.sujianfeng.consts;
 
 /**
  * 支付中心-常量定义
- * @Author SuJianFeng
- * @Date 2022/10/8
+ * author SuJianFeng
+ * createTime  2022/10/8
  * @Description
  **/
 public class PayCenterAppConst {

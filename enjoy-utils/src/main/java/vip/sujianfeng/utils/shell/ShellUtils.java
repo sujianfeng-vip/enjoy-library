@@ -7,9 +7,9 @@ import vip.sujianfeng.utils.define.CallResult;
 import java.io.File;
 
 /**
- * @author SuJianFeng
- * @date 2019/7/30 17:30
- * shell脚本运行工具类
+ * author SuJianFeng
+ * createTime  2019/7/30 17:30
+ * Shell Script Running Tool Class
  **/
 public class ShellUtils {
 

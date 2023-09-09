@@ -12,8 +12,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author SuJianFeng
- * @date 2019/11/28 14:15
+ * author SuJianFeng
+ * createTime  2019/11/28 14:15
  **/
 public class TbHttpUtilsTest {
 

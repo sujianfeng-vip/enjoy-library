@@ -1,8 +1,8 @@
 package vip.sujianfeng.weixin.utils;
 
 /**
- * @author SuJianFeng
- * @date 2019/7/30 13:55
+ * author SuJianFeng
+ * createTime  2019/7/30 13:55
  **/
 public class HttpConfig {
     // 编码格式。发送编码格式统一用UTF-8

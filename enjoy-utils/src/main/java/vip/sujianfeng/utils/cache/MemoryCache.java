@@ -7,8 +7,8 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * @Author SuJianFeng
- * @Date 2019/2/22 13:15
+ * author SuJianFeng
+ * createTime  2019/2/22 13:15
  **/
 
 public class MemoryCache implements IDataCache{

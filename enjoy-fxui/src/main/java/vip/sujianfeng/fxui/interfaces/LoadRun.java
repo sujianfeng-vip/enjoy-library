@@ -1,7 +1,7 @@
 package vip.sujianfeng.fxui.interfaces;
 
 /**
- * @Author 苏建锋
+ * author sujianfeng
  * @create 2019-09-19 5:47
  * 执行任务接口
  */

@@ -4,8 +4,8 @@ import io.netty.channel.ChannelHandlerContext;
 
 /**
  * 服务端消息
- * @Author SuJianFeng
- * @Date 2023/6/14
+ * author SuJianFeng
+ * createTime  2023/6/14
  * @Description
  **/
 public interface NettyWebSocketMessageEvent {

@@ -14,8 +14,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * @author SuJianFeng
- * @date 2019/9/14 13:20
+ * author SuJianFeng
+ * createTime  2019/9/14 13:20
  **/
 public abstract class FxBaseController implements Initializable {
 

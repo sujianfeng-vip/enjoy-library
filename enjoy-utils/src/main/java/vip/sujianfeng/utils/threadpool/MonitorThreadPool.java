@@ -6,9 +6,8 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author SuJianFeng
- * @date 2022/9/4
- * @Description
+ * author SuJianFeng
+ * createTime  2022/9/4
  */
 public class MonitorThreadPool extends ThreadPoolExecutor {
 
@@ -24,7 +23,7 @@ public class MonitorThreadPool extends ThreadPoolExecutor {
     private ThreadPoolData threadPoolData = new ThreadPoolData();
 
     /**
-     * 每次执行任务前调用
+     * Called before each task execution
      */
     @Override
     protected void beforeExecute(Thread t, Runnable r) {
@@ -32,7 +31,7 @@ public class MonitorThreadPool extends ThreadPoolExecutor {
     }
 
     /**
-     * 每次任务完成后调用
+     * Called after each task is completed
      */
     @Override
     protected void afterExecute(Runnable r, Throwable t) {
@@ -40,7 +39,7 @@ public class MonitorThreadPool extends ThreadPoolExecutor {
     }
 
     /**
-     * 线程池关闭前调用
+     * Called before the thread pool is closed
      */
     @Override
     protected void terminated() {
@@ -48,7 +47,7 @@ public class MonitorThreadPool extends ThreadPoolExecutor {
     }
 
     /**
-     * 监控线程池情况
+     * Monitoring Thread Pool Status
      */
     public void monitor() {
         this.monitorEvent.monitor(this.threadPoolData.update(getActiveCount(), getPoolSize(), getLargestPoolSize(), getTaskCount(), getCompletedTaskCount(), getQueue().size()));

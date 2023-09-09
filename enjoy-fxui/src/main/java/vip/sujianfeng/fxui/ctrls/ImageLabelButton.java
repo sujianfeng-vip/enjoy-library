@@ -8,8 +8,8 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 
 /**
- * @author SuJianFeng
- * @date 2019/9/6 20:56
+ * author SuJianFeng
+ * createTime  2019/9/6 20:56
  **/
 public class ImageLabelButton extends Label {
 

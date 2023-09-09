@@ -6,8 +6,8 @@ import javafx.scene.control.TableColumn;
 import javafx.util.Callback;
 
 /**
- * @author SuJianFeng
- * @date 2019/9/23 8:39
+ * author SuJianFeng
+ * createTime  2019/9/23 8:39
  **/
 public class TableCellFactoryCheckBox<T, F> implements Callback<TableColumn<T, F>, TableCell<T, F>> {
 

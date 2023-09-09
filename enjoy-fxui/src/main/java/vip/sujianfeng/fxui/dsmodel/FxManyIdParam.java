@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @Author SuJianFeng
- * @Date 2022/11/9
+ * author SuJianFeng
+ * createTime  2022/11/9
  * @Description
  **/
 public class FxManyIdParam {

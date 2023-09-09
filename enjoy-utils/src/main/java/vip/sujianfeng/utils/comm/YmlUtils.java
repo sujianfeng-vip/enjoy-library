@@ -5,9 +5,9 @@ import com.alibaba.fastjson.JSON;
 import java.util.Map;
 
 /**
- * @author SuJianFeng
- * @date 2020/2/27 9:52
- * yaml文件工具类
+ * author SuJianFeng
+ * createTime  2020/2/27 9:52
+ * Yaml File Tool Class
  **/
 public class YmlUtils {
 

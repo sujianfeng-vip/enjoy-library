@@ -7,8 +7,8 @@ import org.apache.http.util.EntityUtils;
 import java.io.IOException;
 
 /**
- * @author SuJianFeng
- * @date 2022/5/11
+ * author SuJianFeng
+ * createTime  2022/5/11
  * @Description
  */
 public class HttpResponseStringParser implements IHttpResponseParser<String> {

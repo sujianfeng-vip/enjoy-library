@@ -1,8 +1,8 @@
 package vip.sujianfeng.utils;
 
 /**
- * @Author SuJianFeng
- * @Date 2023/5/28
+ * author SuJianFeng
+ * createTime  2023/5/28
  * @Description
  **/
 public class MyTest {

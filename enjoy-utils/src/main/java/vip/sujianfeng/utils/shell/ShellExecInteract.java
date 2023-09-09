@@ -8,10 +8,9 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
 /**
- * Shell交互操作
- * @Author SuJianFeng
- * @Date 2023/5/5
- * @Description
+ * Shell Interaction Operations
+ * author SuJianFeng
+ * createTime  2023/5/5
  **/
 public class ShellExecInteract {
     private static final Logger logger = LoggerFactory.getLogger(ShellExecInteract.class);
@@ -34,11 +33,6 @@ public class ShellExecInteract {
         stdoutGobbler.start();
     }
 
-    /**
-     * 输出指令到子进程
-     * @param command
-     * @throws IOException
-     */
     public ShellExecInteract outputCommand(String command) throws IOException {
         logger.info("command => {}", command);
         this.callBack.call(this, ShellExecInteractStream.STDOUT, command);
@@ -52,7 +46,7 @@ public class ShellExecInteract {
     }
 
     /**
-     * 关闭子进程
+     * Close child processes
      */
     public void close() {
         ps.destroy();

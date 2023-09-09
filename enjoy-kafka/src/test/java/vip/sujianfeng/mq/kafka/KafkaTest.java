@@ -9,8 +9,8 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @Author SuJianFeng
- * @Date 2019/5/7 17:03
+ * author SuJianFeng
+ * createTime  2019/5/7 17:03
  **/
 public class KafkaTest {
     public static ThreadPoolExecutor ThreadWorker100 = new ThreadPoolExecutor(

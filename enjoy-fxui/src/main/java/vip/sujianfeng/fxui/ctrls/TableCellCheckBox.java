@@ -6,8 +6,8 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableCell;
 
 /**
- * @author SuJianFeng
- * @date 2019/9/14 10:46
+ * author SuJianFeng
+ * createTime  2019/9/14 10:46
  **/
 public class TableCellCheckBox<S, T> extends TableCell<S, T> {
 

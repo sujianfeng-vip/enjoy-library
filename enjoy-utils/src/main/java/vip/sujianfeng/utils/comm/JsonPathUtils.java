@@ -3,22 +3,11 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 
 /**
- * @Author SuJianFeng
- * @Date 2019/7/15 10:09
+ * author SuJianFeng
+ * createTime  2019/7/15 10:09
  **/
 public class JsonPathUtils {
 
-    /**
-     * 根据完整路径key，获取多层json结构的内部数据
-     * 例如
-     * 输入： json:  {field1: { field11: 123 }}
-     *       pathKey: field1.field11
-     * 返回： 123
-     *
-     * @param json
-     * @param pathKey
-     * @return
-     */
     public static Object getValue(JSONObject json, String pathKey){
         if (json == null){
             return null;

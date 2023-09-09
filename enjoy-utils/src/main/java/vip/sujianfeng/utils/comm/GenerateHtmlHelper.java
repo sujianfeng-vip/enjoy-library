@@ -43,7 +43,7 @@ public class GenerateHtmlHelper {
                 read.close();
             }
         } catch (Exception e) {
-            System.out.println("读取文件内容操作出错");
+            System.out.println("Error reading file content operation");
             logger.error(e.toString(), e);
         }
         return fileContent;
@@ -63,7 +63,7 @@ public class GenerateHtmlHelper {
             writer.close();
             return true;
         } catch (Exception e) {
-            System.out.println("写文件内容操作出错");
+            System.out.println("Error writing file content operation");
             logger.error(e.toString(), e);
         }
         return false;

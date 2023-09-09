@@ -12,20 +12,13 @@ import java.net.URLEncoder;
 import java.util.*;
 
 /**
- * @author 张茂华
- * @date 2019/7/22 14:13
+ * author zhangmaohua
+ * createTime  2019/7/22 14:13
  */
 public class BodyUtils {
 
     private static Logger logger = LoggerFactory.getLogger(BodyUtils.class);
 
-    /**
-     * 对象转字符串数组
-     * @param key
-     * @param obj
-     * @param toArr
-     * @return
-     */
     public static List<String> bodyToArr(String key, Object obj, List<String> toArr, boolean encode) {
         if (null == obj) {
             return toArr;
@@ -93,11 +86,6 @@ public class BodyUtils {
         return joiner.toString();
     }
 
-    /**
-     * 数组根据ASCII排序，并拼接成字符串
-     * @param arr
-     * @return
-     */
     public static String arrToStr(List<String> arr) {
         if (null == arr || arr.isEmpty()) {
             return "";
@@ -106,16 +94,11 @@ public class BodyUtils {
         return String.join("&", arr);
     }
 
-    /**
-     * 判断是否基本数据类型
-     * @param obj
-     * @return
-     */
     public static boolean isPrimitiveDataTypes(Object obj) {
         if (obj.getClass().isPrimitive()){
             return true;
         }
-        //String单独处理
+        //String individualization
         if (obj instanceof String) {
             return true;
         }

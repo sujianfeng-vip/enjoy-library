@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author SuJianFeng
- * @date 2019/11/29 17:02
+ * author SuJianFeng
+ * createTime  2019/11/29 17:02
  * 接口调用结果对象
  **/
 public class CallResult<T> {
@@ -25,7 +25,7 @@ public class CallResult<T> {
     private int code = SUCCESS_CODE;
     private String message = "";
     /**
-     * 扩展属性
+     * extended attribute
      */
     private Map<String, Object> attributes = new HashMap<>();
     private T data;

@@ -2,12 +2,12 @@ package vip.sujianfeng.utils.workday.models;
 
 public class WorkTimePoint {
     /**
-     * 时间点（时间戳-秒）
+     * Time point (timestamp seconds)
      */
     private long time;
 
     /**
-     * 时间点类型
+     * Time point type
      */
     private WorkTimePointType workTimePointType;
 

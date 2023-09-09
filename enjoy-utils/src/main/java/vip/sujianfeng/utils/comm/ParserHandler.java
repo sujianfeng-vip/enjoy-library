@@ -29,12 +29,12 @@ public class ParserHandler {
     }
 
     /**
-     * 语法检查
+     * Grammar check
      */
     private boolean check = false;
 
     /**
-     * 解析过程的变量参数：存放modelConsole、conn、dbHelper...等初始化参数
+     * The variable parameters of the parsing process: storing modelConsole, conn, dbHelper Wait for initialization parameters
      */
     private Map<String, Object> params = new HashMap<String, Object>();
 
@@ -47,7 +47,7 @@ public class ParserHandler {
     }
 
     /**
-     * 暂存解析值，避免在同一次运行相同表达式被重复计算，注意：外部在正确的时机点清空暂存数据
+     * Temporarily store parsed values to avoid duplicate calculations of the same expression during the same run. Note that external data is cleared at the correct timing
      */
     private Map<String, Object> saveParserValues = new HashMap<String, Object>();
 
@@ -87,10 +87,6 @@ public class ParserHandler {
         }
     }
 
-    /**
-     * 将表达式里面的包括中括号的元素列出来
-     * @param express
-     */
     public static List<String> parseExpr2itemList(String express){
         return parseExpr2itemList(express, '[', ']');
     }
@@ -173,12 +169,6 @@ public class ParserHandler {
         }
     }
 
-    /**
-     * 解析脚本，并把结果返回
-     * @param script
-     * @return
-     * @throws Exception
-     */
     public Object parser(String script) throws Exception{
         if (script == null)
             return null;
@@ -187,7 +177,7 @@ public class ParserHandler {
 		/*List<String> list = parseExpr2itemList(script);
 		if (list.size() > 0){
 			if (!check){
-				throw new Exception(String.format("无法识别[%s], 请检查脚本", list.get(0)));
+				throw new Exception(String.format("Unable to recognize [%s], please check the script", list.get(0)));
 			}
 			for (String item : list) {
 				script = script.replace("[" + item + "]", "");
@@ -203,7 +193,7 @@ public class ParserHandler {
         }else{
             try {
                 script = formatScript(script);
-                //System.out.println("解析脚本：");
+                //System.out.println("Parsing script:");
                 //System.out.println(script);
                 result = i.eval(script);
             } catch (Exception e) {
@@ -214,7 +204,11 @@ public class ParserHandler {
                         throw be;
                     }
                 }
-                throw new Exception(String.format("脚本:\n%s\n解析出错：%s", script, e.toString()));
+                throw new Exception(String.format("Script:\n" +
+                        "\n" +
+                        "%s\n" +
+                        "\n" +
+                        "Parsing error:%s", script, e));
             }
 
         }
@@ -239,21 +233,10 @@ public class ParserHandler {
         return script;
     }
 
-
-
-    /**
-     * 先将[xxx]替换为map值，在解析脚本
-     * @param map
-     * @param script
-     * @return
-     * @throws Exception
-     */
     public Object parser(Map<String, Object> map, String script) throws Exception{
         script = translateByMap(script, map);
         return parser(script);
     }
-
-
 
     public boolean isCheck() {
         return check;
@@ -263,11 +246,6 @@ public class ParserHandler {
         this.check = check;
     }
 
-    /**
-     * 格式化脚本
-     * @param text
-     * @return
-     */
     public static String formatScript(String text){
         if (StringUtilsEx.isEmpty(text))
             return "";
@@ -276,7 +254,7 @@ public class ParserHandler {
         text = text.replace("\r", "");
         int unit = 5;
         int count = 0;
-        boolean in = false; //是否在""内
+        boolean in = false; //Is it within ''
         char last = ' ';
         StringBuilder sb = new StringBuilder();
         text = text.trim();
@@ -308,8 +286,8 @@ public class ParserHandler {
                 in = false;
             }
             if (StringUtilsEx.isEmpty(text.charAt(0))){
-                if (!StringUtilsEx.isEmpty(last)  //上一个字符不为空
-                        || in //在""内
+                if (!StringUtilsEx.isEmpty(last)  //The previous character is not empty
+                        || in //Within ''
                         ){
                     sb.append(text.charAt(0));
                 }

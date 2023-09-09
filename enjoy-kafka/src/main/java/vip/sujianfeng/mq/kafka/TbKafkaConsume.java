@@ -3,8 +3,8 @@ package vip.sujianfeng.mq.kafka;
 import java.util.List;
 
 /**
- * @author SuJianFeng
- * @date 2019/9/27 14:08
+ * author SuJianFeng
+ * createTime  2019/9/27 14:08
  * 消息消费接口
  **/
 public interface TbKafkaConsume<T> {

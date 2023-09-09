@@ -8,18 +8,16 @@ import java.io.*;
 import java.net.URL;
 
 /**
- * @author SuJianFeng
- * @date 2019/9/11 7:50
+ * author SuJianFeng
+ * createTime  2019/9/11 7:50
  **/
 public class XmlUtils {
 
     public static <T> T parseResourceFile(Class<T> clazz, String resourceFile) throws Exception {
-        //这句会有缓存
         //InputStream is = this.getClass().getResourceAsStream(jarFileName);
-        //下面这句没有缓存
         URL url = XmlUtils.class.getResource(resourceFile);
         if (url == null){
-            throw new Exception("找不到文件：" + resourceFile);
+            throw new Exception("not found: " + resourceFile);
         }
         return parseURL(clazz, url);
     }
@@ -50,11 +48,8 @@ public class XmlUtils {
         return (T) u.unmarshal(new File(fileName));
     }
 
-    /**
-     * 对象转换成xmlString
-     */
     public static String convertToXmlStr(Object obj) throws Exception {
-        //创建输出流
+        //Create output stream
         StringWriter sw = new StringWriter();
         sw.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + "\n");
         JAXBContext context = JAXBContext.newInstance(obj.getClass());
@@ -65,10 +60,6 @@ public class XmlUtils {
         return sw.toString();
     }
 
-    /**
-     * 对象转换成xmlString,
-     * 会带上 xsi:noNamespaceSchemaLocation="request.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-     */
     public static String convertToXmlStrWithXsi(Object obj, String schemaLocation) throws Exception {
         StringWriter sw = new StringWriter();
         sw.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + "\n");

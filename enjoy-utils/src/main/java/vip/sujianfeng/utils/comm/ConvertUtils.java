@@ -110,14 +110,7 @@ public class ConvertUtils {
 		else
 			return (long) 0; 
 	}
-	
-	/**
-	 * 将字符串数组转成按指定分隔符串联的字符串，并对每个元素按decorate包含（比如单引号）
-	 * @param array
-	 * @param decorate
-	 * @param separator
-	 * @return
-	 */
+
 	public static String array2String(String[] array, String decorate, String separator) {
 		StringBuilder sb = new StringBuilder();
 		for(String ele : array) {
@@ -201,7 +194,7 @@ public class ConvertUtils {
 	
 	public static String formatNumber(BigDecimal value, int digCount, boolean groupingUsed){
 		DecimalFormat nf = new DecimalFormat();  
-		nf.setGroupingUsed(groupingUsed); //千分位逗号
+		nf.setGroupingUsed(groupingUsed); // Millennial Comma
 		nf.setMaximumFractionDigits(digCount); 
 		nf.setMinimumFractionDigits(digCount);
 		return nf.format(Double.valueOf(value.toString())); 
@@ -235,25 +228,10 @@ public class ConvertUtils {
 		return (short) ConvertUtils.cInt(value);
 	}
 
-    /**
-     * 如果obj为空，那么用ifNullReturnObj代替
-     * @param obj
-     * @param ifNullReturnObj
-     * @param <T>
-     * @return
-     */
 	public static <T> T ifNull(T obj, T ifNullReturnObj){
 		return obj != null ? obj : ifNullReturnObj;
 	}
 
-    /**
-     * 获取map中对应key的value，如果为null那么用ifNullReturnObj对象代替
-     * @param map
-     * @param key
-     * @param ifNullReturnObj
-     * @param <T>
-     * @return
-     */
 	public static <T> T ifNull(Map map, Object key, T ifNullReturnObj){
 	    return  (map == null || !map.containsKey(key)) ? ifNullReturnObj : (T) map.get(key);
     }

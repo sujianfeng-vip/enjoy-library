@@ -15,8 +15,8 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author SuJianFeng
- * @date 2020/8/27 18:20
+ * author SuJianFeng
+ * createTime  2020/8/27 18:20
  **/
 public class TbConcurrentTest {
 

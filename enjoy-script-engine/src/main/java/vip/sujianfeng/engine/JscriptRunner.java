@@ -16,8 +16,8 @@ import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @Author SuJianFeng
- * @Date 2019/6/25 14:32
+ * author SuJianFeng
+ * createTime  2019/6/25 14:32
  **/
 public class JscriptRunner {
 

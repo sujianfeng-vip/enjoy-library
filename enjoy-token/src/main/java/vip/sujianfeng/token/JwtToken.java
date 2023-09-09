@@ -4,8 +4,8 @@ import com.alibaba.fastjson.JSON;
 import vip.sujianfeng.utils.comm.Base64UtilsEx;
 
 /**
- * @Author SuJianFeng
- * @Date 2022/6/28
+ * author SuJianFeng
+ * createTime  2022/6/28
  * @Description
  **/
 public class JwtToken {

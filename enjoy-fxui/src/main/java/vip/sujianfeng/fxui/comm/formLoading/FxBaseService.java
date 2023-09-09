@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import vip.sujianfeng.fxui.interfaces.LoadRun;
 
 /**
- * @Author 苏建锋
+ * author sujianfeng
  * @create 2019-09-19 5:21
  */
 public class FxBaseService extends Service<Integer> {

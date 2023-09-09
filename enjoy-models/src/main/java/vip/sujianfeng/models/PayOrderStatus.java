@@ -4,8 +4,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * @Author SuJianFeng
- * @Date 2022/10/8
+ * author SuJianFeng
+ * createTime  2022/10/8
  * @Description
  **/
 @ApiModel("支付订单状态")

@@ -1,8 +1,8 @@
 package vip.sujianfeng.fxui.dsmodel;
 
 /**
- * @Author SuJianFeng
- * @Date 2022/11/21
+ * author SuJianFeng
+ * createTime  2022/11/21
  * @Description
  **/
 public class FxComboboxData {

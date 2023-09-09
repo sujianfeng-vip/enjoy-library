@@ -10,7 +10,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
- * 下载网络文件到本地文件
+ * Download network files to local files
  * Created by pilot on 2017/7/1.
  */
 public class DownloadUrlFile {
@@ -55,27 +55,19 @@ public class DownloadUrlFile {
         }
     }
 
-    /**
-     * 从网络Url中下载文件
-     * @param urlStr
-     * @param fileName
-     * @param savePath
-     * @param processEvent 下载进度回调
-     * @throws IOException
-     */
     public static void downLoadFromUrl(String urlStr, String fileName, String savePath, int timeOutSecond,  CommEvent<DownLoadProcess> processEvent, CommEvent<Long> completed) throws IOException{
         if (!urlStr.contains("http")){
             urlStr = "http://" + urlStr;
         }
         URL url = new URL(urlStr);
         HttpURLConnection conn = (HttpURLConnection)url.openConnection();
-        //设置超时间为3秒
+        //Set timeout
         conn.setConnectTimeout(timeOutSecond * 1000);
-        //防止屏蔽程序抓取而返回403错误
+        //Prevent blocking program crawling and returning 403 errors
         conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
-        //得到输入流
+        //Get input stream
         InputStream inputStream = conn.getInputStream();
-        //文件保存位置
+        //File Save Location
         File saveDir = new File(savePath);
         if(!saveDir.exists()){
             saveDir.mkdir();
@@ -92,20 +84,13 @@ public class DownloadUrlFile {
         downLoadFromUrl(urlStr, fileName, savePath, timeOutSecond, null, null);
     }
 
-
-    /**
-     * 读取输入流并写入文件中
-     * @param inputStream
-     * @return
-     * @throws IOException
-     */
     public static void inputStreamSaveToFile(InputStream inputStream, long contentLength, String fileName, CommEvent<DownLoadProcess> processEvent) throws IOException {
         byte[] buffer = new byte[1024];
         int len;
         FileOutputStream fos = new FileOutputStream(fileName);
         try {
             DownLoadProcess p = new DownLoadProcess();
-            p.message = "正在下载....";
+            p.message = "Downloading....";
             p.totalSize = contentLength;
             p.currSize = 0;
             while((len = inputStream.read(buffer)) != -1) {
@@ -114,7 +99,7 @@ public class DownloadUrlFile {
                 if (processEvent != null) {
                     processEvent.call(p);
                 }
-                //通过外部控制，取消下载
+                //Cancel download through external control
                 if (p.breakRun) {
                     break;
                 }
@@ -128,7 +113,7 @@ public class DownloadUrlFile {
         try {
             String url = "https://appraise-a.oss-cn-hangzhou.aliyuncs.com/20220802_161105.mp4";
             // String url = "https://hougu.oss-cn-hangzhou.aliyuncs.com/fkk/Chanjet.zip";
-            downLoadFromUrl(url,"1.mp4","d:/temp/", 3, (process)-> System.out.printf("进度: %s\n", JSON.toJSONString(process)), (process)-> System.out.printf("下载完成: %s\n", process));
+            downLoadFromUrl(url,"1.mp4","d:/temp/", 3, (process)-> System.out.printf("process: %s\n", JSON.toJSONString(process)), (process)-> System.out.printf("下载完成: %s\n", process));
         }catch (Exception e) {
             logger.error(e.toString(), e);
         }

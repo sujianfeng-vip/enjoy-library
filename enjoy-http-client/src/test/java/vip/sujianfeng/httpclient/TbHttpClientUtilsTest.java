@@ -18,8 +18,8 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author SuJianFeng
- * @date 2020/6/15 10:43
+ * author SuJianFeng
+ * createTime  2020/6/15 10:43
  **/
 public class TbHttpClientUtilsTest {
     private static Logger logger = LoggerFactory.getLogger(TbHttpClientUtilsTest.class);
