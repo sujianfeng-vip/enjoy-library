@@ -25,7 +25,6 @@ import static vip.sujianfeng.weixin.utils.Const.WEIXIN_AUTH_STATE_BASE;
 import static vip.sujianfeng.weixin.utils.Const.WEIXIN_AUTH_STATE_USER_INFO;
 
 /**
- * 微信Auth处理类
  * Created by sujianfeng on 2016/3/22.
  */
 public abstract class AbstractWeiXinAuth {
@@ -38,11 +37,6 @@ public abstract class AbstractWeiXinAuth {
     protected abstract IDataCache getDataCache();
 
 
-    /**
-     * 重新获取微信用户数据
-     * @param openId
-     * @return
-     */
     private JSONObject getWeixinUserMap(String openId) throws Exception {
         String access_token = weixinTokenHandler().require_ACCESS_TOKEN();
         String url = String.format("https://api.weixin.qq.com/cgi-bin/user/info?access_token=%s&openid=%s&lang=zh_CN",
@@ -54,11 +48,6 @@ public abstract class AbstractWeiXinAuth {
         return JSON.parseObject(httpClientResult.getContent());
     }
 
-    /**
-     * 判断微信用户是否关注公众号
-     * @param openId
-     * @return
-     */
     public boolean isSubscribe(String openId) throws Exception {
         JSONObject result = getWeixinUserMap(openId);
         return ConvertUtils.cBool(result.get("subscribe"));
@@ -71,21 +60,21 @@ public abstract class AbstractWeiXinAuth {
         //accessToken = "ouQ-KqNBQIH_TnTqL2QSM58UteNexFDVfBMP8OSi9Hq81QRy2Ufjq6fdOpdBL0XAjD9xB3STS4vhYeif1ZUq1-gUeK5SqpDZPaWsjXq2rVg";
         String url = "http://file.api.weixin.qq.com/cgi-bin/media/get?access_token="
                 + accessToken + "&media_id=" + mediaId;
-        System.out.println("正在从微信服务器获取资源：" + mediaId);
+        logger.info("Getting resources from WeChat server:" + mediaId);
         try {
             URL urlGet = new URL(url);
             HttpURLConnection http = (HttpURLConnection) urlGet.openConnection();
-            http.setRequestMethod("GET"); // 必须是get方式请求
+            http.setRequestMethod("GET");
             http.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             http.setDoOutput(true);
             http.setDoInput(true);
-            System.setProperty("sun.net.client.defaultConnectTimeout", "30000");// 连接超时30秒
-            System.setProperty("sun.net.client.defaultReadTimeout", "30000"); // 读取超时30秒
+            System.setProperty("sun.net.client.defaultConnectTimeout", "30000");
+            System.setProperty("sun.net.client.defaultReadTimeout", "30000");
             http.connect();
-            // 获取文件转化为byte流
+            // Convert file to byte stream
             is = http.getInputStream();
         } catch (Exception e) {
-            System.out.println("获取微信图片失败：" + e.toString());
+            System.out.println("Failed to obtain WeChat image:" + e.toString());
             result.put("success", 0);
             result.put("msg", e.toString());
             logger.error(e.toString(), e);
@@ -93,10 +82,6 @@ public abstract class AbstractWeiXinAuth {
         return is;
 
     }
-
-    /**
-     * 获取媒体文件
-     * */
     public boolean downloadMedia(String webPath, String imgFilePath, String media_id, Map<String, Object> result) {
         //String imgFilePath = request.getSession().getServletContext().getRealPath("upload");
         //String webPath = request.getContextPath();
@@ -131,7 +116,7 @@ public abstract class AbstractWeiXinAuth {
             //String tmpValue = inputStream2String(inputStream);
             String tmpValue = FileHelper.loadTxtFile(fullFileName);
             if (tmpValue.indexOf("access_token is invalid") > 0){
-                System.out.println("获取微信图片失败：" + tmpValue);
+                logger.info("Failed to obtain WeChat image:" + tmpValue);
                 if (tryCount > 3){
                     return false;
                 }
@@ -162,95 +147,70 @@ public abstract class AbstractWeiXinAuth {
         }
     }
 
-
-    /**
-     * 微信授权回调（base)
-     * @param opResult
-     * @return
-     * @throws Exception
-     */
     public WeixinUser loginByWeixinCallBack_base(CallResult<?> opResult, String userToken, String code, String state) throws Exception {
-        //微信基本信息授权
+        //Authorization of basic information on WeChat
         if (StringUtilsEx.isNotEmpty(code) && StringUtilsEx.sameText(state, WEIXIN_AUTH_STATE_BASE)){
-            logger.info("========================(2) 微信授权base返回===========================\n");
+            logger.info("========================(2)WeChat authorization base return===========================\n");
             WeixinUser weixinUser = getWeixinUserByBaseCode(opResult, code);
             if (weixinUser != null){
-                logger.info(String.format("之前登陆过，数据库存在该用户记录: %s/%s", weixinUser.getOpenid(), weixinUser.getNickname()));
+                logger.info(String.format("Previously logged in, there is a user record in the database:%s/%s", weixinUser.getOpenid(), weixinUser.getNickname()));
                 logger.info("=====================================================================\n");
                 return weixinUser;
             }
-            logger.info("===========(2.1)用户之前未登陆过，返回前端跳转到微信授权(UserInfo)的链接=======\n");
+            logger.info("===========(2.1)The user has not logged in before, return to the link on the front end to jump to WeChat authorization (UserInfo)=======\n");
         }
         return null;
     }
 
-    /**
-     * 微信授权回调（UserInfo)
-     * @param opResult
-     * @return
-     * @throws Exception
-     */
     public WeixinUser loginByWeixinCallBack_userInfo(CallResult<?> opResult, String userToken, String code, String state) throws Exception {
-        //微信完整信息授权
+        //WeChat Full Information Authorization
         if (StringUtilsEx.isNotEmpty(code) && StringUtilsEx.sameText(state, WEIXIN_AUTH_STATE_USER_INFO)){
-            logger.info("========================(3)微信授权UserInfo返回===========================\n");
+            logger.info("========================(3)WeChat authorization UserInfo returned===========================\n");
             WeixinUser weixinUser = getWeixinUserByUserInfoCode(opResult, code);
             if (weixinUser != null){
-                logger.info(String.format("成功获取该用户记录: %s/%s", weixinUser.getOpenid(), weixinUser.getNickname()));
+                logger.info(String.format("Successfully obtained the user record:%s/%s", weixinUser.getOpenid(), weixinUser.getNickname()));
                 logger.info("=====================================================================\n");
                 return weixinUser;
             }
             if (!opResult.isSuccess()){
-                logger.info("获取用户信息失败！错误信息为：" + opResult.getMessage());
+                logger.info("Failed to obtain user information! The error message is:" + opResult.getMessage());
             }
             logger.info("=====================================================================\n");
         }
         return null;
     }
 
-    /**
-     * 微信静默授权（scope = snsapi_base)取出openId，看数据库是否存在记录，如果存在初始化用户对象，不存在，在申请提示授权
-     * @param code 微信授权code
-     * @return
-     */
+
     public WeixinUser getWeixinUserByBaseCode(CallResult<?> opResult, String code) throws Exception {
         WeixinToken weixinToken = getWeixinTokenByAuthCode(opResult, code);
         if (StringUtilsEx.isNotEmpty(weixinToken.getErrcode())){
-            opResult.getAttributes().put("tag", 1); //表示调用微信服务器出错了
-            opResult.putCode(CallResult.BIZ_ERROR_CODE, String.format("Error calling wechat server：%s/%s", weixinToken.getErrcode(), weixinToken.getErrmsg()));
+            opResult.getAttributes().put("tag", 1);
+            opResult.putCode(CallResult.BIZ_ERROR_CODE, String.format("Error calling wechat server: %s/%s", weixinToken.getErrcode(), weixinToken.getErrmsg()));
             return null;
 
         }
         WeixinUser weixinUser = getWeixinUserByOpenId(opResult, weixinToken.getOpenid());
         if (weixinUser == null){
-            opResult.getAttributes().put("tag", 2); //表示用户不存在
+            opResult.getAttributes().put("tag", 2);
             return null;
         }
         opResult.getAttributes().put("openId", weixinToken.getOpenid());
         return weixinUser;
     }
 
-
-    /**
-     * 微信提示授权，获取用户信息
-     * @param code (scope = snsapi_userinfo)
-     * @return
-     * @throws Exception
-     */
     public WeixinUser getWeixinUserByUserInfoCode(CallResult<?> opResult, String code) throws Exception {
         WeixinToken weixinToken = getWeixinTokenByAuthCode(opResult, code);
         if (StringUtilsEx.isNotEmpty(weixinToken.getErrcode())){
-            opResult.getAttributes().put("tag", 1); //表示调用微信服务器出错了
-            opResult.putCode(CallResult.BIZ_ERROR_CODE, String.format("Error calling wechat server：%s/%s", weixinToken.getErrcode(), weixinToken.getErrmsg()));
+            opResult.getAttributes().put("tag", 1);
+            opResult.putCode(CallResult.BIZ_ERROR_CODE, String.format("Error calling wechat server: %s/%s", weixinToken.getErrcode(), weixinToken.getErrmsg()));
             return null;
 
         }
         WeixinUser weixinUser = getWeixinUserByOpenId(opResult, weixinToken.getOpenid());
         if (weixinUser == null){
             weixinUser = new WeixinUser();
-            //将用户对象存入缓存中
             //WeiXinUtils.weixinUser2session(opResult, request, response, weixinUser, true);
-            opResult.getAttributes().put("tag", 9); //表示有新增用户
+            opResult.getAttributes().put("tag", 9);
         }
         updateWeixinUserByAccessToken(opResult, weixinUser, weixinToken.getAccess_token(), weixinToken.getOpenid());
         saveWeixinUser(opResult, weixinUser);
@@ -259,30 +219,21 @@ public abstract class AbstractWeiXinAuth {
         return weixinUser;
     }
 
-
-    /**
-     * 通过用户授权code获取WeixinToken
-     * @param code
-     * @return
-     * @throws Exception
-     */
     public WeixinToken getWeixinTokenByAuthCode(CallResult<?> opResult, String code) {
         WeixinToken obj = getDataCache().getObj(code, WeixinToken.class);
         if (obj != null) {
             return obj;
         }
         /*
-            //正确时返回的JSON数据包如下：
             {
-               "access_token":"ACCESS_TOKEN", //网页授权接口调用凭证,注意：此access_token与基础支持的access_token不同
-               "expires_in":7200, //access_token接口调用凭证超时时间，单位（秒）
-               "refresh_token":"REFRESH_TOKEN", //用户刷新access_token
-               "openid":"OPENID", //用户唯一标识，请注意，在未关注公众号时，用户访问公众号的网页，也会产生一个用户和公众号唯一的OpenID
-               "scope":"SCOPE", //用户授权的作用域，使用逗号（,）分隔
-               "unionid": "o6_bmasdasdsad6_2sgVt7hMZOPfL" //只有在用户将公众号绑定到微信开放平台帐号后，才会出现该字段。详见：获取用户个人信息（UnionID机制）
+               "access_token":"ACCESS_TOKEN",
+               "expires_in":7200,
+               "refresh_token":"REFRESH_TOKEN",
+               "openid":"OPENID",
+               "scope":"SCOPE",
+               "unionid": "o6_bmasdasdsad6_2sgVt7hMZOPfL"
             }
 
-            //错误时微信会返回JSON数据包如下（示例为Code无效错误）:
             {"errcode":40029,"errmsg":"invalid code"}
 
         */
@@ -324,17 +275,8 @@ public abstract class AbstractWeiXinAuth {
         return token;
     }
 
-    /**
-     * 通过accessToken和openId获取用户信息
-     * accessToken必须是snsapi_base的code换取
-     * @param accessToken
-     * @param openId
-     * @return
-     * @throws Exception
-     */
     public void updateWeixinUserByAccessToken(CallResult<?> opResult, WeixinUser weixinUser, String accessToken, String openId) {
         /*
-         正确时返回的JSON数据包如下：
         {
            "openid":" OPENID",
            " nickname": NICKNAME,
@@ -349,7 +291,7 @@ public abstract class AbstractWeiXinAuth {
             ],
             "unionid": "o6_bmasdasdsad6_2sgVt7hMZOPfL"
         }
-        错误时微信会返回JSON数据包如下（示例为openid无效）:
+
         {"errcode":40003,"errmsg":" invalid openid "}
 
         */
@@ -369,7 +311,7 @@ public abstract class AbstractWeiXinAuth {
             return;
         }
         String resultJson = result.getContent();
-        logger.info("======获取微信用户信息======\n{}\n=================", resultJson);
+        logger.info("======Obtain WeChat user information======\n{}\n=================", resultJson);
         Map objMap = JSON.parseObject(resultJson, Map.class);
         updateWeixinUserByMap(weixinUser, objMap);
 

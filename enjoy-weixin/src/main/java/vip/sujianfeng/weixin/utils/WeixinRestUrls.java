@@ -15,7 +15,7 @@ import static vip.sujianfeng.weixin.utils.Const.WEIXIN_AUTH_STATE_USER_INFO;
 
 /**
  * author sujianfeng
- * @create 2019-01-19 12:04
+ * create 2019-01-19 12:04
  */
 public class WeixinRestUrls {
     private static Logger logger = LoggerFactory.getLogger(WeixinRestUrls.class);
@@ -36,9 +36,6 @@ public class WeixinRestUrls {
         return weixinUrl.toString();
     }
 
-    /**
-     * 重定向到个人微信授权
-     */
     public static String redirectWeixinAuth(String weixinAppId, String currFullUrl, String code, String state) {
         String redirect_uri = StringUtilsEx.leftStr(currFullUrl, "?");
         Map<String, String> map = urlParams2map(currFullUrl);
@@ -102,36 +99,16 @@ public class WeixinRestUrls {
         return StringUtilsEx.isNotEmpty(code) && StringUtilsEx.sameText(state, WEIXIN_AUTH_STATE_BASE);
     }
 
-    /**
-     * 获取（授权范围为snsapi_base的code）url
-     * @param weixinAppId
-     * @param state
-     * @param redirect_uri
-     * @return
-     */
     public static String getWeixinAuthCodeUrl_snsapi_base(String weixinAppId, String state, String redirect_uri){
         return getWeixinCodeUrl(weixinAppId, state, "snsapi_base", redirect_uri);
     }
 
 
-    /**
-     * 获取（授权范围为snsapi_userinfo的code）url
-     * @param weixinAppId
-     * @param state
-     * @param redirect_uri
-     * @return
-     */
     public static String getWeixinAuthCodeUrl_snsapi_userinfo(String weixinAppId, String state, String redirect_uri){
         return getWeixinCodeUrl(weixinAppId, state, "snsapi_userinfo", redirect_uri);
     }
 
-    /**
-     * 通过code换取accessToken的url
-     * @param weixinAppId
-     * @param weixinSecretId
-     * @param code
-     * @return
-     */
+
     public static String getWeixinAccessTockenUrl(String weixinAppId, String weixinSecretId, String code){
         StringBuilderEx weixinUrl = new StringBuilderEx();
         weixinUrl.append("https://api.weixin.qq.com/sns/oauth2/access_token");
@@ -142,13 +119,6 @@ public class WeixinRestUrls {
         return weixinUrl.toString();
     }
 
-    /**
-     * 通过accessToken获取用户信息的url
-     * 这个accessToken必须为snsapi_userinfo换取
-     * @param accessTocken
-     * @param openId
-     * @return
-     */
     public static String getWeixinUserInfoUrl(String accessTocken, String openId){
         String weixinUrl = String.format("https://api.weixin.qq.com/sns/userinfo?access_token=%s&openid=%s&lang=zh_CN",
                 accessTocken, openId);

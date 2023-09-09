@@ -14,14 +14,8 @@ public abstract class AbstractNettyWebsocketClient implements Closeable {
 
     private static final Logger logger = LoggerFactory.getLogger(AbstractNettyWebsocketClient.class);
 
-    /**
-     * 接收响应的超时时间(秒)
-     */
     private final int connectionTimeout;
 
-    /**
-     * 任务上下文
-     */
     protected NettyWebSocketContext nettyWebSocketContext;
 
     public AbstractNettyWebsocketClient(int connectionTimeout) {
@@ -29,26 +23,15 @@ public abstract class AbstractNettyWebsocketClient implements Closeable {
         this.nettyWebSocketContext = new NettyWebSocketContext(new CountDownLatch(1));
     }
 
-    /**
-     * 发送消息.<br>
-     *
-     * @param message 发送文本
-     * @return:
-     */
     public void send(String message) throws MyException {
         Channel channel = getChannel();
         if (channel != null) {
             channel.writeAndFlush(new TextWebSocketFrame(message));
             return;
         }
-        throw new MyException ("连接已经关闭");
+        throw new MyException ("The connection has been closed");
     }
 
-    /**
-     *  连接并发送消息.<br>
-     *
-     * @return:
-     */
     public void connect() throws MyException {
         try {
             doOpen();
@@ -58,25 +41,14 @@ public abstract class AbstractNettyWebsocketClient implements Closeable {
         }
     }
 
-    /**
-     * 接收消息.<br>
-     *
-     * @return: {@link java.lang.String}
-     */
     public String receiveResult() throws MyException {
         this.receive(this.nettyWebSocketContext.getCountDownLatch());
         if (StringUtils.isEmpty(this.nettyWebSocketContext.getResult())) {
-            throw new MyException("未获取到任务结果信息");
+            throw new MyException("Task result information not obtained");
         }
         return this.nettyWebSocketContext.getResult();
     }
 
-    /**
-     * 接收消息封装.<br>
-     *
-     * @param countDownLatch  计数器
-     * @return:
-     */
     private void receive(CountDownLatch countDownLatch) throws MyException {
         boolean waitFlag = false;
         try {
@@ -87,37 +59,16 @@ public abstract class AbstractNettyWebsocketClient implements Closeable {
         }
         if (!waitFlag) {
             logger.error("Timeout({}s) when receiving response message", connectionTimeout);
-            throw new MyException ("此连接未接收到响应信息");
+            throw new MyException ("This connection did not receive response information");
         }
     }
 
-    /**
-     * 初始化连接.<br>
-     *
-     * @return:
-     */
     protected abstract void doOpen();
 
-    /**
-     * 建立连接.<br>
-     *
-     * @return:
-     */
     protected abstract void doConnect() throws MyException;
 
-    /**
-     * 获取本次连接channel.<br>
-     *
-     * @return: {@link Channel}
-     */
     protected abstract Channel getChannel();
 
-    /**
-     * 关闭连接.<br>
-     *
-     * @return:
-     * @exception:
-     */
     @Override
     public abstract void close();
 }

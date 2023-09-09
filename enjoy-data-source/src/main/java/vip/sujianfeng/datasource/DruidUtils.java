@@ -14,11 +14,6 @@ import java.util.concurrent.ConcurrentHashMap;
  **/
 public class DruidUtils extends DruidDataSource {
 
-    /**
-     * 动态创建数据源
-     * @param dbConfig
-     * @return
-     */
     public static DruidDataSource getDruidDataSource(DruidConfig dbConfig) throws Exception {
         DruidDataSource result = MY_DRUID_DATA_SOURCE_MAP.get(dbConfig.toKey());
         if (result == null){
@@ -29,9 +24,6 @@ public class DruidUtils extends DruidDataSource {
         return result;
     }
 
-    /**
-     * 禁止外部构造
-     */
     private DruidUtils(){}
 
     private static Map<String, DruidDataSource> MY_DRUID_DATA_SOURCE_MAP = new ConcurrentHashMap<>();

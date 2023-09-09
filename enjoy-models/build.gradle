@@ -22,6 +22,13 @@ task sourceJar(type: Jar) {
     classifier "sources"
 }
 
+
+task javaDocJar(type: Jar) {
+    classifier "javadoc"
+    from javadoc
+}
+
+
 publishing {
     publications {
         mavenJava(MavenPublication) {
@@ -33,6 +40,33 @@ publishing {
             artifact sourceJar {
                 classifier "sources"
             }
+            artifact javaDocJar {
+                classifier "javadoc"
+            }
+            // https://docs.gradle.org/current/dsl/org.gradle.api.publish.maven.MavenPublication.html
+            pom {
+                name = artifactName
+                description = "Enjoy the Java public tool library"
+                url = "https://github.com/sujianfeng-vip/enjoy-library"
+                licenses {
+                    license {
+                        name = "The Apache License, Version 2.0"
+                        url = "https://www.apache.org/licenses/LICENSE-2.0.txt"
+                    }
+                }
+                developers {
+                    developer {
+                        id = "sujianfeng"
+                        name = "sujianfeng"
+                        email = "360482507@qq.com"
+                    }
+                }
+                scm {
+                    connection = "scm:https://github.com/sujianfeng-vip/enjoy-library.git"
+                    developerConnection = "scm:https://github.com/sujianfeng-vip/enjoy-library.git"
+                    url = "https://github.com/sujianfeng-vip/enjoy-library"
+                }
+            }
         }
     }
     def publishUrl= ""
@@ -41,10 +75,8 @@ publishing {
     }else {
         publishUrl= project.ext.get("publishUrl_release")
     }
-    System.out.println("发布地址 => " + publishUrl)
-    System.out.println("发布制品 => " + groupName + ":" + artifactName + ":" + versionName)
     repositories {
-        mavenLocal()
+        // mavenLocal()
         maven {
             credentials {
                 username System.getenv("sonatypeUsername")
@@ -53,4 +85,9 @@ publishing {
             url publishUrl
         }
     }
+}
+
+//签名配置，注意这里的顺序，必须在 publishing 配置之后
+signing {
+    sign publishing.publications.mavenJava
 }

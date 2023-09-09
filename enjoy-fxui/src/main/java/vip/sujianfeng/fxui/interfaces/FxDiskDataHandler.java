@@ -6,11 +6,9 @@ import vip.sujianfeng.fxui.dsmodel.FxPageParam;
 import vip.sujianfeng.fxui.dsmodel.FxPageRows;
 import vip.sujianfeng.utils.define.CallResult;
 
-/**
- * 数据处理接口
+ /**
  * author SuJianFeng
  * createTime  2022/11/4
- * @Description
  **/
 public interface FxDiskDataHandler<T extends FxBaseModel> {
     CallResult<Integer> delete(FxManyIdParam param);

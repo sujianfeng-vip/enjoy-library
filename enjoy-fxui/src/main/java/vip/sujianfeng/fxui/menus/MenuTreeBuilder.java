@@ -15,7 +15,7 @@ import java.util.Map;
 
 /**
  * author sujianfeng
- * @create 2019-09-10 4:56
+ * create 2019-09-10 4:56
  */
 public class MenuTreeBuilder {
 
@@ -27,14 +27,11 @@ public class MenuTreeBuilder {
 
     private static void initRoot(){
         if (rootNode != null) return;
-        //这个是缓存用途，界面上不会用到这个根节点
-        rootNode = new TreeItem<>(new MenuTreeNode(null, "root", "根节点"));
+        rootNode = new TreeItem<>(new MenuTreeNode(null, "root", "ROOT"));
         Map menuTree = ConfigUtils.getYml(MENU_TREE_YML);
         buildTreeNodes(rootNode, (List<Map>) menuTree.get("children"));
     }
-    /**
-     * 初始化：加载菜单树，并扫描所有注解了@FxMenu的功能类
-     */
+
     public static void init(){
         initRoot();
         String basePackage = "cc.twobears";
@@ -61,7 +58,7 @@ public class MenuTreeBuilder {
                 Class<?> aClass = Class.forName(str);
                 addMenuByClass(aClass);
             } catch (ClassNotFoundException e) {
-                logger.info("无法加载类: " + str);
+                logger.info("cannot load class " + str);
             }
         }
     }
@@ -77,7 +74,6 @@ public class MenuTreeBuilder {
         FxMenu fxMenu = aClass.getAnnotation(FxMenu.class);
         if (fxMenu != null){
             TreeItem<MenuTreeNode> treeNode = getTreeItem(rootNode, aClass.getName());
-            //扫描后，会出现重复，这里进行判断，避免重复创建
             if (treeNode == null){
                 TreeItem<MenuTreeNode> parentNode = getTreeItem(rootNode, fxMenu.parentMenuId());
                 if (parentNode != null){
@@ -116,11 +112,7 @@ public class MenuTreeBuilder {
         }
     }
 
-    /**
-     * 创建菜单树
-     * @param rootNode
-     * @param userId
-     */
+
     public static void buildAppMenuTree(TreeItem<MenuTreeNode> rootNode, String userId){
         rootNode.getChildren().addAll(MenuTreeBuilder.rootNode.getChildren());
     }

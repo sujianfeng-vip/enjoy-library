@@ -5,7 +5,7 @@ import vip.sujianfeng.fxui.forms.base.FxBaseController;
 /**
  * author SuJianFeng
  * createTime  2023/5/15
- * @Description
+ * Description
  **/
 public abstract class FxBaseLoadingForm extends FxBaseController {
 

@@ -6,18 +6,10 @@ import vip.sujianfeng.utils.comm.Base64UtilsEx;
 /**
  * author SuJianFeng
  * createTime  2022/6/28
- * @Description
+ * Description
  **/
 public class JwtToken {
 
-    /**
-     * 创建新的token
-     * @param data
-     * @param seed
-     * @param expireDays
-     * @return 新的token
-     * @throws Exception
-     */
     public static String newTokenByExpireDays(JwtTokenData data, String seed, int expireDays) throws Exception {
         return newToken(data, seed, System.currentTimeMillis() / 1000 + expireDays * 24 * 3600L);
     }
@@ -29,13 +21,6 @@ public class JwtToken {
         return Base64UtilsEx.encodeStr(JSON.toJSONString(jwtToken));
     }
 
-    /**
-     * 解析token
-     * @param token
-     * @param seed
-     * @return 返回token数据
-     * @throws Exception
-     */
     public static JwtTokenData parseToken(String token, String seed) throws Exception {
         String jwtTokenJson = Base64UtilsEx.decodeStr(token);
         JwtToken jwtToken = JSON.parseObject(jwtTokenJson, JwtToken.class);
@@ -45,13 +30,6 @@ public class JwtToken {
         return JwtTokenData.decrypt(jwtToken.data, seed, jwtToken.expireTime);
     }
 
-    /**
-     * 更新token过期时间
-     * @param token
-     * @param seed
-     * @param expireDays
-     * @return 返回新的token
-     */
     public static String updateTokenExpireDays(String token, String seed, int expireDays) throws Exception {
         return updateTokenExpireTime(token, seed, System.currentTimeMillis() / 1000 + expireDays * 24 * 3600L);
     }

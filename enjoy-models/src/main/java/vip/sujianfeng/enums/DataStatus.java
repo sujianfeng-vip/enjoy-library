@@ -1,15 +1,14 @@
 package vip.sujianfeng.enums;
 
 /**
- * 数据状态
  * author SuJianFeng
  * createTime  2022/10/12
- * @Description
+ * Description
  **/
 public enum DataStatus {
-    Normal(0, "正常"),
-    Delete(1, "逻辑删除"),
-    LogOff(2, "注销");
+    Normal(0, "Normal"),
+    Delete(1, "Delete"),
+    LogOff(2, "LogOff");
 
     DataStatus(int value, String label) {
         this.value = value;

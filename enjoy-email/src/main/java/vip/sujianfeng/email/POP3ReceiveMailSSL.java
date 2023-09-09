@@ -16,14 +16,12 @@ public class POP3ReceiveMailSSL {
         } catch (GeneralSecurityException | MessagingException e) {
             e.printStackTrace();
         }
-
     }
-
 
     public static void receive() throws GeneralSecurityException, MessagingException {
         Properties props = new Properties();
-        props.setProperty("mail.popStore.protocol", "pop3"); // 使用pop3协议
-        props.setProperty("mail.pop3.port", "995"); // 端口
+        props.setProperty("mail.popStore.protocol", "pop3");
+        props.setProperty("mail.pop3.port", "995");
         MailSSLSocketFactory sf = new MailSSLSocketFactory();
         sf.setTrustAllHosts(true);
         props.put("mail.pop3.ssl.enable",true);
@@ -34,10 +32,10 @@ public class POP3ReceiveMailSSL {
         POP3Store pop3Store = (POP3Store) session.getStore("pop3");
         pop3Store.connect("pop.exmail.qq.com", 995, "liumeng@richinfo.com.cn", "UmLrqSj2Ra7KjQb3");
         POP3Folder pop3Folder = (POP3Folder) pop3Store.getFolder("INBOX");
-        /* Folder.READ_ONLY：只读权限
-         * Folder.READ_WRITE：可读可写(可以修改邮件的状态)
+        /* Folder.READ_ONLY
+         * Folder.READ_WRITE
          */
-        pop3Folder.open(Folder.READ_WRITE); //打开收件箱
+        pop3Folder.open(Folder.READ_WRITE);
         Message[] messages = pop3Folder.getMessages(1, 2);
         System.out.println(messages.length);
     }

@@ -7,7 +7,7 @@ import vip.sujianfeng.utils.comm.StringUtilsEx;
 
 /**
  * author sujianfeng
- * @create 2019-09-19 5:24
+ * create 2019-09-19 5:24
  */
 public class LoadingUtils {
 
@@ -32,7 +32,7 @@ public class LoadingUtils {
         Platform.runLater(()->{
             String message = msg;
             if (StringUtilsEx.isEmpty(message)){
-                message = "加载中...";
+                message = "loading...";
             }
             frmLoading.updateMsg(message);
         });

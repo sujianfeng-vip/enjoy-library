@@ -10,7 +10,6 @@ import java.util.List;
 /**
  * author SuJianFeng
  * createTime  2019/9/14 11:54
- * 表格行操作按钮面板
  **/
 public class TablePaneOp<S, T> extends HBox {
 

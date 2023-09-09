@@ -2,7 +2,7 @@ package vip.sujianfeng.redis.ranking;
 
 /**
  * author SuJianFeng
- * @create 2020-08-29 7:02
+ * create 2020-08-29 7:02
  */
 public interface RankingMember {
     double getScore();

@@ -4,7 +4,7 @@ package vip.sujianfeng.consts;
  * 支付中心-常量定义
  * author SuJianFeng
  * createTime  2022/10/8
- * @Description
+ * Description
  **/
 public class PayCenterAppConst {
 

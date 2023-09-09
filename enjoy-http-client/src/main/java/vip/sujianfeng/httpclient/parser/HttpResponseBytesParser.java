@@ -10,7 +10,6 @@ import java.io.InputStream;
 /**
  * author SuJianFeng
  * createTime  2022/5/11
- * @Description
  */
 public class HttpResponseBytesParser implements IHttpResponseParser<byte[]> {
 

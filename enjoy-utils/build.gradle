@@ -50,7 +50,7 @@ publishing {
             }
             // https://docs.gradle.org/current/dsl/org.gradle.api.publish.maven.MavenPublication.html
             pom {
-                name = "enjoy-library"
+                name = artifactName
                 description = "Enjoy the Java public tool library"
                 url = "https://github.com/sujianfeng-vip/enjoy-library"
                 licenses {
@@ -80,8 +80,6 @@ publishing {
     }else {
         publishUrl= project.ext.get("publishUrl_release")
     }
-    System.out.println("发布地址 => " + publishUrl)
-    System.out.println("发布制品 => " + groupName + ":" + artifactName + ":" + versionName)
     repositories {
         // mavenLocal()
         maven {
@@ -98,13 +96,3 @@ publishing {
 signing {
     sign publishing.publications.mavenJava
 }
-
-//signing {
-//    // sign configurations.archives
-//     def signingKeyId = "07A0C5E6044C653E" //System.getenv("signingKeyId")
-//     def signingKey = "10B4B728C545B56539D0AF4207A0C5E6044C653E" //System.getenv("signingKey")
-//     def signingPassword = "960720@Sonatype"//System.getenv("signingPassword")
-//     useInMemoryPgpKeys(signingKeyId, signingKey, signingPassword)
-//    // useInMemoryPgpKeys(signingKey, signingPassword)
-//    // sign stuffZip
-//}

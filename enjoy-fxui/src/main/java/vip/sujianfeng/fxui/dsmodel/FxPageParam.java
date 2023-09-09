@@ -3,7 +3,7 @@ package vip.sujianfeng.fxui.dsmodel;
 /**
  * author SuJianFeng
  * createTime  2022/11/7
- * @Description
+ * Description
  **/
 public class FxPageParam {
     private int pageNo = 1;

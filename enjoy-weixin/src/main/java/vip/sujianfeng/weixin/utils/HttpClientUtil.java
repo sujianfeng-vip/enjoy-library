@@ -26,12 +26,6 @@ public class HttpClientUtil {
     public static final String PKCS12 = "PKCS12";
     public static final String TLS = "TLS";
 
-    /**
-     * get HttpURLConnection
-     * @param strUrl url地址
-     * @return HttpURLConnection
-     * @throws IOException
-     */
     public static HttpURLConnection getHttpURLConnection(String strUrl)
             throws IOException {
         URL url = new URL(strUrl);
@@ -40,12 +34,6 @@ public class HttpClientUtil {
         return httpURLConnection;
     }
 
-    /**
-     * get HttpsURLConnection
-     * @param strUrl url地址
-     * @return HttpsURLConnection
-     * @throws IOException
-     */
     public static HttpsURLConnection getHttpsURLConnection(String strUrl)
             throws IOException {
         URL url = new URL(strUrl);
@@ -54,11 +42,6 @@ public class HttpClientUtil {
         return httpsURLConnection;
     }
 
-    /**
-     * 获取不带查询串的url
-     * @param strUrl
-     * @return String
-     */
     public static String getURL(String strUrl) {
 
         if(null != strUrl) {
@@ -74,11 +57,6 @@ public class HttpClientUtil {
 
     }
 
-    /**
-     * 获取查询串
-     * @param strUrl
-     * @return String
-     */
     public static String getQueryString(String strUrl) {
 
         if(null != strUrl) {
@@ -93,12 +71,6 @@ public class HttpClientUtil {
         return strUrl;
     }
 
-    /**
-     * 查询字符串转换成Map<br/>
-     * name1=key1&name2=key2&...
-     * @param queryString
-     * @return
-     */
     public static Map queryString2Map(String queryString) {
         if(null == queryString || "".equals(queryString)) {
             return null;
@@ -115,12 +87,6 @@ public class HttpClientUtil {
 
     }
 
-    /**
-     * 把键值添加至Map<br/>
-     * pair:name=value
-     * @param pair name=value
-     * @param m
-     */
     public static void putMapByPair(String pair, Map m) {
 
         if(null == pair || "".equals(pair)) {
@@ -139,13 +105,6 @@ public class HttpClientUtil {
         }
     }
 
-    /**
-     * BufferedReader转换成String<br/>
-     * 注意:流关闭需要自行处理
-     * @param reader
-     * @return String
-     * @throws IOException
-     */
     public static String bufferedReader2String(BufferedReader reader) throws IOException {
         StringBuffer buf = new StringBuffer();
         String line = null;
@@ -157,14 +116,6 @@ public class HttpClientUtil {
         return buf.toString();
     }
 
-    /**
-     * 处理输出<br/>
-     * 注意:流关闭需要自行处理
-     * @param out
-     * @param data
-     * @param len
-     * @throws IOException
-     */
     public static void doOutput(OutputStream out, byte[] data, int len)
             throws IOException {
         int dataLen = data.length;
@@ -175,8 +126,6 @@ public class HttpClientUtil {
             } else {
                 out.write(data, off, len);
             }
-
-            //刷新缓冲区
             out.flush();
 
             off += len;
@@ -186,20 +135,6 @@ public class HttpClientUtil {
 
     }
 
-    /**
-     * 获取SSLContext
-     * @param trustFile
-     * @param trustPasswd
-     * @param keyFile
-     * @param keyPasswd
-     * @return
-     * @throws NoSuchAlgorithmException
-     * @throws KeyStoreException
-     * @throws IOException
-     * @throws CertificateException
-     * @throws UnrecoverableKeyException
-     * @throws KeyManagementException
-     */
     public static SSLContext getSSLContext(
             FileInputStream trustFileInputStream, String trustPasswd,
             FileInputStream keyFileInputStream, String keyPasswd)
@@ -227,13 +162,6 @@ public class HttpClientUtil {
         return ctx;
     }
 
-    /**
-     * 获取CA证书信息
-     * @param cafile CA证书文件
-     * @return Certificate
-     * @throws CertificateException
-     * @throws IOException
-     */
     public static Certificate getCertificate(File cafile)
             throws CertificateException, IOException {
         CertificateFactory cf = CertificateFactory.getInstance("X.509");
@@ -243,28 +171,12 @@ public class HttpClientUtil {
         return cert;
     }
 
-    /**
-     * 字符串转换成char数组
-     * @param str
-     * @return char[]
-     */
     public static char[] str2CharArray(String str) {
         if(null == str) return null;
 
         return str.toCharArray();
     }
 
-    /**
-     * 存储ca证书成JKS格式
-     * @param cert
-     * @param alias
-     * @param password
-     * @param out
-     * @throws KeyStoreException
-     * @throws NoSuchAlgorithmException
-     * @throws CertificateException
-     * @throws IOException
-     */
     public static void storeCACert(Certificate cert, String alias,
                                    String password, OutputStream out) throws KeyStoreException,
             NoSuchAlgorithmException, CertificateException, IOException {
@@ -286,11 +198,11 @@ public class HttpClientUtil {
     public static Map httpRequest(String requestUrl, String requestMethod, String outputStr) {
         StringBuilder buffer = new StringBuilder();
         try {
-            // 创建SSLContext对象，并使用我们指定的信任管理器初始化
+            // Create an SSLContext object and initialize it using our specified trust manager
             TrustManager[] tm = { new MyX509TrustManager() };
             SSLContext sslContext = SSLContext.getInstance("SSL", "SunJSSE");
             sslContext.init(null, tm, new SecureRandom());
-            // 从上述SSLContext对象中得到SSLSocketFactory对象
+            // Obtain the SSLSocketFactory object from the SSLContext object mentioned above
             SSLSocketFactory ssf = sslContext.getSocketFactory();
 
             URL url = new URL(requestUrl);
@@ -300,21 +212,21 @@ public class HttpClientUtil {
             httpUrlConn.setDoOutput(true);
             httpUrlConn.setDoInput(true);
             httpUrlConn.setUseCaches(false);
-            // 设置请求方式（GET/POST）
+            // Set request method (GET/POST)
             httpUrlConn.setRequestMethod(requestMethod);
 
             if ("GET".equalsIgnoreCase(requestMethod))
                 httpUrlConn.connect();
 
-            // 当有数据需要提交时
+            // When there is data to submit
             if (null != outputStr) {
                 OutputStream outputStream = httpUrlConn.getOutputStream();
-                // 注意编码格式，防止中文乱码
+                // Pay attention to encoding format to prevent Chinese garbled characters
                 outputStream.write(outputStr.getBytes("UTF-8"));
                 outputStream.close();
             }
 
-            // 将返回的输入流转换成字符串
+            // Convert the returned input stream into a string
             InputStream inputStream = httpUrlConn.getInputStream();
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "utf-8");
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);

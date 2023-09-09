@@ -9,7 +9,7 @@ import vip.sujianfeng.fxui.forms.base.FxBaseController;
  * author SuJianFeng
  * createTime  2019/9/8 11:55
  **/
-@FxForm(value = "/fxml/form-loading.fxml", title = "加载中...")
+@FxForm(value = "/fxml/form-loading.fxml", title = "loading...")
 public class FormLoadingController extends FxBaseLoadingForm {
     public Label lblLoadingMsg;
 

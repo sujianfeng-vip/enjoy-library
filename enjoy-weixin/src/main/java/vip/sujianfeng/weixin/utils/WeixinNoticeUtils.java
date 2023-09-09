@@ -9,34 +9,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 微信消息通知
  * Created by sujianfeng on 2016/7/29.
  */
 public class WeixinNoticeUtils {
 
-
-    /**
-     * 发送模板消息
-     * @param t
-     * @return
-     */
     public static Map sendTempleteMessage(String access_token, WxTemplate t){
         String s = JSON.toJSONString(t);
         //String access_token = WeixinTokenHandler.require_ACCESS_TOKEN();
         return HttpClientUtil.httpRequest("https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=" + access_token, "POST", s);
     }
 
-
-
-    /**
-     * 新评价提醒通知
-     * @param openId 商户创建者的ID
-     * @param firstMsg
-     * @param userName 评论者名称
-     * @param time
-     * @param remarkMsg
-     * @param shopId
-     */
     public static void sendNewCommentNotice(String access_token, String openId, String firstMsg, String userName, String time, String remarkMsg, String shopId){
         System.out.println("===============sendNewCommentNotice=============begin");
         WxTemplate t = new WxTemplate();
@@ -75,15 +57,6 @@ public class WeixinNoticeUtils {
         System.out.println("===============sendNewCommentNotice=============end");
     }
 
-    /**
-     * 新商户申请通知
-     * @param openId  小区管理员的openId
-     * @param firstMsg
-     * @param userName 商户申请者名称
-     * @param time
-     * @param remarkMsg
-     * @param shopName
-     */
     public static void sendNewShopNotice(String access_token, String openId, String firstMsg, String userName, String time, String remarkMsg, String shopName){
         System.out.println("===============sendNewShopNotice=============begin");
         WxTemplate t = new WxTemplate();
@@ -127,14 +100,6 @@ public class WeixinNoticeUtils {
         System.out.println("===============sendNewShopNotice=============end");
     }
 
-    /**
-     * 商户审核结果通知
-     * @param openId 申请的商户创建者ID
-     * @param firstMsg
-     * @param verificationMsg
-     * @param time
-     * @param remarkMsg
-     */
     public static void sendShopVerificationNotice(String access_token, String openId, String firstMsg, String verificationMsg, String time, String remarkMsg, String shopId){
         System.out.println("===============sendShopVerificationNotice=============begin");
         WxTemplate t = new WxTemplate();
@@ -173,14 +138,6 @@ public class WeixinNoticeUtils {
         System.out.println("===============sendShopVerificationNotice=============end");
     }
 
-    /**
-     * 投诉举报通知
-     * @param complainObjectName
-     * @param complainFromUserName
-     * @param time
-     * @param complainRemark
-     * @param complainId
-     */
     public static void sendComplainNoticeToSuGong(String access_token, String complainObjectName, String complainFromUserName, String time, String complainRemark, String complainId){
         System.out.println("===============sendComplainNotice=============begin");
         WxTemplate t = new WxTemplate();
@@ -196,7 +153,7 @@ public class WeixinNoticeUtils {
         TemplateData first = new TemplateData();
         first.setColor("#173177");
         String firstMsg ="";
-        firstMsg = firstMsg + "投诉对象：" + complainObjectName;
+        firstMsg = firstMsg + "Complaint object:" + complainObjectName;
         first.setValue(firstMsg.toString());
         m.put("first", first);
 
@@ -213,7 +170,7 @@ public class WeixinNoticeUtils {
         TemplateData remark = new TemplateData();
         remark.setColor("#173177");
         String remarkMsg = "";
-        remarkMsg = remarkMsg + "举报原因：" + complainRemark;
+        remarkMsg = remarkMsg + "Reason for reporting:" + complainRemark;
         remark.setValue(remarkMsg);
         m.put("remark", remark);
 
@@ -238,7 +195,7 @@ public class WeixinNoticeUtils {
         TemplateData first = new TemplateData();
         first.setColor("#173177");
         String firstMsg ="";
-        firstMsg = firstMsg + "投诉对象：" + complainObjectName;
+        firstMsg = firstMsg + "Complaint object:" + complainObjectName;
         first.setValue(firstMsg.toString());
         m.put("first", first);
 
@@ -255,7 +212,7 @@ public class WeixinNoticeUtils {
         TemplateData remark = new TemplateData();
         remark.setColor("#173177");
         String remarkMsg = "";
-        remarkMsg = remarkMsg + "举报原因：" + complainRemark;
+        remarkMsg = remarkMsg + "Reason for reporting:" + complainRemark;
         remark.setValue(remarkMsg);
         m.put("remark", remark);
 

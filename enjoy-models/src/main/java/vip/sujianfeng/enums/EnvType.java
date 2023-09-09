@@ -3,7 +3,7 @@ package vip.sujianfeng.enums;
 /**
  * author SuJianFeng
  * createTime  2022/10/8
- * @Description
+ * Description
  **/
 public enum EnvType {
     DEV("dev"), TEST("test"), PROD("prod"), TASK("task");

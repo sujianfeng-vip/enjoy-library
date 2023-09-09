@@ -26,13 +26,10 @@ public class SignUtils {
         String timestamp = create_timestamp();
         String string1;
         String signature = "";
-
-        //注意这里参数名必须全部小写，且必须有序
         string1 = "jsapi_ticket=" + jsapi_ticket +
                   "&noncestr=" + nonce_str +
                   "&timestamp=" + timestamp +
                   "&url=" + url;
-        //System.out.println(string1);
         try
         {
             MessageDigest crypt = MessageDigest.getInstance("SHA-1");
@@ -40,12 +37,10 @@ public class SignUtils {
             crypt.update(string1.getBytes("UTF-8"));
             signature = byteToHex(crypt.digest());
         }
-        catch (NoSuchAlgorithmException e)
-        {
+        catch (NoSuchAlgorithmException e){
             logger.error(e.toString(), e);
         }
-        catch (UnsupportedEncodingException e)
-        {
+        catch (UnsupportedEncodingException e){
             logger.error(e.toString(), e);
         }
         ret.put("url", url);

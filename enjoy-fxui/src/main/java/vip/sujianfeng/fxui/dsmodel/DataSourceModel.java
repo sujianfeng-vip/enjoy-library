@@ -3,8 +3,6 @@ package vip.sujianfeng.fxui.dsmodel;
 /**
  * author SuJianFeng
  * createTime  2019/9/17 8:26
- * 资源模型
- * 前端操作界面与数据库操作之间的模型
  **/
 public class DataSourceModel {
     private String title;

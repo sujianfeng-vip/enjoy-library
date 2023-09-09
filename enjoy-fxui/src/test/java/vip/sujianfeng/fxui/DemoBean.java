@@ -5,7 +5,7 @@ import vip.sujianfeng.fxui.dsmodel.FxBaseModel;
 /**
  * author SuJianFeng
  * createTime  2022/11/7
- * @Description
+ * Description
  **/
 public class DemoBean extends FxBaseModel {
     public DemoBean(String name) {

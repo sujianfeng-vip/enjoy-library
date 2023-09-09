@@ -18,7 +18,7 @@ import java.util.concurrent.atomic.AtomicReference;
 /**
  * author SuJianFeng
  * createTime  2022/11/7
- * @Description
+ * Description
  **/
 public class FxApiUtils {
     private static TbHttpPost tbHttpPost = new TbHttpPost();
@@ -45,7 +45,7 @@ public class FxApiUtils {
     private static <T> CallResult<T> postLoading(String url, Map<String, String> headers, Object param, Class<T> t) {
         AtomicReference<CallResult<?>> ref = new AtomicReference<>();
         FxFormUtils.showAndWaitForm(FormLoadingController.class, (controller)->{
-            Platform.runLater(()-> controller.lblLoadingMsg.setText("加载中...."));
+            Platform.runLater(()-> controller.lblLoadingMsg.setText("loading...."));
             LoadingUtils.loadBySilence(()-> ref.set(postBase(url, headers, param)), controller::closeForm, controller::closeForm);
         });
         return ref.get().clone(t);

@@ -26,9 +26,7 @@ public class FxCtrlDataBindHandler<T extends FxBaseModel> {
     private Map<String, Node> ctrlMap = new HashMap<>();
     private T baseModel = null;
 
-    /**
-     * 锁定状态，关闭控件监听
-     */
+
     private boolean locked = false;
 
     public FxCtrlDataBindHandler(Stage stage){

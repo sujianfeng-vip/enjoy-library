@@ -13,13 +13,7 @@ public class TbHttpEntriryRequest extends TbHttpRequest {
 
     private Object bodyObj;
 
-    /**
-     *
-     * @param url
-     * @param headers
-     * @param bodyObj
-     * @param contentType -> application/json  or  application/x-www-form-urlencoded
-     */
+
     public TbHttpEntriryRequest(String url, Map<String, String> headers, Map<String, String> params, Object bodyObj, String contentType) {
         super(url, headers, params);
         this.bodyObj = bodyObj;

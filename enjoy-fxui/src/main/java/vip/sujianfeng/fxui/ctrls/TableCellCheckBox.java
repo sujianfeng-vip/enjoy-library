@@ -30,16 +30,13 @@ public class TableCellCheckBox<S, T> extends TableCell<S, T> {
     protected void updateItem(T item, boolean empty) {
         super.updateItem(item, empty);
         if (empty) {
-            //如果此列为空默认不添加元素
             setText(null);
             setGraphic(null);
         } else {
-            //初始化为不选中
             this.checkBox.setSelected(false);
             setGraphic(this.checkBox);
             this.checkBox.setOnAction(event -> {
                 T row = (T) this.getTableRow().getItem();
-                //选择框点击进来
                 checkBoxEvents.onAction(this, row, this.checkBox.isSelected());
             });
         }

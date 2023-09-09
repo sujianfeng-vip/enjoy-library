@@ -52,12 +52,6 @@ public class DialogUtils {
         void selectBack(File file);
     }
 
-    /**
-     * 打开文件选择器
-     * @param filterText 例如：XML Files
-     * @param filter     例如：*.xml
-     * @param fileChosen 选择文件后的回调
-     */
     public static void openFileChooser(Window owner, String filterText, String filter, FileChosen fileChosen) {
         fileChooser(owner, filterText, filter, fileChosen);
     }
@@ -75,12 +69,7 @@ public class DialogUtils {
         }
     }
 
-    /**
-     * 保存文件选择器
-     * @param filterText 例如：XML Files
-     * @param filter     例如：*.xml
-     * @param fileChosen 选择文件后的回调
-     */
+
     public static void saveFileChooser(Window owner, String filterText, String filter, FileChosen fileChosen) {
         FileChooser fileChooser = new FileChooser();
         // Set extension filter

@@ -87,10 +87,7 @@ public abstract class FxBaseController implements Initializable {
         this.stage.showAndWait();
     }
 
-    /**
-     * 接受参数
-     * @param params 接收参数数据
-     */
+
     public void putParams(Object... params){
         this.params = params;
         loadPageData(params);
@@ -133,17 +130,11 @@ public abstract class FxBaseController implements Initializable {
         }
     }
 
-    /**
-     * 页面显示中
-     * @param windowEvent
-     */
+
     protected void onShowing(WindowEvent windowEvent) throws Exception{
     }
 
-    /**
-     * 页面显示后
-     * @param windowEvent
-     */
+
     protected void onShown(WindowEvent windowEvent) throws Exception{
 
     }

@@ -17,13 +17,9 @@ import vip.sujianfeng.utils.define.CallResult;
  * createTime  2019/9/15 16:50
  **/
 public abstract class FxListDataController<T extends FxBaseModel, P extends FxPageParam, D extends FxDiskDataHandler<T>> extends FxDsController<T, P, D> {
-    /**
-     * 分页控制
-     */
+
     private FxPageRows<T> pageRows = new FxPageRows<>("", 1, 10);
-    /**
-     * 观察者模式-行数据
-     */
+
     private ObservableList<T> rows = FXCollections.observableArrayList();
 
     abstract protected TableView<T> getTableView();
@@ -37,7 +33,7 @@ public abstract class FxListDataController<T extends FxBaseModel, P extends FxPa
 
     final public void loadPriorPageRows(){
         if (pageRows.getPageIndex() <= 1){
-            DialogUtils.info("已经是首页!");
+            DialogUtils.info("Already on the homepage!");
             return;
         }
         this.getPageParam().setPageNo(this.getPageParam().getPageNo() - 1);
@@ -46,7 +42,7 @@ public abstract class FxListDataController<T extends FxBaseModel, P extends FxPa
 
     final public void loadNextPageRows(){
         if (pageRows.getPageIndex() >= Math.ceil(pageRows.getTotalSize()*1.0 / pageRows.getPageSize())){
-            DialogUtils.info("已经是尾页!");
+            DialogUtils.info("It's already the last page!");
             return;
         }
         this.getPageParam().setPageNo(this.getPageParam().getPageNo() + 1);
@@ -56,7 +52,7 @@ public abstract class FxListDataController<T extends FxBaseModel, P extends FxPa
     final public void loadLastPageRows(){
         int totalPages = ConvertUtils.cInt(Math.ceil(pageRows.getTotalSize() * 1.0 / pageRows.getPageSize()));
         if (pageRows.getPageIndex() >= totalPages){
-            DialogUtils.info("已经是尾页!");
+            DialogUtils.info("It's already the last page!");
             return;
         }
         this.getPageParam().setPageNo(totalPages);
@@ -88,7 +84,7 @@ public abstract class FxListDataController<T extends FxBaseModel, P extends FxPa
     }
 
     final public void export(){
-        DialogUtils.info("开发中...");
+        DialogUtils.info("dev ...");
     }
 
     protected void beforeAddNew(T masterData){
@@ -161,7 +157,7 @@ public abstract class FxListDataController<T extends FxBaseModel, P extends FxPa
     }
 
     final protected void delete(T masterData){
-        DialogUtils.confirm("准备删除此笔数据，您确认要执行此操作吗?", "", (clickOk)->{
+        DialogUtils.confirm("Confirm delete ?", "", (clickOk)->{
             if (clickOk) {
                 FxManyIdParam param = new FxManyIdParam();
                 param.getIds().add(masterData.getId());

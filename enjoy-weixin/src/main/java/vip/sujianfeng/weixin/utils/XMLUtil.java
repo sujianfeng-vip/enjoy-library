@@ -19,13 +19,7 @@ import java.util.Map;
  */
 public class XMLUtil {
     private static Logger logger = LoggerFactory.getLogger(XMLUtil.class);
-    /**
-     * 解析xml,返回第一级元素键值对。如果第一级元素有子节点，则此节点的值是子节点的xml数据。
-     * @param  strxml
-     * @return
-     * @throws  JDOMException
-     * @throws IOException
-     */
+
     public static Map<String,String> doXMLParse(String strxml) throws JDOMException, IOException {
         if(null == strxml || "".equals(strxml)) {
             return null;
@@ -51,16 +45,10 @@ public class XMLUtil {
             }
             m.put(k, v);
         }
-        //关闭流
         //in.close();
         return m;
     }
 
-    /**
-     * 获取子结点的xml
-     * @param children
-     * @return String
-     */
     public static String getChildrenText(List children) {
         StringBuffer sb = new StringBuffer();
         if(!children.isEmpty()) {
@@ -80,13 +68,7 @@ public class XMLUtil {
         }
         return sb.toString();
     }
-    /**
-     * 获取xml编码字符集
-     * @param strxml
-     * @return
-     * @throws IOException
-     * @throws JDOMException
-     */
+
     public static String getXMLEncoding(String strxml) throws JDOMException, IOException {
         InputStream in = HttpClientUtil.String2Inputstream(strxml);
         SAXBuilder builder = new SAXBuilder();
@@ -98,10 +80,10 @@ public class XMLUtil {
     public static void main(String[] args){
         String xml = "<xml>\n" +
                 "<return_code><![CDATA[SUCCESS]]></return_code>\n" +
-                "<return_msg><![CDATA[参数错误:订单号字段必填,最长为28个字符.]]></return_msg>\n" +
+                "<return_msg><![CDATA[Parameter error: The order number field is required and can be up to 28 characters long]]></return_msg>\n" +
                 "<result_code><![CDATA[FAIL]]></result_code>\n" +
                 "<err_code><![CDATA[PARAM_ERROR]]></err_code>\n" +
-                "<err_code_des><![CDATA[参数错误:订单号字段必填,最长为28个字符.]]></err_code_des>\n" +
+                "<err_code_des><![CDATA[Parameter error: The order number field is required and can be up to 28 characters long]]></err_code_des>\n" +
                 "<mch_billno><![CDATA[]]></mch_billno>\n" +
                 "<mch_id><![CDATA[1389278902]]></mch_id>\n" +
                 "<wxappid><![CDATA[wx02b95f7c2c7646ae]]></wxappid>\n" +

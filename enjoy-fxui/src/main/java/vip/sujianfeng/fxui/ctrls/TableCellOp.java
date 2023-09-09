@@ -25,11 +25,9 @@ public class TableCellOp<S, T> extends TableCell<S, T> {
     protected void updateItem(T item, boolean empty) {
         super.updateItem(item, empty);
         if (empty) {
-            //如果此列为空默认不添加元素
             setText(null);
             setGraphic(null);
         } else {
-            //初始化按钮
             setGraphic(this.tableOpPane);
         }
     }

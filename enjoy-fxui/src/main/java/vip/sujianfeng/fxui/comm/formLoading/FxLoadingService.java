@@ -5,7 +5,7 @@ import vip.sujianfeng.fxui.utils.FxFormUtils;
 
 /**
  * author sujianfeng
- * @create 2019-09-19 5:21
+ * create 2019-09-19 5:21
  */
 public class FxLoadingService extends FxBaseService {
 

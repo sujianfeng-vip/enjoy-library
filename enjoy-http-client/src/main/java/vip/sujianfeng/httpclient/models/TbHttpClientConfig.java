@@ -3,29 +3,18 @@ package vip.sujianfeng.httpclient.models;
 /**
  * author SuJianFeng
  * createTime  2019/11/29 7:31
- * httpClient连接配置
  **/
 public class TbHttpClientConfig {
-    /**
-     * 建立连接超时时间（毫秒)
-     */
+
     private int connectTimeout = 10 * 1000;
-    /**
-     * 数据传送超时时间（毫秒）
-     */
+
     private int socketTimeout = 15 * 1000;
     private String encoding = "UTF-8";
-    /**
-     * 从连接池取连接超时时间（毫秒）
-     */
+
     private int connectionRequestTimeout = 5000;
-    /**
-     * 最大连接数
-     */
+
     private int connectionMaxTotal = 500;
-    /**
-     * 每路由最大连接数
-     */
+
     private int connectionDefaultMaxPerRoute = 100;
 
     public int getConnectTimeout() {

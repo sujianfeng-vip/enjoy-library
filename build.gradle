@@ -23,10 +23,7 @@ subprojects {
 
     repositories {
         maven {
-            url project.ext.get("publishUrl_release")
-        }
-        maven {
-            url project.ext.get("publishUrl_snapshots")
+            url 'https://s01.oss.sonatype.org/content/repositories/releases/'
         }
         maven {
             url 'https://maven.aliyun.com/repository/public'

@@ -10,7 +10,7 @@ import vip.sujianfeng.utils.comm.StringUtilsEx;
 /**
  * author SuJianFeng
  * createTime  2022/12/14
- * @Description
+ * Description
  **/
 @FxForm(value = "/fxml/form-confirm.fxml", title = "提示")
 public class FormComfirmController extends FxBaseController {

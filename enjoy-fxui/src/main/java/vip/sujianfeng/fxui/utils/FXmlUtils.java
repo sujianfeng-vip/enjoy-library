@@ -10,16 +10,11 @@ import java.net.URL;
 /**
  * author SuJianFeng
  * createTime  2022/12/16
- * @Description
+ * Description
  **/
 public class FXmlUtils {
 
-    /**
-     * 加载FXML资源
-     * @param fxmlUrl
-     * @return
-     * @throws IOException
-     */
+
     public static Pane loadFXML(String fxmlUrl) throws IOException {
         URL url = FXmlUtils.class.getResource(fxmlUrl);
         return loadFXML(url);

@@ -9,7 +9,6 @@ import java.io.IOException;
 /**
  * author SuJianFeng
  * createTime  2022/5/11
- * @Description
  */
 public class HttpResponseStringParser implements IHttpResponseParser<String> {
 

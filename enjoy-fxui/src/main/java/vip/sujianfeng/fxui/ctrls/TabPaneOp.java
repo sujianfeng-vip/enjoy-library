@@ -13,7 +13,6 @@ import vip.sujianfeng.utils.comm.StringUtilsEx;
 /**
  * author SuJianFeng
  * createTime  2019/9/14 21:46
- * Tab页签操作类
  **/
 public class TabPaneOp {
 
@@ -46,9 +45,6 @@ public class TabPaneOp {
         return controller;
     }
 
-    /**
-     * 关闭tab
-     */
     private static class TabCloseEvent implements EventHandler<Event> {
         private final Tab tab;
         private String key;

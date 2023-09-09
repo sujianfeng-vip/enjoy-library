@@ -8,7 +8,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * author sujianfeng
- * @create 2019-09-17 19:43
+ * create 2019-09-17 19:43
  */
 public class DataSourceParser {
     private DataSourceParser() {}

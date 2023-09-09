@@ -6,7 +6,6 @@ import org.slf4j.LoggerFactory;
 import vip.sujianfeng.redis.TbRedisCache;
 
 /**
- * 消费者
  * author SuJianFeng
  * createTime  2020/9/27 15:49
  **/
@@ -16,13 +15,6 @@ public class TbRedisMqConsumer {
 
     private TbRedisCache tbRedisCache;
 
-    /**
-     * 这个订阅是阻塞的，需要创建一个线程来执行它
-     * @param channelName
-     * @param t
-     * @param event
-     * @param <T>
-     */
     public <T> void subscribe(String channelName, Class<T> t, TbRedisMqMessageEvent<T> event){
         tbRedisCache.accessJedis(jedis -> {
             jedis.subscribe(new redis.clients.jedis.JedisPubSub() {

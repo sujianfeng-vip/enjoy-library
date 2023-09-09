@@ -21,9 +21,9 @@ import java.util.concurrent.ConcurrentMap;
 public class NettyWebSocketServerHandler extends SimpleChannelInboundHandler<Object> {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
-    //客户端组
+    //Client Group
     public static ChannelGroup CHANNEL_GROUP = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
-    //存储ip和channel的容器
+    //Container for storing IP and channels
     private static ConcurrentMap<String, Channel> IP_CHANNEL_MAP = new ConcurrentHashMap<>();
 
     private NettyWebSocketMessageEvent nettyWebsocketMessageEvent;
@@ -32,58 +32,47 @@ public class NettyWebSocketServerHandler extends SimpleChannelInboundHandler<Obj
         this.nettyWebsocketMessageEvent = nettyWebsocketMessageEvent;
     }
 
-    /**
-     * 增加连接
-     * @param ctx
-     * @throws Exception
-     */
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         CHANNEL_GROUP.add(ctx.channel());
         String ip = getAddr(ctx);
-        //将IP和channel的关系保存
+        // Save the relationship between IP and channel
         if (!IP_CHANNEL_MAP.containsKey(ip)){
             IP_CHANNEL_MAP.put(ip, ctx.channel());
         }
-        logger.info("客户端[{}]连接成功!", ip);
+        logger.info("Client [{}] successfully connected!", ip);
     }
 
-    /**
-     *
-     * @param ctx
-     * @param msg
-     * @throws Exception
-     */
     protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
-        String clintInfo = String.format("来自客户端消息[%s]", getAddr(ctx));
+        String clintInfo = String.format("Message from client[%s]", getAddr(ctx));
         logger.info("{} => {},{}", clintInfo, msg.getClass().getName(), JSON.toJSONString(msg));
         if (msg instanceof FullHttpRequest){
-            //以http请求形式接入，但是走的是websocket
+            //Accessing via HTTP request, but using websocket
             handleHttpRequest(ctx, (FullHttpRequest) msg);
             return;
         }
-        //关闭消息
+        //turn off message
         if (msg instanceof CloseWebSocketFrame) {
-            logger.info("{} => 关闭", clintInfo);
+            logger.info("{} => close", clintInfo);
             Channel channel = ctx.channel();
             channel.close();
             return;
         }
-        //接受消息处理
+        //Accept message processing
         nettyWebsocketMessageEvent.receive(ctx, msg);
         /*
-        //文本消息
+        //Text Message
         if (msg instanceof TextWebSocketFrame) {
-            logger.info("收到客户消息：{}", ((TextWebSocketFrame) msg).text());
-            ctx.writeAndFlush(new TextWebSocketFrame("收到"));
+            logger.info("Received customer message:{}", ((TextWebSocketFrame) msg).text());
+            ctx.writeAndFlush(new TextWebSocketFrame("receive"));
             return;
         }
-        //二进制消息
+        //Binary Message
         if (msg instanceof BinaryWebSocketFrame) {
 
             return;
         }
-        //ping消息
+        //Ping message
         if (msg instanceof PongWebSocketFrame) {
 
             return;
@@ -91,72 +80,46 @@ public class NettyWebSocketServerHandler extends SimpleChannelInboundHandler<Obj
         */
     }
 
-    /**
-     *
-     * @param ctx
-     * @throws Exception
-     */
     @Override
     public void channelUnregistered(ChannelHandlerContext ctx) throws Exception {
-        logger.info("客户端[{}] => channelUnregistered", getAddr(ctx));
+        logger.info("Client[{}] => channelUnregistered", getAddr(ctx));
     }
 
-    /**
-     * 断开连接
-     * @param ctx
-     * @throws Exception
-     */
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-        logger.info("客户端[{}] => 断开连接", getAddr(ctx));
+        logger.info("Client [{}]=>Disconnect", getAddr(ctx));
         CHANNEL_GROUP.remove(ctx.channel());
         IP_CHANNEL_MAP.remove(getAddr(ctx));
     }
 
-    /**
-     * 异常处理
-     * @param ctx
-     * @param cause
-     * @throws Exception
-     */
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        System.out.println("连接异常："+cause.getMessage());
+        System.out.println("Connection exception:" + cause.getMessage());
         ctx.close();
         IP_CHANNEL_MAP.remove(getAddr(ctx));
     }
 
-
-    /**
-     * 给指定客户端发消息
-     */
     public void sendMessage(String address){
         Channel channel= IP_CHANNEL_MAP.get(address);
-        String message="你好，这是指定消息发送";
+        String message = "Hello, this is the designated message for sending";
         channel.writeAndFlush(new TextWebSocketFrame(message));
     }
 
-    /**
-     * 群发消息
-     */
     public void sendMessageAll(String message){
         CHANNEL_GROUP.writeAndFlush(new TextWebSocketFrame(message));
     }
 
     public String getAddr(ChannelHandlerContext ctx){
-        //获取当前channel绑定的IP地址
+        //Obtain the IP address bound to the current channel
         InetSocketAddress ipSocket = (InetSocketAddress)ctx.channel().remoteAddress();
         String address = ipSocket.getAddress().getHostAddress();
         return String.format("%s:%s", address, ipSocket.getPort());
     }
 
-    /**
-     * 唯一的一次http请求，用于创建websocket
-     * */
     private void handleHttpRequest(ChannelHandlerContext ctx, FullHttpRequest req) {
-        //要求Upgrade为websocket，过滤掉get/Post
+        //Require Upgrade to be websocket, filter out get/Post
         if (!req.decoderResult().isSuccess() || (!"websocket".equals(req.headers().get("Upgrade")))) {
-            //若不是websocket方式，则创建BAD_REQUEST的req，返回给客户端
+            //If not in websocket mode, create BAD_ REQUEST's req, returned to the client
             sendHttpResponse(ctx, req, new DefaultFullHttpResponse(
                     HttpVersion.HTTP_1_1, HttpResponseStatus.BAD_REQUEST));
             return;
@@ -171,11 +134,8 @@ public class NettyWebSocketServerHandler extends SimpleChannelInboundHandler<Obj
         handshakes.handshake(ctx.channel(), req);
     }
 
-    /**
-     * 拒绝不合法的请求，并返回错误信息
-     * */
     private static void sendHttpResponse(ChannelHandlerContext ctx, FullHttpRequest req, DefaultFullHttpResponse res) {
-        // 返回应答给客户端
+        // Return the response to the client
         if (res.status().code() != 200) {
             ByteBuf buf = Unpooled.copiedBuffer(res.getStatus().toString(),
                     CharsetUtil.UTF_8);
@@ -183,7 +143,7 @@ public class NettyWebSocketServerHandler extends SimpleChannelInboundHandler<Obj
             buf.release();
         }
         ChannelFuture f = ctx.channel().writeAndFlush(res);
-        // 如果是非Keep-Alive，关闭连接
+        // If it is not Keep Alive, close the connection
         if (!HttpUtil.isKeepAlive(req) || res.status().code() != 200) {
             f.addListener(ChannelFutureListener.CLOSE);
         }

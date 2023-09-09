@@ -3,7 +3,6 @@ package vip.sujianfeng.mq.kafka;
 /**
  * author SuJianFeng
  * createTime  2019/11/15 10:47
- * kafka生产者配置
  **/
 public class TbKafkaProducerConfig {
     private String bootstrapServers;

@@ -60,27 +60,21 @@ public class NettyWebSocketClient extends AbstractNettyWebsocketClient {
 
     @Override
     protected void doOpen() {
-        // websocket客户端握手实现的基类
         WebSocketClientHandshaker webSocketClientHandshaker = WebSocketClientHandshakerFactory.newHandshaker(uri, WebSocketVersion.V13, null, true, new DefaultHttpHeaders());
-        // 业务处理类
         handler = new NettyWebSocketClientHandler(webSocketClientHandshaker, this.nettyWebSocketContext, this.nettyWebsocketMessageEvent);
-        // client端，引导client channel启动
         bootstrap = new Bootstrap();
-        // 添加管道 绑定端口 添加作用域等
         bootstrap.group(NIO_GROUP).channel(NioSocketChannel.class).handler(new NettyWebSocketChannelInitializer(handler));
     }
 
     @Override
     protected void doConnect() {
         try {
-            logger.info("NettyWebSocketClient连接[{}:{}]开始....", uri.getHost(), port);
-            // 启动连接
+            logger.info("NettyWebSocketClient[{}:{}]connecting....", uri.getHost(), port);
             channel = bootstrap.connect(uri.getHost(), port).sync().channel();
-            // 等待握手响应
             handler.handshakeFuture().sync();
-            logger.info("NettyWebSocketClient连接[{}:{}]成功!", uri.getHost(), port);
+            logger.info("NettyWebSocketClient [{}:{}] connected ok!", uri.getHost(), port);
         } catch (InterruptedException e) {
-            logger.error("websocket连接发生异常", e);
+            logger.error("websocket connect error!", e);
             Thread.currentThread().interrupt();
         }
     }

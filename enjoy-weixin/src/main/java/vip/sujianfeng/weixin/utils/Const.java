@@ -3,7 +3,7 @@ package vip.sujianfeng.weixin.utils;
 /**
  * author SuJianFeng
  * createTime  2022/6/24
- * @Description
+ * Description
  **/
 public class Const {
     public static final String WEIXIN_AUTH_STATE_BASE = "wxBase";

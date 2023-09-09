@@ -31,41 +31,41 @@ public class NettyWebSocketServer {
     }
 
     public void run() throws InterruptedException {
-        // netty基本操作，两个线程组
+        // Netty basic operation, two thread groups
         EventLoopGroup bossGroup = new NioEventLoopGroup();
         EventLoopGroup workerGroup = new NioEventLoopGroup();
         try{
-            //netty的启动类
+            //Netty's startup class
             ServerBootstrap serverBootstrap = new ServerBootstrap();
             serverBootstrap.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class)
-                    //记录日志的handler，netty自带的
+                    //The handler for logging, which comes with Netty
                     .handler(new LoggingHandler(LogLevel.INFO))
                     .option(ChannelOption.SO_KEEPALIVE,true)
                     .option(ChannelOption.SO_BACKLOG,1024 * 1024 * 10)
-                    //设置handler
+                    //Set handler
                     .childHandler(new ChannelInitializer<SocketChannel>(){
                         @Override
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
                             ChannelPipeline pipeline = socketChannel.pipeline();
-                            //websocket协议本身是基于Http协议的，所以需要Http解码器
+                            //The websocket protocol itself is based on the HTTP protocol, so an HTTP decoder is required
                             pipeline.addLast("http-codec",new HttpServerCodec());
-                            //以块的方式来写的处理器
+                            //Processors written in blocks
                             pipeline.addLast("http-chunked",new ChunkedWriteHandler());
-                            //netty是基于分段请求的，HttpObjectAggregator的作用是将请求分段再聚合,参数是聚合字节的最大长度
+                            //Netty is based on segmented requests, and the function of HttpObject Aggregator is to segment and reassemble requests. The parameter is the maximum length of aggregated bytes
                             pipeline.addLast("aggregator",new HttpObjectAggregator(1024 * 1024 * 1024));
-                            //这个是websocket的handler，是netty提供的，也可以自定义，建议就用默认的
+                            //This is the handler for websocket, provided by Netty and can also be customized. It is recommended to use the default one
                             pipeline.addLast(new WebSocketServerProtocolHandler("/" + contextPath,null,true,65535));
-                            //自定义的handler，处理服务端传来的消息
+                            //Customized handler to handle messages sent from the server
                             pipeline.addLast(new NettyWebSocketServerHandler(nettyWebsocketMessageEvent));
                         }
                     });
             ChannelFuture channelFuture = serverBootstrap.bind(new InetSocketAddress(port)).sync();
             channelFuture.channel().closeFuture().sync();
-            logger.info("Netty服务[{}/{}]已启动!", port, contextPath);
+            logger.info("Netty service [{}/{}] has started!", port, contextPath);
         }finally {
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();
-            logger.info("Netty服务[{}/{}]已关闭!", port, contextPath);
+            logger.info("Netty service [{}/{}] has been shut down!", port, contextPath);
         }
     }
 }

@@ -9,16 +9,10 @@ import java.util.Set;
 /**
  * author SuJianFeng
  * createTime  2022/10/28
- * @Description
+ * Description
  **/
 public class FxUiCtrlUtils {
 
-    /**
-     *
-     * @param node
-     * @param selectors TextField, TextArea ...
-     * @return
-     */
     public static Node lookupNode(Node node, String id, String... selectors){
         if (id.equalsIgnoreCase(node.getId())){
             return node;

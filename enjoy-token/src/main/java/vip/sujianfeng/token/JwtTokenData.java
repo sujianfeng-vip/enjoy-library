@@ -9,18 +9,11 @@ import java.util.List;
 /**
  * author SuJianFeng
  * createTime  2022/6/28
- * @Description
+ * Description
  **/
 public class JwtTokenData {
 
-    /**
-     * 加密token数据
-     * @param data
-     * @param seed
-     * @param expireTime
-     * @return
-     * @throws Exception
-     */
+
     public static String encrypt(JwtTokenData data, String seed, long expireTime) throws Exception {
         return AesUtils.AESEncode(
                 String.format("%s%s", seed, expireTime),
@@ -28,14 +21,6 @@ public class JwtTokenData {
         );
     }
 
-    /**
-     * 解密token数据
-     * @param encryptStr
-     * @param seed
-     * @param expireTime
-     * @return
-     * @throws Exception
-     */
     public static JwtTokenData decrypt(String encryptStr, String seed, long expireTime) throws Exception {
         String content = AesUtils.AESDecode(
                 String.format("%s%s", seed, expireTime),

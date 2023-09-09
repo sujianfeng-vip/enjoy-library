@@ -2,7 +2,7 @@ package vip.sujianfeng.redis;
 
 /**
  * author sujianfeng
- * @create 2019-10-17 6:18
+ * create 2019-10-17 6:18
  */
 public class TbRedisConfig {
     private String host;

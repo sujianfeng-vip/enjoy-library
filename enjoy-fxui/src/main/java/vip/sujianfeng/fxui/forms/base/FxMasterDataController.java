@@ -84,13 +84,10 @@ public abstract class FxMasterDataController<T extends FxBaseModel, P extends Fx
 
     }
 
-    /**
-     * 保存单据数据
-     */
     final protected void save(Class<?> viewControllerClass) throws Exception {
         FxFormState oriFormState = this.formState;
         if (oriFormState != FxFormState.Adding && oriFormState != FxFormState.Editing){
-            throw new Exception("窗体不在新增或编辑状态，无法执行保存操作!");
+            throw new Exception("The form is not in a new or edited state, unable to perform save operation!");
         }
         CallResult<?> callResult = new CallResult<>();
         beforeSave(callResult, oldMasterData, masterData);
@@ -106,13 +103,11 @@ public abstract class FxMasterDataController<T extends FxBaseModel, P extends Fx
             op = getDataHandler().update(masterData);
         }
         if (op.isSuccess()) {
-            //执行成功后
             this.setFormState(FxFormState.Viewing);
             afterSave(oldMasterData, masterData, viewControllerClass);
         }else {
             DialogUtils.error(op.getMessage());
-            //执行失败后
-            this.setFormState(oriFormState); //还原之前状态
+            this.setFormState(oriFormState);
         }
     }
 
@@ -122,9 +117,9 @@ public abstract class FxMasterDataController<T extends FxBaseModel, P extends Fx
         if (parentController instanceof FxListDataController){
             FxListDataController listCtrl = (FxListDataController) parentController;
             if (getOpType() == OpType.AddNew || getOpType() == OpType.copyNew){
-                listCtrl.loadFirstPageRows(); //重新加载数据
+                listCtrl.loadFirstPageRows();
             }else{
-                listCtrl.refreshForm(); //刷新列表页面
+                listCtrl.refreshForm();
             }
             if (viewControllerClass == null) {
                 this.closeForm();
@@ -136,7 +131,7 @@ public abstract class FxMasterDataController<T extends FxBaseModel, P extends Fx
 
     final protected void gotoPrior(){
         if (this.formState != FxFormState.Viewing){
-            DialogUtils.error("当前窗体不在浏览状态，无法执行此操作!");
+            DialogUtils.error("The current form is not in browsing mode, unable to perform this operation!");
             return;
         }
         Object parent = getParent();
@@ -144,7 +139,7 @@ public abstract class FxMasterDataController<T extends FxBaseModel, P extends Fx
             FxListDataController<T, P, D> fxList = (FxListDataController) parent;
             T item = fxList.getPriorRow();
             if (item == null){
-                DialogUtils.error("当前列表已没有上一笔数据了!");
+                DialogUtils.error("There is no previous data in the current list!");
                 return;
             }
             loadData(OpType.View, item);
@@ -153,7 +148,7 @@ public abstract class FxMasterDataController<T extends FxBaseModel, P extends Fx
 
     final protected void gotoNext(){
         if (this.formState != FxFormState.Viewing){
-            DialogUtils.error("当前窗体不在浏览状态，无法执行此操作!");
+            DialogUtils.error("The current form is not in browsing mode, unable to perform this operation!");
             return;
         }
         Object parent = getParent();
@@ -161,7 +156,7 @@ public abstract class FxMasterDataController<T extends FxBaseModel, P extends Fx
             FxListDataController<T, P, D> fxList = (FxListDataController) parent;
             T item = fxList.getNextRow();
             if (item == null){
-                DialogUtils.error("当前列表已没有下一笔数据了!");
+                DialogUtils.error("There is no next data in the current list!");
                 return;
             }
             loadData(OpType.View, item);
@@ -170,7 +165,7 @@ public abstract class FxMasterDataController<T extends FxBaseModel, P extends Fx
 
     final protected <C> void edit(Class<C> editControllerClass){
         if (this.formState != FxFormState.Viewing){
-            DialogUtils.error("当前窗体不在浏览状态，无法执行此操作!");
+            DialogUtils.error("The current form is not in browsing mode, unable to perform this operation!");
             return;
         }
         Object parent = getParent();
@@ -184,10 +179,10 @@ public abstract class FxMasterDataController<T extends FxBaseModel, P extends Fx
 
     final protected void delete(){
         if (this.formState != FxFormState.Viewing){
-            DialogUtils.error("当前窗体不在浏览状态，无法执行此操作!");
+            DialogUtils.error("The current form is not in browsing mode, unable to perform this operation!");
             return;
         }
-        DialogUtils.confirm("准备删除此笔数据，您确认要执行此操作马?", (clickOk)->{
+        DialogUtils.confirm("Confirm Delete ?", (clickOk)->{
             if (clickOk) {
                 FxManyIdParam param = new FxManyIdParam();
                 param.getIds().add(masterData.getId());

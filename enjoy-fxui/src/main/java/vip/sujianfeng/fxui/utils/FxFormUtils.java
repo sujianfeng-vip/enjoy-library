@@ -20,7 +20,7 @@ import java.util.Map;
 /**
  * author SuJianFeng
  * createTime  2022/12/16
- * @Description
+ * Description
  **/
 public class FxFormUtils {
 
@@ -133,7 +133,7 @@ public class FxFormUtils {
 
     public static FormLoadingController showLoadingForm() {
         FormLoadingController controller = buildController(FormLoadingController.class, Modality.NONE, null);
-        controller.getStage().setTitle("加载中...");
+        controller.getStage().setTitle("loading...");
         controller.getStage().setAlwaysOnTop(true);
         return controller.show();
     }
@@ -147,7 +147,7 @@ public class FxFormUtils {
     public static void showLogForm(String msg, Throwable e) {
         FormLogController controller = buildController(FormLogController.class, Modality.NONE, null);
         controller.updateMessage(msg, e);
-        controller.getStage().setTitle("加载中...");
+        controller.getStage().setTitle("loading...");
         controller.getStage().setAlwaysOnTop(true);
         controller.show();
     }

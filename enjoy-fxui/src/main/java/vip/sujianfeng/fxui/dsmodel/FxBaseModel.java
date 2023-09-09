@@ -13,12 +13,11 @@ import java.util.List;
 /**
  * author SuJianFeng
  * createTime  2022/11/4
- * @Description
  **/
 public class FxBaseModel {
     private List<Field> fields = null;
     private String id;
-    //数据状态：0-正常，1-删除
+    //0-normal 1-delete
     private int state;
 
     public String getId() {

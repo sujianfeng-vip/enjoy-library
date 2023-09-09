@@ -8,7 +8,7 @@ import vip.sujianfeng.fxui.forms.base.FxBaseController;
 /**
  * author SuJianFeng
  * createTime  2022/12/14
- * @Description
+ * Description
  **/
 @FxForm(value = "/fxml/form-info.fxml", title = "提示")
 public class FormInfoController extends FxBaseController {

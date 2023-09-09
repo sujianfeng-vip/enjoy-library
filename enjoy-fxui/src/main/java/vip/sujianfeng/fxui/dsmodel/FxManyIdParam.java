@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * author SuJianFeng
  * createTime  2022/11/9
- * @Description
+ * Description
  **/
 public class FxManyIdParam {
     private List<String> ids = new ArrayList<>();
